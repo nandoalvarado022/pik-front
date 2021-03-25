@@ -1,0 +1,27 @@
+#view_Ubicacion{
+    .content{
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 10px;
+        align-content: start;
+        justify-content: space-evenly;
+    }
+    .Card{
+        height: 180px;
+        width: 180px;
+        padding: 0;
+        margin: 10px;
+        img{
+            width: 200%;
+            height: 200%;
+            transition: .5s ease;
+        }
+        &:not(.active) img{
+            // -webkit-filter: grayscale(100%);
+        }
+        &.pais{
+            height: 120px;
+        }
+
+    }
+}

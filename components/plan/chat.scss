@@ -1,0 +1,59 @@
+#view_Chat{
+    #to_write{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-between;
+        align-items: flex-end;
+        .caja_texto{
+            flex-grow: .9;
+        }
+        button{
+            margin: 0 0 8px 10px;
+        }
+    }
+    #conversation_list{
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;    
+        // max-height: 300px;
+        height: 430px;
+        overflow-y: scroll;
+        padding-right: 15px;
+        .message{
+            position: relative;
+            text-align: center;
+            width: 100%;
+            margin: 10px 0;
+            i{
+                display: block;
+                font-weight: bold;
+            }
+            img{
+                top: 5px;
+                width: 30px;
+                height: auto;
+                position: absolute;
+                left: 0;
+                float: left;
+                border-radius: 50%;
+            }
+            .fecha_sistema{
+                margin-bottom: 5px;
+                display: block;
+            }
+            .text{
+                background: #a6faae;
+                box-shadow: 0px 0px 5px #cbcbcb96;
+                border-radius: 15px 15px 5px 15px;
+                padding: 12px;
+                text-align: right;
+                display: inline-block;
+                float: right;
+                margin-left: 50px;
+            }
+            
+        }
+    }
+}

@@ -1,0 +1,228 @@
+h3.title_destacada {
+    display: none;
+}
+
+.Card {
+    padding: 10px 0;
+    color: #585858;
+    position: relative;
+    z-index: 1;
+    margin: 0px 20px 40px;
+    border-radius: 10px;
+    &:hover {
+        cursor: pointer;
+    }
+    @media screen and (min-width: 1920px) {
+        width: 400px;
+    }
+    @media screen and (min-width: 1024px) {
+        /*.actions {
+      position: absolute;
+      bottom: 20px;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+    }*/
+    }
+    @media screen and (max-width: 420px) {
+        height: auto;
+    }
+    &.small {
+        height: 360px;
+        @media screen and (min-width: 1024px) {
+            width: 320px;
+        }
+    }
+    .tachado {
+        font-size: 14px;
+    }
+    .likes-precio {
+        display: flex;
+        justify-content: space-evenly;
+        .likes {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+                color: #ea4d42;
+            }
+            span {
+                margin-left: 5px;
+            }
+        }
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+        box-shadow: -2px 0px 5px 0px #575757b5;
+        background-color: #ffffffcc;
+        border-radius: 50%;
+        background-size: 10px;
+        padding: 0 8px;
+    }
+    /*&:hover {
+      .image-front {
+        display: none;
+      }
+      .image-back {
+        display: block !important;
+      }
+    }*/
+    .descripcion_imagen {
+        @media screen and (min-width: 1024px) {
+            display: flex;
+            flex-direction: column;
+        }
+        .content_imagen {
+            text-align: center;
+            height: 220px;
+            @media screen and (max-width: 420px) {
+                width: auto;
+                height: 200px;
+                margin-bottom: 10px;
+            }
+            img {
+                // margin: -10px 0 0 10px;
+                border-radius: 5px;
+                @media screen and (max-width: 420px) {
+                    margin: initial;
+                }
+                &.image-back {
+                    display: none;
+                }
+            }
+        }
+        .content_precio {
+            .nuevoPrecio {
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+            .tags {
+                position: absolute;
+                bottom: -10px;
+                right: 20px;
+                span {
+                    color: white;
+                    border-radius: 20px 20px 5px 20px;
+                    padding: 5px 10px;
+                    font-size: 16px;
+                    margin-left: 20px;
+                }
+            }
+        }
+        .descripcion {
+            margin: 10px 0px 0;
+            white-space: pre-line;
+            font-size: 14px;
+            text-align: center;
+            .texto {
+                overflow: hidden;
+                font-weight: bold;
+                font-size: 24px;
+                p {
+                    margin: 0 0 5px;
+                }
+            }
+        }
+    }
+    .fecha_sistema {
+        margin-left: 10px;
+    }
+    h2 {
+        margin: 0px 0 10px 0px;
+        font-size: 18px;
+        max-height: 44px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+    .quantity {}
+    .date {
+        margin: 10px 0 20px 10px;
+        span {
+            margin-left: 10px;
+        }
+    }
+    .actions {
+        // float: left;
+        margin: 10px 0 0 10px;
+        color: dimgrey;
+        display: flex;
+        align-items: center;
+        .content_like {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            &.active {
+                * {
+                    color: rgb(237, 73, 86);
+                    animation: effect_dylan 1s ease-in-out;
+                }
+            }
+            .num {
+                position: absolute;
+                font-size: 8px;
+                left: 5px;
+                top: 8px;
+                color: white;
+                width: 18px;
+                text-align: center;
+            }
+            .like {
+                padding: 10px;
+                right: 20px;
+                font-size: 20px;
+                vertical-align: middle;
+                &.active {
+                    // outline: 0;
+                    // color: #fff;
+                    // &:before {
+                    //   animation: effect_dylan 0.8s ease-out;
+                    // }
+                }
+            }
+        }
+        .respuestas {
+            color: initial;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+    }
+    .cant_users {
+        float: right;
+        margin: 0 20px 0 0;
+    }
+    .caja_usuarios {
+        img {
+            border-radius: 50%;
+            float: left;
+            width: 50px;
+            height: 50px;
+            &:not(:first-child) {
+                margin-left: -20px;
+            }
+        }
+    }
+    @media screen and (min-width: 1024px) {
+        &.destacada_Card {
+            background: #ea4d42;
+            padding: 10px 0 0 0;
+            margin: 0px 0 20px 0;
+            border-radius: 5px;
+            h3.title_destacada {
+                margin: 0 0 10px 20px;
+                color: white;
+                display: block;
+                font-size: 16px;
+                font-weight: normal;
+            }
+            .Card {
+                margin-bottom: 20px;
+                box-shadow: none;
+                padding: 10px 10px 20px;
+                .tags {
+                    display: none;
+                }
+            }
+        }
+    }
+}

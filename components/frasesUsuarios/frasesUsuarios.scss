@@ -1,0 +1,29 @@
+._FrasesUsuarios{
+    padding: 10px;
+    margin: 0 0 10px 0;
+    position: relative;
+    height: 120px;
+    background-image: url(/images/backgrounds/amarillo.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    .textos{
+        font-size: 16px;
+        border-radius: 20px;
+        border: 2px solid #575656;
+        width: 200px;
+        margin: 0 auto;
+        position: relative;
+        padding: 10px 20px;
+        font-weight: bold;
+        color: #575656;
+        padding-right: 100px;
+        .carousel .slide{
+            text-align: left;
+        }
+    }
+    img{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}

@@ -1,0 +1,11 @@
+._parteSupeiorPerfil{
+    @media screen and (min-width: 1024px) {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+    header{
+        vertical-align: sub;
+        display: flex;
+        height: 245px;
+    }
+}

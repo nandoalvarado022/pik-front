@@ -1,0 +1,114 @@
+._filtrarRodadas{
+    margin: 0px 0px 10px;
+    padding: 0px 10px 5px;
+    border-radius: 10px;    
+    @media screen and (max-width: 420px) {
+        overflow-y: scroll;
+    }
+    @media screen and (min-width: 1024px) {
+        position: sticky;
+        top: 6px;
+        width: 730px;
+        margin: 0 auto 60px;
+        background: white;
+        border-radius: 30px;
+        z-index: 2;
+        box-shadow: 2px 1px 2px 0 #cecece;
+        padding: 5px 5px 5px 2px;
+
+    }
+    &.scroll{
+        box-shadow: none;
+    }
+    .opcionesSecundarias{
+        top: -40px;
+        position: absolute;
+        background: #f7f7f7;
+        width: 90%;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        padding: 10px 5px;
+        box-shadow: 2px 1px 2px 0 #1e1e1e94;
+        display: flex;
+        justify-content: center;
+        transition: .5s ease;
+        opacity: 0;
+        z-index: 1;
+        width: 100%;
+        @media screen and (min-width: 1024px) {
+            width: 90%;
+            border-radius: 0 0 10px 10px;
+        }
+        span:not(:first-child){
+            border-left: 2px solid #c7c7c7;
+        }
+        span{
+            color: #6b6b6b;
+            padding: 0 10px;
+            cursor: pointer;
+            transition: .5s ease;
+            &:hover{
+                color: #4d9afa;
+                font-weight: bold;
+            }
+        }
+    }
+    
+    .opcionesSecundarias.active{
+        border-top: 1px solid #9d9d9d;
+        opacity: 1;
+        top: 175px;
+        overflow-y: scroll;
+        @media screen and (min-width: 1024px) {
+            top: 47px;
+            overflow-y: hidden;
+        }
+    }
+    
+    .opciones{
+        padding: 0;
+        width: 750px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    button{
+        float: left;
+        border: none;
+        border-radius: 20px;
+        padding: 12px 0;
+        text-transform: uppercase;
+        flex-grow: 1;
+        margin: 0 5px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        svg{
+            background: white;
+            padding: 6px 5px;
+            border-radius: 50%;
+            margin-right: 10px;
+            width: 15px !important;
+            height: 15px;
+        }
+        span{
+            color: white;
+            margin-right: 8px;
+            font-family: "PT Sans Narrow", sans-serif;
+        }
+    }
+    /*
+    .todas:nth-child(n+1){
+        background:  var(--colorTodo); //-webkit-linear-gradient(left, #4a9189 0%, #00897b 100%);
+    }*/
+    /*.actividades{
+        background: -webkit-linear-gradient(left, #ffc259 0%, #fdaf28 100%);
+    }
+    .productos{
+        background: -webkit-linear-gradient(left, #fd827a 0%, #fa685e 100%);
+    }
+    .preguntas{
+        background: -webkit-linear-gradient(left, #7bb3fa 0%, #4d9afa 100%);
+    }*/
+}

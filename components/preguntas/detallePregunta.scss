@@ -1,0 +1,25 @@
+#view_DeallePregunta{
+    .Card{
+        border-radius: 15px 15px 5px 15px;
+        
+        .tipo{
+            svg{
+                display: none;
+            }
+        }
+    }
+    .caja_texto{
+        width: calc(100% - 100px);
+    }
+    #to_write{
+        display: flex;
+        align-items: center;
+        width: auto;
+        box-sizing: border-box;
+        margin: 0px 10px;
+        justify-content: space-around;
+        button{
+            margin: 15px 0 0 0;
+        }
+    }
+}

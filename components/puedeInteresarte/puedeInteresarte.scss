@@ -1,0 +1,59 @@
+._PuedeInteresarte{
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        justify-content: center;
+    }
+    a{
+        display: block;
+        position: relative;
+        height: 180px;
+        margin: 20px;
+        box-shadow: 0 2px 2px 0 #ababab;
+        border-radius: 20px 20px 5px 20px;
+        background-position: center;
+        background-size: 100%;
+        overflow: hidden;
+        @media screen and (min-width: 1024px) {
+            width: 350px;
+        }
+        &:before{
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0.5;
+        }
+        &.post{
+            &:before{
+                background: -webkit-linear-gradient(left, #fd827a 0%, #fa685e 100%);
+            }
+        }
+        &.producto{
+            &:before{
+                background: -webkit-linear-gradient(left, #4a9189 0%, #00897b 100%);
+            }
+        }
+        h2{
+            margin: 20px auto;
+            color: white;
+            font-size: 20px;
+            font-weight: lighter;
+            position: absolute;
+            z-index: 99;
+            text-align: center;
+            width: 100%;
+        }
+        .descripcion{
+            position: absolute;
+            top: 60px;
+            z-index: 99;
+            color: white;
+            margin: 0 20px;
+        }
+        button{
+            margin-top: 10px;
+            float: right;
+        }
+    }
+    
+}

@@ -1,0 +1,36 @@
+#_crearPublicacion {
+    .actions {
+        margin-top: 5px;
+        text-align: right;
+    }
+    .fechaSalida {
+        width: 200px;
+        margin: 10px 0;
+    }
+    .images_list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        li {
+            list-style: none;
+            width: 45%;
+            margin-bottom: 20px;
+            input {
+                padding: 5px;
+            }
+        }
+    }
+    .content {
+        display: flex;
+        margin: 20px auto;
+        width: 1200px;
+        >* {
+            width: 45%;
+        }
+    }
+    .errors {
+        background: #f9d0d0;
+        padding: 10px;
+        margin: 0 -10px 10px;
+    }
+}

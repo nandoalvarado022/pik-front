@@ -1,0 +1,255 @@
+.DetalleProducto {
+    padding-top: 20px;
+    position: relative;
+    z-index: 1;
+    margin: 0px 0 10px;
+    padding: 0 0 10px;
+    @media screen and (min-width: 1024px) {
+        box-sizing: border-box;
+    }
+    h1 {
+        margin: 5px 0;
+        line-height: 30px;
+    }
+    &.actividades {
+        h2 {
+            color: white;
+            font-size: 42px;
+            padding: 5px 10px;
+            position: absolute;
+            text-shadow: 2px 3px 5px #232323;
+            top: 60px;
+            width: 290px;
+            z-index: 1;
+        }
+    }
+    .boton_comprar {
+        margin: 20px 0 0 !important;
+        display: block;
+        padding: 10px;
+        background-color: #ea4d42;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+        box-shadow: -2px 0px 5px 0px #575757b5;
+        background-color: #ffffffcc;
+        border-radius: 50%;
+        background-size: 10px;
+        padding: 0 8px;
+    }
+    h2.textFlow {
+        background-image: -webkit-gradient(linear, left top, right top, from(#af2896), to(#509bf5));
+        background-image: linear-gradient(90deg, #af2896, #509bf5);
+        width: 100%;
+        color: white;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: lighter;
+        box-sizing: border-box;
+        background: linear-gradient(46deg, #3f5efb, #fc466b);
+        background-size: 300% 400%;
+        @media screen and (min-width: 1024px) {
+            margin: -10px;
+            width: calc(100% + 20px);
+        }
+    }
+    >.descripcion_imagen {
+        justify-content: center;
+        @media screen and (min-width: 1024px) {
+            width: calc(100% + 20px);
+            display: flex;
+        }
+        .left {
+            @media screen and (min-width: 1024px) {
+                width: 800px;
+            }
+            .content_imagen {
+                text-align: center;
+                .image-gallery-thumbnails-container {
+                    @media screen and (max-width: 420px) {
+                        display: flex;
+                        justify-content: space-around;
+                    }
+                }
+                .image-gallery-image {
+                    // max-height: 600px;
+                    max-height: calc(100vh - 300px);
+                    object-fit: contain;
+                }
+                .image-gallery-slide-wrapper {
+                    width: 698px;
+                    @media screen and (max-width: 420px) {
+                        width: initial;
+                    }
+                }
+            }
+        }
+        .Card {
+            height: initial;
+        }
+        .content_precio {
+            margin: 15px 0;
+            font-size: 20px;
+            .tachado {
+                font-size: 16px;
+            }
+            .tags {
+                position: absolute;
+                bottom: -10px;
+                right: 20px;
+                span {
+                    color: white;
+                    border-radius: 20px 20px 5px 20px;
+                    padding: 8px 20px;
+                    font-size: 16px;
+                    margin-left: 20px;
+                }
+            }
+        }
+        >.descripcion {
+            white-space: pre-line;
+            font-size: 14px;
+            padding: 20px 30px 0;
+            @media screen and (min-width: 1024px) {
+                margin: 0 20px;
+                width: 450px;
+            }
+            >p:nth-of-type(1) {
+                font-weight: bold;
+            }
+            .texto {
+                overflow: hidden;
+                font-size: 16px;
+                line-height: 30px;
+            }
+        }
+        .social_media {
+            display: flex;
+            a {
+                margin-right: 20px;
+                &:nth-of-type(1) {
+                    margin-right: 25px;
+                }
+                img {
+                    height: 25px;
+                }
+            }
+        }
+        .content_cupon {
+            button {
+                background: none;
+                font-size: 14px;
+                margin: 20px 0 10px 0;
+                border: 1px dashed #ea4d42;
+                padding: 5px 10px;
+                color: #ea4d42;
+            }
+        }
+    }
+    .tipo {
+        border-radius: 50%;
+        background: white;
+        padding: 6px;
+        box-shadow: 2px 1px 2px 0 #1e1e1e4f;
+        height: 28px;
+        width: 28px;
+        box-sizing: border-box;
+        color: #696969;
+        display: inline-block;
+        text-align: center;
+    }
+    .fecha_sistema {
+        margin-left: 10px;
+    }
+    h2 {
+        margin: 10px 0 10px 20px;
+        font-size: 18px;
+    }
+    .date {
+        margin: 10px 0 20px 10px;
+        span {
+            margin-left: 10px;
+        }
+    }
+    .actions {
+        // float: left;
+        margin: 10px 0 0 10px;
+        color: dimgrey;
+        display: flex;
+        align-items: center;
+        .content_like {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            &.active {
+                * {
+                    color: rgb(237, 73, 86);
+                    animation: effect_dylan 1s ease-in-out;
+                }
+            }
+            .num {
+                position: absolute;
+                font-size: 8px;
+                left: 5px;
+                top: 8px;
+                color: white;
+                width: 18px;
+                text-align: center;
+            }
+            .like {
+                padding: 10px;
+                right: 20px;
+                font-size: 20px;
+                vertical-align: middle;
+                &.active {
+                    // outline: 0;
+                    // color: #fff;
+                    // &:before {
+                    //   animation: effect_dylan 0.8s ease-out;
+                    // }
+                }
+            }
+        }
+        .respuestas {
+            color: initial;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+    }
+    .cant_users {
+        float: right;
+        margin: 0 20px 0 0;
+    }
+    .caja_usuarios {
+        img {
+            border-radius: 50%;
+            float: left;
+            width: 50px;
+            height: 50px;
+            &:not(:first-child) {
+                margin-left: -20px;
+            }
+        }
+    }
+    .bottom_block {
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .medios_pago {
+        margin-top: 20px;
+        display: block;
+    }
+    .Card.productos-relacionados {
+        margin: 20px 20px 0 0;
+        width: 100%;
+        .listadoRodadas {
+            .Card {
+                width: 300px;
+                .descripcion {
+                    border-left: none;
+                    background: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+.view_Rodadas .main,
+.DetalleProducto {
+    >.Categorias {
+        margin: 0px 0px 20px;
+        width: 100%;
+        box-shadow: 0px 4px 4px #5252522e;
+        position: sticky;
+        top: 50px;
+        z-index: 2;
+        ul {
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            background-color: white;
+            justify-content: center;
+            margin: 0;
+            @media screen and (max-width: 420px) {
+                overflow-x: scroll;
+            }
+        }
+        li {
+            padding: 8px 20px;
+            // width: 300px;
+            height: 40px;
+            list-style: none;
+            &:hover {
+                a {
+                    color: #585858;
+                }
+            }
+            a {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                height: 100%;
+                color: initial;
+                font-size: 14px;
+            }
+            img {
+                max-width: 50px;
+                max-height: 28px;
+                margin: 0 10px 0 0;
+            }
+        }
+    }
+}

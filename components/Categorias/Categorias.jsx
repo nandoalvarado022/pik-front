@@ -1,0 +1,86 @@
+import Link from "next/link"
+
+const Categorias = ({ scroll }) => {
+  return <div className="Categorias">
+    {/* <h3>Categorias</h3> */}
+    <ul>
+      <li filter="game">
+        <Link scroll={scroll} href="/">
+          Ver todo
+        </Link>
+      </li>
+      <li filter="game">
+        <Link scroll={scroll} href="/category/[id]" as="/category/accesorios">
+          <a>
+            <img src="/images/icons/accesories.png" alt="" />
+            Accesorios
+          </a>
+        </Link>
+      </li>
+      <li filter="game">
+        <Link scroll={scroll} href="/category/[id]" as="/category/suscripciones">
+          <a>
+            <img src="/images/icons/subscription.png" alt="suscripciones" />
+            Subscripciones
+          </a>
+        </Link>
+      </li>
+      <li filter="game">
+        <Link scroll={scroll} href="/category/[id]" as="/category/switch">
+          <a>
+            <img src="/images/icons/nintendo-switch.png" alt="switch" />
+            Switch
+          </a>
+        </Link>
+      </li>
+      <li filter="game">
+        <Link scroll={scroll} href="/category/[id]" as="/category/ps5">
+          <a>
+            <img src="/images/icons/ps5.png" alt="ps5" />
+            PS5
+          </a>
+        </Link>
+      </li>
+      <li filter="game">
+        <Link scroll={scroll} href="/category/[id]" as="/category/ps4">
+          <a>
+            <img src="/images/icons/ps4.png" alt="ps4" />
+            PS4
+          </a>
+        </Link>
+      </li>
+      <li filter="game">
+        <Link scroll={scroll} href="/category/[id]" as="/category/ps3">
+          <a>
+            <img src="/images/icons/ps3.png" alt="ps3" />
+            PS3
+          </a>
+        </Link>
+      </li>
+      <li filter="game">
+        <Link scroll={scroll} href="/category/[id]" as="/category/xbox">
+          <a>
+            <img src="/images/icons/xbox.png" alt="xbox" />
+            XBOX
+          </a>
+        </Link>
+      </li>
+      <li filter="game">
+        <Link scroll={scroll} href="/category/[id]" as="/category/otros">
+          <a>
+            Otros
+          </a>
+        </Link>
+      </li>
+      <li className="crear-publicacion">
+        <Link href="/publicacion/crear" as="/publicacion/crear">
+          <a>
+            <b>¡Crear Publicación!</b>
+          </a>
+        </Link>
+      </li>
+    </ul>
+  </div>
+}
+
+export default Categorias

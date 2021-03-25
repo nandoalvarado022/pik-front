@@ -1,0 +1,6 @@
+User-Agent: *
+Disallow: 
+Allow: /
+
+Sitemap: https://club2ruedas.com/sitemap.xml
+Sitemap: https://club2ruedas.com/sitemap-notas.xml

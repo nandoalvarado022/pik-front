@@ -1,0 +1,18 @@
+{
+    "gcm_sender_id": "103953800507",
+    "short_name": "Pikajuegos",
+    "name": "Pikajuegos",
+    "version": "1",
+    "display": "minimal-ui",
+    "description": "Pikajuegos y JuanchoFenix: Videojuegos y accesorios para play station, Cbox y Nintendo Switch, compra los juegos más populares como Mario Kart, Super Smash Bross, Splaton, Animal Crossing, Mortal Kombat 11 y más al mejor precio del mercado",
+    "theme_color": "#039BE5",
+    "background_color": "#ECEFF1",
+    "icons": [
+        {
+            "sizes": "48x48",
+            "src": "/images/logos/logo48x48.png",
+            "type": " image/png"
+        }
+    ],
+    "start_url": "/?launcher=true"
+}
