@@ -6,10 +6,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next -- -p 8080",
+    "dev": "next -- -p 80",
     "build": "next build",
     "start": "next start",
-    "Rodar debuuger node": "npm --node-options=--inspect=localhost:8080 run dev"
+    "Rodar debuuger node": "npm --node-options=--inspect=localhost:80 run dev"
   },
   "dependencies": {
     "@apollo/client": "^3.2.9",

@@ -2,7 +2,7 @@ import date from 'date-and-time'
 import 'date-and-time/locale/es'
 import Funciones from '../../lib/functions'
 import Card from '../card/Card'
-import Categorias from '../Categorias/Categorias'
+import Categorias from '../categorias/Categorias'
 import Footer from '../footer/Footer'
 import ImageGallery from 'react-image-gallery'
 

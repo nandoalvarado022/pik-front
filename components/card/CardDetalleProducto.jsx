@@ -1,5 +1,5 @@
 import Card from '../card/Card'
-import Categorias from '../Categorias/Categorias'
+import Categorias from '../categorias/Categorias'
 import Footer from '../footer/Footer'
 import { Button } from '@material-ui/core'
 import { DiscussionEmbed } from "disqus-react";

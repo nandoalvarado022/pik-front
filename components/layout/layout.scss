@@ -28,6 +28,9 @@ button.MuiButton-containedPrimary {
 
 .image-gallery-thumbnails-wrapper {
     margin: 0 -10px 0 10px;
+    @media screen and (max-width: 420px) {
+        display: none;
+    }
 }
 
 button.image-gallery-thumbnail {

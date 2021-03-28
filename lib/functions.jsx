@@ -8,11 +8,11 @@ import Router from "next/router";
 import "date-and-time/locale/es";
 // import { preguntaNotificaciones } from './push-notification'
 date.locale("es");
-
+const API_URL = "https://pik-server.herokuapp.com/graphql/"
+// const API_URL = "http://localhost:3000/graphql/"
 export default class Funciones {
   db = null;
   constructor() {
-
   }
 
   async canjearCupon(data = {}) {
@@ -590,41 +590,6 @@ export default class Funciones {
     return this.validarCache(`data_info_usuario_${id_usuario}`, func);
   };
 
-  subirImagen = ({ tipoArchivo, idImageElement }) =>
-    new Promise(async (resolve, reject) => {
-      const arrayURLS = [];
-      // const $imagenes = document.getElementById("subir_imagen");
-      const $imagenes = document.getElementById(idImageElement);
-      Array.from($imagenes.files).forEach((file) => {
-        const d = new Date();
-        const datestring = d.getDate() + "_" + (d.getMonth() + 1) + "_" + d.getFullYear() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds();
-        const random = rn({ min: 0, max: 100, integer: true });
-        const nombre_archivo = `${datestring}_${random}`;
-        let ubicacionGuardar = storage.ref("/images/publicaciones/" + nombre_archivo + ".jpg");
-        const uploadTask = ubicacionGuardar.put(file);
-        uploadTask.on(
-          "state_changed",
-          function (snapshot) {
-            var progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            if (document.querySelector("#progressUploadImage")) {
-              document.querySelector("#progressUploadImage").innerHTML =
-                progress + "%";
-            }
-            console.log("Upload is " + progress + "% done");
-          },
-          function (err) {
-            reject(err);
-          },
-          async function (snapshot) {
-            let downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-            arrayURLS.push(downloadURL);
-            if (arrayURLS.length == $imagenes.files.length) resolve(arrayURLS);
-          }
-        );
-      });
-    });
-
   getActividadesDetalle = async (obj = {}) => {
     // Listado de rodadas
     const { club } = obj;
@@ -713,9 +678,7 @@ export default class Funciones {
 }
 
 export const getFeed = async (partner = "") => {
-  const url = "http://localhost:3000/graphql/";
-
-  const res = await fetch(url, {
+  const res = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -780,3 +743,38 @@ export const transformarFeed = (datos) => {
     return datos_retorno;
   }
 };
+
+export const subirImagen = ({ tipoArchivo, idImageElement }) =>
+  new Promise(async (resolve, reject) => {
+    const arrayURLS = [];
+    // const $imagenes = document.getElementById("subir_imagen");
+    const $imagenes = document.getElementById(idImageElement);
+    Array.from($imagenes.files).forEach((file) => {
+      const d = new Date();
+      const datestring = d.getDate() + "_" + (d.getMonth() + 1) + "_" + d.getFullYear() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds();
+      const random = rn({ min: 0, max: 100, integer: true });
+      const nombre_archivo = `${datestring}_${random}`;
+      let ubicacionGuardar = storage.ref("/images/publicaciones/" + nombre_archivo + ".jpg");
+      const uploadTask = ubicacionGuardar.put(file);
+      uploadTask.on(
+        "state_changed",
+        function (snapshot) {
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          if (document.querySelector("#progressUploadImage")) {
+            document.querySelector("#progressUploadImage").innerHTML =
+              progress + "%";
+          }
+          console.log("Upload is " + progress + "% done");
+        },
+        function (err) {
+          reject(err);
+        },
+        async function (snapshot) {
+          let downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+          arrayURLS.push(downloadURL);
+          if (arrayURLS.length == $imagenes.files.length) resolve(arrayURLS);
+        }
+      );
+    });
+  });

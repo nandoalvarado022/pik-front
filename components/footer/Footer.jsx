@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Categorias from "../Categorias/Categorias"
+import Categorias from "../categorias/Categorias"
 
 const Footer = ({ filtrarRodadas }) => {
   return (

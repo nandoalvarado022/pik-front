@@ -242,6 +242,9 @@
     .Card.productos-relacionados {
         margin: 20px 20px 0 0;
         width: 100%;
+        @media screen and (max-width: 420px) {
+            display: none;
+        }
         .listadoRodadas {
             .Card {
                 width: 300px;

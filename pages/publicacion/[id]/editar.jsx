@@ -1,5 +1,5 @@
-import Layout from '../../components/layout/Layout'
-import PublicationForm from '../../components/publicationForm/PublicationForm'
+import PublicationForm from '../../../components/publicationForm/PublicationForm'
+import Layout from '../../../components/layout/Layout'
 
 const PageCrearPublicacion = () => {
   return (
