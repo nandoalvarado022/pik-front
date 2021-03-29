@@ -30,9 +30,7 @@ query Publications($slug: String){
 
 const MUTATION_PUBLICATION = gql`
 mutation createPublication($input: PublicationInput){
-	createPublication(input: $input){
-		title
-	}
+	createPublication(input: $input)
 }`
 
 const PublicationForm = (props) => {
@@ -61,41 +59,21 @@ const PublicationForm = (props) => {
 	}
 
 	function handleCrear() {
-		if (!publicationFormData.title) {
-			setErrors("Tu publicación debe tener un título")
-			return false
+		const validators = () => {
+			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.quantity || !publicationFormData.type || !publicationFormData.sale_price || !publicationFormData.image_link) {
+				setErrors("Por favor completa todos los campos de tu publicación")
+				return false
+			}
+			return true
 		}
 
-		if (!publicationFormData.description) {
-			setErrors("Tu publicación debe tener una descripción")
-			return false
-		}
-
-		if (!publicationFormData.quantity) {
-			setErrors("Tu publicación debe tener una cantidad")
-			return false
-		}
-
-		if (!publicationFormData.type) {
-			setErrors("Tu publicación debe tener un tipo")
-			return false
-		}
-
-		if (!publicationFormData.sale_price) {
-			setErrors("Tu publicación debe tener un precio")
-			return false
-		}
-
-		if (!publicationFormData.image_link) {
-			setErrors("Tu publicación debe tener imágenes")
-			return false
-		}
+		if (!validators()) return false // Validation
 
 		const random_num = rn({ min: 0, max: 1000, integer: true })
 		const slug_prepared = slugify(publicationFormData.title, 60)
 		const slug = slug_prepared + "-" + random_num
 		dispatchCreate({ variables: { input: { ...publicationFormData, slug, quantity: Number(publicationFormData.quantity), sale_price: Number(publicationFormData.sale_price) } } });
-		return
+		router.push("/publicaciones")
 	}
 
 	return <div className="content">

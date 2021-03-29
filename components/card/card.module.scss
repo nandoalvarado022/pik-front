@@ -92,6 +92,9 @@ h3.title_destacada {
             }
         }
         .content_precio {
+            >* {
+                display: block;
+            }
             .nuevoPrecio {
                 font-weight: bold;
                 margin-bottom: 20px;

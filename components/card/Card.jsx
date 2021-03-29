@@ -36,7 +36,7 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
             {
               <div className="descripcion">
                 <h2>{title}</h2>
-                <p className="quantity">{quantity} unidades disponibles</p>
+                {quantity && <p className="quantity">{quantity} unidades disponibles</p>}
                 <div className="likes-precio">
                   {/* <div className="likes">
                     <FontAwesomeIcon icon={faHeart} />
@@ -44,7 +44,7 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
                   </div> */}
                   <div className="content_precio">
                     {/* Precio */
-                      (price && price != "0") && <span className="precio tachado">
+                      price && <span className="precio tachado">
                         ${format_number(price)}
                       </span>
                     }

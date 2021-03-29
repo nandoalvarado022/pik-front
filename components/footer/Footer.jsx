@@ -11,7 +11,7 @@ const Footer = ({ filtrarRodadas }) => {
       </div>
       <hr />
       <div className="categorias">
-        <Categorias scroll={true} />
+        {/* <Categorias scroll={true} /> */}
       </div>
       <hr />
       <div>

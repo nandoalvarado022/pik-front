@@ -1,11 +1,12 @@
-import TopNavbar from "../topNavbar/TopNavbar";
-import { register, unregister } from "next-offline/runtime";
-import toastr from "toastr";
-import Grow from "@material-ui/core/Grow";
+import Login from "../login/Login"
+import TopNavbar from "../topNavbar/TopNavbar"
+import { register, unregister } from "next-offline/runtime"
+import toastr from "toastr"
+import Grow from "@material-ui/core/Grow"
 // import firebase from "firebase";
-import Btn from "../btn/Btn";
-import { initGA, logPageView } from "../../public/analytics";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Btn from "../btn/Btn"
+import { initGA, logPageView } from "../../public/analytics"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faHandHoldingHeart,
   faPlus,
@@ -13,16 +14,16 @@ import {
   faQuestion,
   faFlagCheckered,
   faCalendarCheck,
-} from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import Link from "next/link";
-import Router from "next/router";
-import NProgress from "nprogress";
-import Head from "next/head";
-import React from "react";
-import Header from "../header/Header";
-import BottomNavbar from "../bottomNavbar/BottomNavbar";
-import LogoBuscador from "../logoBuscador/LogoBuscador";
+} from "@fortawesome/free-solid-svg-icons"
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
+import Link from "next/link"
+import Router from "next/router"
+import NProgress from "nprogress"
+import Head from "next/head"
+import React from "react"
+import Header from "../header/Header"
+import BottomNavbar from "../bottomNavbar/BottomNavbar"
+import LogoBuscador from "../logoBuscador/LogoBuscador"
 
 // Importing styles
 import "../plan/plan.scss";
@@ -34,11 +35,10 @@ import "../plan/chat.scss";
 import "../home/home.scss";
 import "../rodadas/rodadas.scss";
 import "../preguntas/detallePregunta.scss";
-import "../categorias/categorias.scss";
 import "../topNavbar/topNavbar.scss";
 import "../../pages/ubicacion.scss";
 import "../perfil/parteSuperior.scss";
-import "../card/card.scss";
+import "../card/card.module.scss";
 import "../card/cardDetalleProducto.scss";
 import "../rodadas/filtrarRodadas.scss";
 import "../bottomNavbar/bottomNavbar.scss";
@@ -209,7 +209,10 @@ class Layout extends React.Component {
           // !isMobile && <TopNavbar feed={feed} limite={10} />
         }
         <LogoBuscador partner={is_partner ? partner : null} />
-        <main className="principal">{props.children}</main>
+        {typeof localStorage != "undefined" && !localStorage.getItem("user") && <Login />}
+        <main className="principal">
+          {props.children}
+        </main>
         {/* 
                 MENU ADMINISTRACION
                 <div className={(String(this.state.swAdd)) + " add"} onClick={this.handleAdd}>

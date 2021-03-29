@@ -1,4 +1,12 @@
 import Link from "next/link"
+import Router from "next/router"
+import "./categorias.scss"
+
+const handleLogout = () => {
+  localStorage.removeItem("user")
+  localStorage.removeItem("token")
+  Router.push("/?logout")
+}
 
 const Categorias = ({ scroll }) => {
   return <div className="Categorias">
@@ -79,6 +87,18 @@ const Categorias = ({ scroll }) => {
           </a>
         </Link>
       </li>
+      {
+        typeof localStorage != "undefined" && localStorage.getItem("user") && <>
+          <li>
+            <Link href="/publicaciones" as="/publicaciones">
+              <a>Mis publicaciones</a>
+            </Link>
+          </li>
+          <li className="logout" onClick={handleLogout}>
+            Salir
+        </li>
+        </>
+      }
     </ul>
   </div>
 }
