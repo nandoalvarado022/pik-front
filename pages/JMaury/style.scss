@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn1 {
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 16px 30px;
+    margin: 5px;
+    background: #04a4c4;
+    font-size: 16px;
+    color: white;
+    border: none;
+    }
+
+.btn1:hover {
+    background: #027086;
+}
+
+.btn2 {
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 16px 30px;
+    margin: 5px;
+    background: #e4941c;
+    font-size: 16px;
+    color: white;
+    border: none;
+    }
+
+.btn2:hover {
+    background: #a86807;
+}
+
+.btn3 {
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 16px 30px;
+    margin: 5px;
+    background: #ec4c44;
+    font-size: 16px;
+    color: white;
+    border: none;
+    }
+
+.btn3:hover {
+    background: #9c2822;
+}
