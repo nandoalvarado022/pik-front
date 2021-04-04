@@ -1,7 +1,8 @@
 import Btn from '../btn/Btn'
 import Link from 'next/link'
+import "./puedeInteresarte.module.scss";
 
-class PuedeInteresarte extends React.Component{
+class PuedeInteresarte extends React.Component {
     state = {
         items: [
             {
@@ -34,17 +35,17 @@ class PuedeInteresarte extends React.Component{
         ]
     }
 
-    componentDidMount(){
+    componentDidMount() {
 
     }
 
-    render(){
+    render() {
         return <div className="_PuedeInteresarte">
             {
                 this.state.items.map((item, ind) => {
                     return <div key={ind}>
                         <Link href={item.href} as={item.as}>
-                            <a className={item.tipo_publicacion} style={{backgroundImage: `url(${item.imagen})`}}>
+                            <a className={item.tipo_publicacion} style={{ backgroundImage: `url(${item.imagen})` }}>
                                 <h2>
                                     {item.titulo}
                                 </h2>

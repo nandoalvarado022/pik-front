@@ -39,19 +39,6 @@ button.image-gallery-thumbnail {
     margin: 10px 0;
 }
 
-img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#_crearPublicacion {
-    .Card {
-        @media screen and (min-width: 1024px) {
-            width: auto;
-        }
-    }
-}
-
 .listadoRodadas {
     position: relative;
     margin: 20px 0px 40px;
@@ -92,16 +79,6 @@ img {
 
 .pointer {
     cursor: pointer;
-}
-
-:root {
-    --colorProducto: #00897b;
-    --colorRevision: #54d5bb;
-    --colorActividad: #fdaf28;
-    --colorPregunta: #9b59b6;
-    --colorRecomendacion: #34495e;
-    --colorPublicacion: #2980b9;
-    --colorTodo: #fa685e;
 }
 
 .actions {
@@ -145,30 +122,6 @@ span.MuiBadge-badge {
         top: 45px;
         left: -140px;
     }
-}
-
-* {
-    font-display: swap;
-    outline: none;
-    &::-webkit-scrollbar-track {
-        background-color: #f4f4f4;
-    }
-    &::-webkit-scrollbar {
-        background-color: #f5f5f5;
-        height: 8px;
-        width: 8px;
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: #34495e47;
-        cursor: pointer;
-    }
-}
-
-svg {
-    max-width: 36px;
-    max-height: 36px;
-    width: 15px;
-    height: 15px;
 }
 
 .caja_usuarios {
@@ -519,17 +472,6 @@ main.principal {
     margin: 0;
 }
 
-b {
-    color: #585858;
-}
-
-h1,
-h2,
-h3 {
-    color: #585858;
-    font-size: 18px;
-}
-
 .cardTitle {
     padding: 20px 10px;
     overflow: initial !important;
@@ -554,13 +496,6 @@ h3 {
     }
 }
 
-div.Card {
-    padding: 10px;
-    box-shadow: 2px 2px 5px 0 #ababab52;
-    background: white;
-    box-sizing: border-box;
-}
-
 .t-center {
     text-align: center;
 }
@@ -573,10 +508,6 @@ div.Card {
 
 .radius {
     border-radius: 50%;
-}
-
-a {
-    text-decoration: none;
 }
 
 .m-t-20 {
@@ -690,74 +621,60 @@ body {
     font-family: "PT Sans Narrow", sans-serif;
 }
 
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-}
-
-.App-header {
-    background-color: #222;
-    height: 150px;
-    padding: 20px;
-    color: white;
-}
-
-.App-title {
-    font-size: 1.5em;
-}
-
-.App-intro {
-    font-size: large;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
+* {
+    font-display: swap;
+    outline: none;
+    &::-webkit-scrollbar-track {
+        background-color: #f4f4f4;
     }
-    to {
-        transform: rotate(360deg);
+    &::-webkit-scrollbar {
+        background-color: #f5f5f5;
+        height: 8px;
+        width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #34495e47;
+        cursor: pointer;
     }
 }
 
-@keyframes animacionLoading {
-    0% {
-        // transform: rotate(0deg);
-        transform: scaleX(0);
-        left: -140px;
-    }
-    49% {
-        transform: scaleX(0);
-    }
-    50% {
-        transform: scaleX(0);
-        transform: scaleX(-1);
-        left: 160px;
-    }
-    99% {
-        transform: scaleX(-1);
-    }
-    100% {
-        transform: scaleX(0);
-        left: -140px;
-    }
+:root {
+    --colorProducto: #00897b;
+    --colorRevision: #54d5bb;
+    --colorActividad: #fdaf28;
+    --colorPregunta: #9b59b6;
+    --colorRecomendacion: #34495e;
+    --colorPublicacion: #2980b9;
+    --colorTodo: #fa685e;
 }
 
-.content_precio {
-    font-size: 16px;
-    &.tachado {
-        font-size: 14px;
-    }
-    .descuento {
-        font-weight: bold;
-        color: #39b54a;
-    }
-    .nuevoPrecio {
-        color: #ea4d42;
-    }
+.Card {
+    background: blue !important;
 }
 
-.mobile-none {
-    @media screen and (max-width: 420px) {
-        display: none;
-    }
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+svg {
+    max-width: 36px;
+    max-height: 36px;
+    width: 15px;
+    height: 15px;
+}
+
+b {
+    color: #585858;
+}
+
+h1,
+h2,
+h3 {
+    color: #585858;
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
 }

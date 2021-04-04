@@ -1,5 +1,4 @@
 import Login from "../login/Login"
-import TopNavbar from "../topNavbar/TopNavbar"
 import { register, unregister } from "next-offline/runtime"
 import toastr from "toastr"
 import Grow from "@material-ui/core/Grow"
@@ -24,36 +23,7 @@ import React from "react"
 import Header from "../header/Header"
 import BottomNavbar from "../bottomNavbar/BottomNavbar"
 import LogoBuscador from "../logoBuscador/LogoBuscador"
-
-// Importing styles
-import "../plan/plan.scss";
-import "../perfil/perfil.scss";
-import "../perfil/perfilVisitante.scss";
-import "../../pages/publicacion/addPublicacion.scss";
-import "../medallas/medallas.scss";
-import "../plan/chat.scss";
-import "../home/home.scss";
-import "../rodadas/rodadas.scss";
-import "../preguntas/detallePregunta.scss";
-import "../topNavbar/topNavbar.scss";
-import "../../pages/ubicacion.scss";
-import "../perfil/parteSuperior.scss";
-import "../card/card.module.scss";
-import "../card/cardDetalleProducto.scss";
-import "../rodadas/filtrarRodadas.scss";
-import "../bottomNavbar/bottomNavbar.scss";
-import "../puedeInteresarte/puedeInteresarte.scss";
-import "../frasesUsuarios/frasesUsuarios.scss";
-import "../destacado/destacado.scss";
-import "../logoBuscador/logoBuscador.scss";
-import "../../public/css/carousel.min.scss";
-import "../../public/css/react-zoom-styles.scss";
-import "../../public/css/gracias-por-tu-compra.scss";
-import "../../public/css/modalIngresoInfo.scss";
-import "react-image-gallery/styles/scss/image-gallery.scss";
-import "../header/header.scss";
-import "../footer/footer.scss";
-
+import styles from "./layout.module.scss"
 
 toastr.options.progressBar = true;
 toastr.options.timeOut = 5000;
@@ -97,20 +67,11 @@ class Layout extends React.Component {
     }));
   };
 
-  checkScroll() {
-    window.addEventListener("scroll", (event) => {
-      let scroll = window.scrollY;
-      if (scroll > 100) document.querySelector("#view_Header").classList.add('active');
-      else document.querySelector("#view_Header").classList.remove('active');
-    });
-  }
-
   componentDidMount() {
     AOS.init({
       delay: 500,
     });
     register();
-    this.checkScroll();
     if (localStorage.getItem("user")) {
       this.club_short_name = JSON.parse(localStorage.getItem("user"))
         .club_short_name
@@ -205,12 +166,9 @@ class Layout extends React.Component {
           }}()
         </Head>
         <Header {...props} />
-        {
-          // !isMobile && <TopNavbar feed={feed} limite={10} />
-        }
         <LogoBuscador partner={is_partner ? partner : null} />
         {typeof localStorage != "undefined" && !localStorage.getItem("user") && <Login />}
-        <main className="principal">
+        <main className={styles.principal}>
           {props.children}
         </main>
         {/* 

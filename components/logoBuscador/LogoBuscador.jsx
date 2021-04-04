@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { getFeed, transformarFeed } from "../../lib/functions";
 import React, { useState, useEffect } from "react";
+import styles from "./logoBuscador.module.scss";
 
 function LogoBuscador({ partner }) {
   const router = useRouter()
@@ -20,12 +21,12 @@ function LogoBuscador({ partner }) {
     router.push("/publicacion/" + slug);
   }
 
-  return (<div id="LogoBuscador" className={partner ? "partner" : ""}>
+  return (<div id={styles.LogoBuscador} className={partner ? "partner" : ""}>
     <ul>
       {!partner && (
         <Link href="/">
           <span>
-            <img className="pikajuegos logo" src="/images/logos/logo-pikajuegos.png" alt="" />
+            <img className={styles.logo} src="/images/logos/logo-pikajuegos.png" alt="" />
             {/* <img className="mobile logo" src="/images/logos/Logo pikajuegos y juancho.png" alt="" /> */}
           </span>
         </Link>
@@ -37,16 +38,16 @@ function LogoBuscador({ partner }) {
         </Link>
       )}
 
-      <div className="content_buscador">
+      <div className={styles.content_buscador}>
         <Autocomplete
           freeSolo
           className="input-buscador"
-          id="free-solo-2-demo"
+          id={styles["free-solo-2-demo"]}
           disableClearable
           onChange={onTagsChange}
           options={top100Films.map((option) => option.title)}
           renderInput={(params, ind) => (
-            <TextField {...params} key={ind} className="font-a buscador" label="Busca aquí tus productos" margin="normal" variant="outlined" InputProps={{ ...params.InputProps, type: "search" }} />
+            <TextField {...params} key={ind} className={styles.buscador} label="Busca aquí tus productos" margin="normal" variant="outlined" InputProps={{ ...params.InputProps, type: "search" }} />
           )}
         />
       </div>

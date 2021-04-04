@@ -1,7 +1,7 @@
 import Layout from "../layout/Layout";
 import { getFeed } from "../../lib/functions";
-import Rodadas from "../rodadas/Rodadas";
-import RodadasPartner from "../rodadas/RodadasPartner";
+import Portada from "../portada/Portada";
+// import RodadasPartner from "../rodadas/RodadasPartner";
 
 class EnteratePage extends React.Component {
   partners = ["juanchofenix"];
@@ -31,11 +31,11 @@ class EnteratePage extends React.Component {
       meta_descripcion={descripcion}
       meta_title={meta_title}
       title={meta_title}>
-      <RodadasPartner
+      {/* <RodadasPartner
         {...this.props}
         clubs={this.props.clubs}
         feed={this.props.feed}
-      />
+      /> */}
     </Layout>
     ) : (<Layout
       {...this.props}
@@ -44,7 +44,7 @@ class EnteratePage extends React.Component {
       meta_descripcion={descripcion}
       meta_title={meta_title}
       title={meta_title}>
-      <Rodadas {...this.props} feed={this.props.feed} />
+      <Portada {...this.props} feed={this.props.feed} />
     </Layout>)
   }
 }

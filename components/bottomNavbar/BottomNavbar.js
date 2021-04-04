@@ -4,6 +4,7 @@ import { faHome, faUser, faUsers, faBell, faEllipsisV } from '@fortawesome/free-
 import React from 'react'
 import Router from 'next/router'
 import WrapperConsumer from '../store'
+import "../bottomNavbar/bottomNavbar.module.scss";
 
 const BottomNavbar = ({ context: { notificaciones = {}, scrollHeader } }) => {
     let cantidadNotificaciones = notificaciones.listado ? notificaciones.listado.length : 0
@@ -19,7 +20,7 @@ const BottomNavbar = ({ context: { notificaciones = {}, scrollHeader } }) => {
     }
 
     return <div id="view_BottomNavBar" className={(scrollHeader ? 'scroll' : '')}>
-        <img className='pais' src="/images/ciudades/colombia.jpg" alt="Colombia" title='Colombia'/>
+        <img className='pais' src="/images/ciudades/colombia.jpg" alt="Colombia" title='Colombia' />
         <button onClick={redireccionar} target="/">
             <FontAwesomeIcon icon={faHome} />
             <span className="font-b">Entérate</span>

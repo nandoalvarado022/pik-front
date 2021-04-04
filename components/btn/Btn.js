@@ -1,8 +1,6 @@
-// Prop className: green, blue, small
-
 import React from 'react'
-import './btn.scss'
 import Button from '@material-ui/core/Button'
+import './btn.module.scss'
 
 export default function Btn({ blockClick, className, text, onClick, databutton }) {
     return (

@@ -1,11 +1,13 @@
 import ApolloClient from "apollo-client"
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import fetch from 'node-fetch';
-import { createHttpLink } from 'apollo-link-http'
-import { ApolloProvider } from '@apollo/client'
-import { setContext } from '@apollo/client/link/context';
+import { InMemoryCache } from "apollo-cache-inmemory"
+import fetch from "node-fetch";
+import { createHttpLink } from "apollo-link-http"
+import { ApolloProvider } from "@apollo/client"
+import { setContext } from "@apollo/client/link/context"
+import { AppContextProvider } from "../contexts/context"
 
-import '../components/layout/layout.scss'
+import "../styles/styles.scss"
+import "react-image-gallery/styles/css/image-gallery.css"
 
 // const API_URL = "https://pik-server.herokuapp.com/graphql/"
 const API_URL = "http://localhost:3000/graphql/"
@@ -33,9 +35,11 @@ const client = new ApolloClient({
 })
 
 export default function MyApp({ Component, pageProps }) {
-  return <ApolloProvider client={client} >
-    <div>
-      <Component {...pageProps} />
-    </div>
-  </ApolloProvider>
+  return <AppContextProvider>
+    <ApolloProvider client={client} >
+      <div>
+        <Component {...pageProps} />
+      </div>
+    </ApolloProvider>
+  </AppContextProvider>
 }

@@ -1,8 +1,8 @@
-import Layout from '../components/layout/Layout'
+import Layout from '../../components/layout/Layout'
 import { useQuery, gql } from '@apollo/client'
 import Router from 'next/router'
-import '../scss/publicaciones.scss'
-import Categorias from '../components/categorias/Categorias'
+import Categorias from '../../components/categorias/Categorias'
+import styles from './publicaciones.module.scss'
 
 export default function MyPublications(props) {
 	const publicationsQuery = gql`
@@ -23,7 +23,7 @@ export default function MyPublications(props) {
 	}
 
 	return <Layout title="Crear publicación" meta_title="Crear publicación en club2ruedas.com" meta_url="https://club2ruedas.com/publicacion/crear">
-		<div id="_MisPublicaciones">
+		<div>
 			<Categorias scroll={false} />
 			<div className="content">
 				<div className="Card">

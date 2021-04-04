@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import data from './data'
+import "./destacado.module.scss";
 
 const Destacado = (props) => {
     let datosMostrar
@@ -12,7 +13,7 @@ const Destacado = (props) => {
     if (!datosMostrar) return <div className='m-b-20 ancho100'></div>
 
     return <div className='_Destacado'>
-        <img  data-aos="fade-up-right" src={datosMostrar.imagen} />
+        <img data-aos="fade-up-right" src={datosMostrar.imagen} />
         <div className='textos'>
             <p>
                 <h2 data-aos="fade-left" className='font-c animated infinite bounce delay-2s'>

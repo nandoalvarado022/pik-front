@@ -90,6 +90,11 @@
         .content_precio {
             margin: 15px 0;
             font-size: 20px;
+            .nuevoPrecio {
+                color: #ea4d42;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
             .tachado {
                 font-size: 16px;
             }

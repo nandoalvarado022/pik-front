@@ -1,17 +1,24 @@
-import Card from '../card/Card'
-import Categorias from '../categorias/Categorias'
-import Footer from '../footer/Footer'
-import { Button } from '@material-ui/core'
-import { DiscussionEmbed } from "disqus-react";
-import ReactMarkdown from "react-markdown/with-html";
-import Grow from "@material-ui/core/Grow";
-import { format_number } from "../../lib/utilidades";
-import ImageGallery from "react-image-gallery";
+import Card from "../card/Card"
+import Categorias from "../categorias/Categorias"
+import Footer from "../footer/Footer"
+import { Button } from "@material-ui/core"
+import { DiscussionEmbed } from "disqus-react"
+import ReactMarkdown from "react-markdown/with-html"
+import Grow from "@material-ui/core/Grow"
+import { format_number } from "../../lib/utilidades"
+import ImageGallery from "react-image-gallery"
+import { useEffect } from "react"
+import styles from "./cardDetalleProducto.module.scss"
 
 const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", image_link, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, handleComprar } = {}) => {
   let images = [
     { original: image_link, thumbnail: image_link, }
   ]
+
+  useEffect(() => {
+
+  }, [])
+
   if (image_2) images.push({ original: image_2, thumbnail: image_2, })
   if (image_3) images.push({ original: image_3, thumbnail: image_3, })
   if (image_4) images.push({ original: image_4, thumbnail: image_4, })
@@ -27,11 +34,11 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
 
   return (<Grow key={indice_item} in={true} style={{ transformOrigin: "0 0 0" }}>
-    <div key={indice_item} className={(destacada ? "destacada " : "") + " DetalleProducto " + tipo_publicacion + " " + tipo_coleccion + " item_" + indice_item}>
+    <div key={indice_item} className={styles.DetalleProducto}>
       <Categorias scroll={false} />
-      <div className="descripcion_imagen">
-        <div className="left">
-          <div className="content_imagen">
+      <div className={styles.descripcion_imagen}>
+        <div className={styles.left}>
+          <div className={styles.content_imagen}>
             <ImageGallery
               items={images}
               lazyLoad={false}
@@ -40,7 +47,7 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
               showFullscreenButton={false} />
           </div>
 
-          <div className="Card productos-relacionados">
+          <div className={`${styles.Card} ${styles["productos-relacionados"]}`}>
             <h3 className="text-center">Productos que te pueden interesar</h3>
             <div className="listadoRodadas">
               {["", "", ""].map((current, ind) => {
@@ -52,11 +59,11 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
         </div>
 
         {description && (
-          <div className="Card descripcion">
+          <div className={`${styles.Card} ${styles.descripcion}`}>
             <h1>{title}</h1>
-            <div className="content_precio">
+            <div className={styles.content_precio}>
               {/* Precio */}
-              <span className={"precio tachado"}>
+              <span className={styles.tachado}>
                 {price && <React.Fragment>$&nbsp;{price}</React.Fragment>}
               </span>
 
@@ -66,7 +73,7 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
 
               {sale_price && (<React.Fragment>
                 <br />
-                <span className="precio nuevoPrecio">
+                <span className={styles.nuevoPrecio}>
                   $&nbsp;{sale_price}
                 </span>
               </React.Fragment>
@@ -83,7 +90,7 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
                 escapeHtml={false}></ReactMarkdown>
             </div>
 
-            <div className="social_media">
+            <div className={styles.social_media}>
               <a href="#"
                 onClick={() => {
                   window.open(
@@ -94,12 +101,12 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
                 <img src="/images/icons/icon-facebook.png" />
               </a>
               <a href="http://twitter.com/share?text={{data.name}}&url={{urlSite}}&hashtags=equipos_kebco,hashtag2"
-                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                 <img src="/images/icons/icon-twitter.png" />
               </a>
               <a href="whatsapp://send?text=The text to share!"
                 data-action="share/whatsapp/share"
-                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                 <img src="/images/icons/icon-whatsapp.png" />
               </a>
             </div>

@@ -1,6 +1,8 @@
 import Router from "next/router"
 import { useState } from "react"
-import "./login.scss"
+import { useAppContext } from '../../contexts/context'
+
+import "./login.module.scss"
 
 export default function Login() {
 	const [isSubmitted, setIsSubmitted] = useState(false)

@@ -4,6 +4,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import Grow from "@material-ui/core/Grow";
 import { format_number } from "../../lib/utilidades";
 import { useQuery, gql } from '@apollo/client';
+import styles from "./card.module.scss"
 
 const Card = ({ itemId, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
   const usuario =
@@ -24,27 +25,27 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
 
   return (<Grow key={itemId} in={true} style={{ transformOrigin: "0 0 0" }}>
     <Link href={slug ? "/publicacion/[id]" : "javascript:void(0)"} as={slug ? `/publicacion/${slug}` : "javascript:void(0)"}>
-      <a className={itemId == 1 ? "destacada_Card" : ""}>
-        {special_title && (<h3 className="title_destacada">{special_title}</h3>)}
-        <div key={itemId} className={(destacada ? "destacada " : "") + "Card " + tipo_coleccion + " item_" + itemId}>
-          <div className="descripcion_imagen">
-            <div className={"content_imagen " + (logDetalle ? "logDetalle" : "")}>
+      <a className={itemId == 1 ? styles.destacada_Card : ""}>
+        {special_title && (<h3 className={styles.title_destacada}>{special_title}</h3>)}
+        <div key={itemId} className={`${styles.Card} ${destacada ? styles.destacada : ""}`} >
+          <div className={styles.descripcion_imagen}>
+            <div className={styles.content_imagen}>
               {image_link && (
                 <img className="image-front" src={`${image_link}`} />
               )}
             </div>
             {
-              <div className="descripcion">
+              <div className={styles.descripcion}>
                 <h2>{title}</h2>
-                {quantity && <p className="quantity">{quantity} unidades disponibles</p>}
-                <div className="likes-precio">
+                {quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>}
+                <div className={styles["likes-precio"]}>
                   {/* <div className="likes">
                     <FontAwesomeIcon icon={faHeart} />
                     <span>12</span>
                   </div> */}
-                  <div className="content_precio">
+                  <div className={styles.content_precio}>
                     {/* Precio */
-                      price && <span className="precio tachado">
+                      price && <span className={styles.tachado}>
                         ${format_number(price)}
                       </span>
                     }
@@ -52,7 +53,7 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
                     {
                       sale_price && sale_price != 0 && (
                         <React.Fragment>
-                          <span className="precio nuevoPrecio">
+                          <span className={styles.nuevoPrecio}>
                             ${format_number(sale_price)}
                           </span>
                         </React.Fragment>
@@ -60,7 +61,7 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
                     }
 
                     {tags && (
-                      <div className="tags">
+                      <div className={styles.tags}>
                         {
                           JSON.parse(tags).map((item, ind) => {
                             return (<span style={{ background: item.background }}>
@@ -73,13 +74,13 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
                     )}
                   </div>
                 </div>
-              </div>
+              </div >
             }
-          </div>
-        </div>
-      </a>
-    </Link>
-  </Grow>
+          </div >
+        </div >
+      </a >
+    </Link >
+  </Grow >
   );
 };
 

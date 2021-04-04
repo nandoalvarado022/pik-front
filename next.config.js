@@ -1,4 +1,4 @@
-const compose = require('next-compose')
+/*const compose = require('next-compose')
 const withOffline = require('next-offline')
 const withSass = require('@zeit/next-sass');
 
@@ -19,4 +19,12 @@ const styles = compose([
 	[withSass, sassConfig],
 ]);
 
-module.exports = styles;
+module.exports = styles;*/
+
+/*const path = require('path')
+
+module.exports = {
+	sassOptions: {
+		includePaths: [path.join(__dirname, 'styles')],
+	},
+}*/

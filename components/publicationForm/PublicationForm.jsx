@@ -12,6 +12,7 @@ import Card from '../card/Card'
 import Btn from '../btn/Btn'
 import TextField from '@material-ui/core/TextField'
 import { subirImagen } from '../../lib/functions'
+import styles from "./formPublication.module.scss"
 
 const QUERY_PUBLICATION = gql`
 query Publications($slug: String){
@@ -46,7 +47,6 @@ const PublicationForm = (props) => {
 	const { data: publicationEditData, errorPED, loading: loadingPED } = slugPublication ? useQuery(QUERY_PUBLICATION, { variables }) : {}
 
 	useEffect(() => {
-		debugger
 		if (publicationEditData?.publications) setPublicationFormData(publicationEditData.publications[0])
 	}, [loadingPED])
 
@@ -76,7 +76,7 @@ const PublicationForm = (props) => {
 		router.push("/publicaciones")
 	}
 
-	return <div className="content">
+	return <div className={styles.content}>
 		<div className="Card">
 			<p>
 				<InputLabel id="label-tipo-publicacion">Plataforma</InputLabel>

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Router from "next/router"
-import "./categorias.scss"
+import style from "./categorias.module.scss"
 
 const handleLogout = () => {
   localStorage.removeItem("user")
@@ -9,8 +9,7 @@ const handleLogout = () => {
 }
 
 const Categorias = ({ scroll }) => {
-  return <div className="Categorias">
-    {/* <h3>Categorias</h3> */}
+  return <div className={style.Categorias}>
     <ul>
       <li filter="game">
         <Link scroll={scroll} href="/">
@@ -80,7 +79,7 @@ const Categorias = ({ scroll }) => {
           </a>
         </Link>
       </li>
-      <li className="crear-publicacion">
+      <li className={style["crear-publicacion"]}>
         <Link href="/publicacion/crear" as="/publicacion/crear">
           <a>
             <b>¡Crear Publicación!</b>
@@ -94,7 +93,7 @@ const Categorias = ({ scroll }) => {
               <a>Mis publicaciones</a>
             </Link>
           </li>
-          <li className="logout" onClick={handleLogout}>
+          <li className={style.logout} onClick={handleLogout}>
             Salir
         </li>
         </>
