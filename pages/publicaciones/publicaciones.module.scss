@@ -1,0 +1,25 @@
+.content {
+    display: flex;
+    .wrapper-card {
+        position: relative;
+        a>div {}
+        .actions {
+            align-items: center;
+            background: #00000075;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 42px);
+            justify-content: center;
+            margin: 0px 20px 40px;
+            position: absolute;
+            top: 0;
+            width: calc(100% - 40px);
+            z-index: 1;
+            button {
+                height: 20px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

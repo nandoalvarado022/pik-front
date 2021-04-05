@@ -26,5 +26,5 @@ export default function Login() {
 		Router.push("/?login")
 	}
 
-	return <LoginInterface handleKeyUp={handleKeyUp} handleEnviar={handleEnviar} />
+	return <LoginInterface {...{ handleKeyUp, handleEnviar }} />
 }
