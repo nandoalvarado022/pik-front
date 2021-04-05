@@ -1,8 +1,7 @@
 import Router from "next/router"
 import { useState } from "react"
 import { useAppContext } from '../../contexts/context'
-
-import "./login.module.scss"
+import LoginInterface from "./LoginInterface"
 
 export default function Login() {
 	const [isSubmitted, setIsSubmitted] = useState(false)
@@ -27,9 +26,5 @@ export default function Login() {
 		Router.push("/?login")
 	}
 
-	return <div>
-		<input placeholder="Tu número celular" type="number" id="phoneLogin" value="3187414972" />
-		<input placeholder="Código de verificación" type="number" id="verificationCode" onKeyUp={handleKeyUp} />
-		<button onClick={handleEnviar}>Enviar</button>
-	</div>
+	return <LoginInterface handleKeyUp={handleKeyUp} handleEnviar={handleEnviar} />
 }
