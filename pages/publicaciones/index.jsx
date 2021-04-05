@@ -32,7 +32,7 @@ export default function MyPublications(props) {
 						return <div className={styles["wrapper-card"]}>
 							<Card {...item} />
 							<div className={styles.actions}>
-								<button>Editar</button>
+								<button onClick={() => handleEditar(item.slug)}>Editar</button>
 								<button>Desactivar</button>
 							</div>
 						</div>
