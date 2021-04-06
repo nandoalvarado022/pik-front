@@ -3,7 +3,7 @@ import { register, unregister } from 'next-offline/runtime'
 import toastr from "toastr"
 import Grow from "@material-ui/core/Grow"
 import firebase from 'firebase'
-import Btn from "../btn/Btn"
+import Btn from "../button/Button"
 import { initGA, logPageView } from '../../public/analytics'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHandHoldingHeart, faPlus, faPencilAlt, faQuestion, faFlagCheckered, faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
@@ -27,7 +27,6 @@ import '../medallas/medallas.scss'
 import '../plan/chat.scss'
 import '../home/home.scss'
 import '../ayuda/ayuda.scss'
-import '../clubs/clubs.scss'
 import '../club/club.scss'
 import "../rodadas/rodadas.scss"
 import '../preguntas/detallePregunta.scss'
@@ -98,8 +97,8 @@ class LayoutPartner extends React.Component {
                             
     }*/
 
-    verifyStickyNav(){
-        
+    verifyStickyNav() {
+
     }
 
     componentDidMount() {
@@ -108,11 +107,11 @@ class LayoutPartner extends React.Component {
         })
         register()
         this.verifyStickyNav()
-        if(localStorage.getItem("user")){
+        if (localStorage.getItem("user")) {
             this.club_short_name = JSON.parse(localStorage.getItem("user")).club_short_name ? JSON.parse(localStorage.getItem("user")).club_short_name : null
         }
 
-        firebase.auth().onAuthStateChanged(function(user) {
+        firebase.auth().onAuthStateChanged(function (user) {
             if (!user) {
                 localStorage.removeItem('user')
             }
@@ -156,7 +155,7 @@ class LayoutPartner extends React.Component {
     }
 
     render() {
-        const isMobile  = typeof window != 'undefined' ? !localStorage.getItem('isMobile') : null
+        const isMobile = typeof window != 'undefined' ? !localStorage.getItem('isMobile') : null
         const props = this.props
         const { growMenu } = this.state
         const { meta_descripcion, meta_title, meta_image } = this.props

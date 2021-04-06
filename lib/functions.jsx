@@ -7,9 +7,9 @@ import { storage } from "./storage";
 import Router from "next/router";
 import "date-and-time/locale/es";
 // import { preguntaNotificaciones } from './push-notification'
+import VARS from "./variables"
 date.locale("es");
-const API_URL = "https://pik-server.herokuapp.com/graphql/"
-// const API_URL = "http://localhost:3000/graphql/"
+
 export default class Funciones {
   db = null;
   constructor() {
@@ -678,7 +678,7 @@ export default class Funciones {
 }
 
 export const getFeed = async (partner = "") => {
-  const res = await fetch(API_URL, {
+  const res = await fetch(VARS.API_URL_GRAPHQL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

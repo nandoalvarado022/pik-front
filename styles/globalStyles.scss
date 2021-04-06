@@ -648,7 +648,29 @@ body {
     --colorTodo: #fa685e;
 }
 
-.Card {}
+.Card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 0 #ababab52;
+    box-sizing: border-box;
+    color: #585858;
+    margin: 0px 20px 40px;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1;
+    &:hover {
+        cursor: pointer;
+    }
+    @media screen and (min-width: 1920px) {
+        width: 400px;
+    }
+    @media screen and (min-width: 1024px) {
+        width: auto;
+    }
+    @media screen and (max-width: 420px) {
+        height: auto;
+    }
+}
 
 img {
     max-width: 100%;
@@ -675,4 +697,28 @@ h3 {
 
 a {
     text-decoration: none;
+}
+
+.image-gallery-thumbnails-wrapper {
+    background: #ececec;
+    padding: 0 10px;
+}
+
+.image-gallery-thumbnails-container {
+    @media screen and (max-width: 420px) {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.image-gallery-content .image-gallery-slide img.image-gallery-image {
+    max-height: calc(100vh - 300px);
+    object-fit: contain;
+}
+
+.image-gallery-slide-wrapper {
+    width: 698px;
+    @media screen and (max-width: 420px) {
+        width: initial;
+    }
 }

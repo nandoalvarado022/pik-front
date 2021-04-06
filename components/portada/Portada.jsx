@@ -66,16 +66,21 @@ export default class Portada extends React.Component {
       return <div id={styles.specialBanner}>
         <div className={styles.box}>
           <div className={styles.title}>Lo más popular</div>
-          <Card key={items[0].id} handleLike={this.handleLike} permitirLink={true} {...items[0]} coleccion={items[0].coleccion} indice_item={0} />
+          <Card key={items[0].id} handleLike={this.handleLike} permitirLink={true} {...items[0]} />
         </div>
         <img src="/images/banners/banner-varios-juegos.png" alt="Juegos SSwitch en promoción" />
         <div className={styles.box}>
           <div className={styles.title}>Lo más vendido</div>
-          <Card key={items[1].id} handleLike={this.handleLike} permitirLink={true} {...items[1]} coleccion={items[1].coleccion} indice_item={1} />
+          <Card key={items[1].id} handleLike={this.handleLike} permitirLink={true} {...items[1]} />
         </div>
       </div>
     } else {
-      return <img className={styles["block-center"]} src="https://switchplayer.net/wp-content/uploads/2017/03/Nintendo-Switch-List-Banner-1-820x171.png" />
+      switch (this.props.category) {
+        case "ps4":
+          return <img className="block-center" src="https://www.combogamer.com/wp-content/uploads/2014/05/ps4-launch-banner.png" />
+        default:
+          return <img className="block-center" src="https://switchplayer.net/wp-content/uploads/2017/03/Nintendo-Switch-List-Banner-1-820x171.png" />
+      }
     }
   }
 
@@ -83,34 +88,6 @@ export default class Portada extends React.Component {
     return <React.Fragment>
       {this.renderSpecialBanner()}
       <div className={styles.view_Rodadas}>
-        <div className={styles.left}>
-          <p>
-            <div className="Card">
-
-            </div>
-          </p>
-          <img src="/images/banners/descuentos-exclusivos.png" alt="Descuentos en Paper Mario" />
-          <p>
-            <div className="Card">
-              <h3>Referencias de clientes</h3>
-              <ImageGallery
-                items={[
-                  { original: '/images/referencias/1.jfif' },
-                  { original: '/images/referencias/2.jfif' },
-                  { original: '/images/referencias/3.jfif' },
-                ]}
-                showThumbnails={false}
-                lazyLoad={false}
-                showPlayButton={false}
-                showBullets={false}
-                showFullscreenButton={false}
-                autoPlay={true}
-              />
-            </div>
-          </p>
-          <img src="/images/banners/banner-3-espacios.png" alt="Descuentos en Paper Mario" />
-        </div>
-
         <div className={styles.main}>
           <Categorias scroll={false} />
           {/* NUEVOS */}

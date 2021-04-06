@@ -5,13 +5,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Router from "next/router";
 import date from "date-and-time";
 import toastr from "toastr";
-import Btn from "../../components/btn/Btn";
-import TextField from "@material-ui/core/TextField";
-import CardDetalleProducto from "../../components/card/CardDetalleProducto";
-import React from "react";
-import Layout from "../../components/layout/Layout";
-import PuedeInteresarte from "../../components/puedeInteresarte/PuedeInteresarte";
-import { getFeed, transformarFeed } from "../../lib/functions";
+import Button from "../../components/button/Button"
+import TextField from "@material-ui/core/TextField"
+import CardDetalleProducto from "../../components/card/CardDetalleProducto"
+import React from "react"
+import Layout from "../../components/layout/Layout"
+// import PuedeInteresarte from "../../components/puedeInteresarte/PuedeInteresarte"
+import { getFeed, transformarFeed } from "../../lib/functions"
+import styles from "../../public/css/modalIngresoInfo.module.scss"
 
 export default class PublicacionPage extends React.Component {
   static async getInitialProps({ req, query }) {
@@ -43,15 +44,15 @@ export default class PublicacionPage extends React.Component {
   };
 
   enviarWhatsapp() {
-    const url = window.location;
-    const texto = `Hola mi *nombre* es ${this.state.nombre_completo}, estoy interesado en este producto ${url} para enviarlo a la *dirección* ${this.state.direccion} en la *ciudad* de ${this.state.str_ciudad} *observaciones* ${this.state.observaciones}`;
+    const url = window.location
+    const texto = `Hola mi *nombre* es ${this.state.nombre_completo}, estoy interesado en este producto ${url} para envío a ${this.state.str_ciudad}`
     window.open(
       "https://api.whatsapp.com/send?phone=" +
       this.props.datosPublicacion.seller_phone +
       "&text=" +
       texto
     );
-    this.setState({ modalIngresoCedula: false });
+    this.setState({ modalIngresoCedula: false })
   }
 
   handleComprar = () => {
@@ -129,6 +130,7 @@ export default class PublicacionPage extends React.Component {
   }
 
   handlePagar = async () => {
+    if (!this.state.nombre_completo || !this.state.str_ciudad) return
     this.enviarWhatsapp();
     return;
 
@@ -278,8 +280,7 @@ export default class PublicacionPage extends React.Component {
         meta_title={title}
         title={title}
         descripcion={description}
-        meta_url={meta_url}
-      >
+        meta_url={meta_url}>
         <div className="_publicacion">
           <CardDetalleProducto
             feed={this.props.feed}
@@ -296,9 +297,9 @@ export default class PublicacionPage extends React.Component {
           {
             // Modal para confirmar cédula y dirección
             this.state.modalIngresoCedula && (
-              <div className="_modalIngresoInfo">
-                <div className="background"></div>
-                <div className="Card">
+              <div className={styles._modalIngresoInfo}>
+                <div className={styles.background}></div>
+                <div className={`Card ${styles.Card}`}>
                   {this.state.tallas && (
                     <>
                       <InputLabel id="label-talla">
@@ -351,40 +352,9 @@ export default class PublicacionPage extends React.Component {
                     />
                   </div>
 
-                  <TextField
-                    value={this.state.direccion}
-                    autoComplete="direccion"
-                    name="direccion"
-                    fullWidth={true}
-                    onChange={this.onChange}
-                    label="Dirección de entrega"
-                    margin="normal"
-                    size={25}
-                  />
-
-                  <TextField
-                    value={this.state.observaciones}
-                    name="observaciones"
-                    fullWidth={true}
-                    onChange={this.onChange}
-                    label="Observaciones adicionales"
-                    margin="normal"
-                    size={25}
-                  />
-
-                  <div className="actions">
-                    <Btn
-                      onClick={() =>
-                        this.setState({ modalIngresoCedula: false })
-                      }
-                      className="yellow small m-l-10"
-                      text="Cancelar"
-                    />
-                    <Btn
-                      onClick={this.handlePagar}
-                      className="green small m-l-10"
-                      text={this.state.labelPagar}
-                    />
+                  <div className={styles.actions}>
+                    <Button onClick={() => this.setState({ modalIngresoCedula: false })} color="red">Cancelar</Button>
+                    <Button onClick={this.handlePagar} color="blue">{this.state.labelPagar}</Button>
                   </div>
                 </div>
               </div>
@@ -393,35 +363,27 @@ export default class PublicacionPage extends React.Component {
 
           {
             // Modal para ingresar cupón
-            this.state.logIngresarCupon && (
-              <div className="_modalIngresoInfo">
-                <div className="background"></div>
-                <div className="Card">
-                  <TextField
-                    value={this.state.cuponDigitado}
-                    name="cuponDigitado"
-                    fullWidth={true}
-                    onChange={this.onChange}
-                    label="Cupón"
-                    margin="normal"
-                    size={25}
-                  />
+            // this.state.logIngresarCupon && (
+            //   <div className="_modalIngresoInfo">
+            //     <div className="background"></div>
+            //     <div className="Card">
+            //       <TextField
+            //         value={this.state.cuponDigitado}
+            //         name="cuponDigitado"
+            //         fullWidth={true}
+            //         onChange={this.onChange}
+            //         label="Cupón"
+            //         margin="normal"
+            //         size={25}
+            //       />
 
-                  <div className="actions">
-                    <Btn
-                      onClick={() => this.setState({ logIngresarCupon: false })}
-                      className="yellow small m-l-10"
-                      text="Cancelar"
-                    />
-                    <Btn
-                      onClick={this.handleValidarCupon}
-                      className="green small m-l-10"
-                      text="Validar cupón"
-                    />
-                  </div>
-                </div>
-              </div>
-            )
+            //       <div className="actions">
+            //         <Button onClick={() => this.setState({ logIngresarCupon: false })} className="yellow small m-l-10" text="Cancelar" />
+            //         <Button onClick={this.handleValidarCupon} className="green small m-l-10" text="Validar cupón" />
+            //       </div>
+            //     </div>
+            //   </div>
+            // )
           }
         </div>
       </Layout>

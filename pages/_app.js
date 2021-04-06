@@ -5,15 +5,19 @@ import { createHttpLink } from "apollo-link-http"
 import { ApolloProvider } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { AppContextProvider } from "../contexts/context"
+import API_URL from "../lib/variables";
 
-import "../styles/styles.scss"
+// Material UI
+import { ThemeProvider } from "@material-ui/core/styles"
+import CssBaseline from "@material-ui/core/CssBaseline"
+// import theme from "../src/theme"
+
+// CSS/SCSS
+import "../styles/globalStyles.scss"
 import "react-image-gallery/styles/css/image-gallery.css"
 
-// const API_URL = "https://pik-server.herokuapp.com/graphql/"
-const API_URL = "http://localhost:3000/graphql/"
-
 const httpLink = createHttpLink({
-  uri: API_URL,
+  uri: API_URL + "/graphql/",
   fetch: fetch,
 });
 
@@ -35,11 +39,20 @@ const client = new ApolloClient({
 })
 
 export default function MyApp({ Component, pageProps }) {
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
   return <AppContextProvider>
     <ApolloProvider client={client} >
-      <div>
-        <Component {...pageProps} />
-      </div>
+      {/* <ThemeProvider theme={theme}> */}
+      {/* <CssBaseline /> */}
+      <Component {...pageProps} />
+      {/* </ThemeProvider> */}
     </ApolloProvider>
   </AppContextProvider>
 }

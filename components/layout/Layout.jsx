@@ -3,7 +3,7 @@ import { register, unregister } from "next-offline/runtime"
 import toastr from "toastr"
 import Grow from "@material-ui/core/Grow"
 // import firebase from "firebase";
-import Btn from "../btn/Btn"
+import Button from "../button/Button"
 import { initGA, logPageView } from "../../public/analytics"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -240,11 +240,7 @@ class Layout extends React.Component {
             funciones de redes sociales. Para más información y ajustar tu
             configuración de cookies, haz clic aquí.
             <p>
-              <Btn
-                className="blue small m-l-10"
-                text="Aceptar"
-                onClick={this.tenemosCookies}
-              />
+              <Button className="blue small m-l-10" text="Aceptar" onClick={this.tenemosCookies} />
             </p>
           </div>
         )}

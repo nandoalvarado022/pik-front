@@ -65,23 +65,6 @@
             }
             .content_imagen {
                 text-align: center;
-                .image-gallery-thumbnails-container {
-                    @media screen and (max-width: 420px) {
-                        display: flex;
-                        justify-content: space-around;
-                    }
-                }
-                .image-gallery-image {
-                    // max-height: 600px;
-                    max-height: calc(100vh - 300px);
-                    object-fit: contain;
-                }
-                .image-gallery-slide-wrapper {
-                    width: 698px;
-                    @media screen and (max-width: 420px) {
-                        width: initial;
-                    }
-                }
             }
         }
         .Card {
@@ -122,10 +105,14 @@
             >p:nth-of-type(1) {
                 font-weight: bold;
             }
-            .texto {
+            .description {
                 overflow: hidden;
                 font-size: 16px;
-                line-height: 30px;
+                line-height: 25px;
+                .title {
+                    font-weight: bold;
+                    margin: 50px 0 0;
+                }
             }
         }
         .social_media {

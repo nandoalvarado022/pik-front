@@ -4,6 +4,7 @@ import Router from 'next/router'
 import Categorias from '../../components/categorias/Categorias'
 import Card from '../../components/card/Card'
 import styles from './publicaciones.module.scss'
+import Button from '../../components/button/Button'
 
 export default function MyPublications(props) {
 	const publicationsQuery = gql`
@@ -12,6 +13,7 @@ export default function MyPublications(props) {
 				image_link
 				slug
 				title
+				sale_price
 			}
 		}`
 
@@ -28,12 +30,12 @@ export default function MyPublications(props) {
 			<Categorias scroll={false} />
 			<div className={styles.content}>
 				{
-					reqPublications && reqPublications.publications.map(item => {
+					reqPublications && reqPublications.publications.map((item, ind) => {
 						return <div className={styles["wrapper-card"]}>
-							<Card {...item} />
+							<Card key={item.id} {...item} />
 							<div className={styles.actions}>
-								<button onClick={() => handleEditar(item.slug)}>Editar</button>
-								<button>Desactivar</button>
+								<Button onClick={() => handleEditar(item.slug)} color="blue">Editar</Button>
+								<Button onClick={() => handleEditar(item.slug)} color="red">Desactivar</Button>
 							</div>
 						</div>
 					})

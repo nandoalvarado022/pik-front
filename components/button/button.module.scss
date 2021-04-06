@@ -1,0 +1,35 @@
+button.btn {
+    background: #04a4c4;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 5px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    &:hover {}
+    &.yellow {
+        background: #ff9b51;
+    }
+    &.blue {
+        background: #04a4c4;
+        border: 1px solid #008ba7;
+    }
+    &.red {
+        background: #f05f70;
+        border: 1px solid #e63348;
+    }
+    &.green {
+        background: #53c060;
+    }
+    &.disabled {
+        background: #8a8a8a;
+        box-shadow: inset 0 -3px #535353;
+        text-shadow: 2px 2px #535353;
+        -webkit-text-stroke: 0.5px #8a8a8a;
+    }
+    &.remove {
+        display: none;
+    }
+}

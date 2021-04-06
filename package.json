@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next -- -p 80",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 80",
     "Rodar debuuger node": "npm --node-options=--inspect=localhost:80 run dev"
   },
   "dependencies": {

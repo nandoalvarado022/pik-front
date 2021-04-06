@@ -1,4 +1,4 @@
-import Btn from '../btn/Btn'
+import Btn from '../button/Button'
 import Link from 'next/link'
 import "./puedeInteresarte.module.scss";
 
