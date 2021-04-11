@@ -8,28 +8,14 @@ h3.title_destacada {
     box-shadow: 2px 2px 5px 0 #ababab52;
     box-sizing: border-box;
     color: #585858;
+    max-height: 420px;
     margin: 0px 20px 40px;
     padding: 10px 0;
     position: relative;
     z-index: 1;
+    width: 320px;
     &:hover {
         cursor: pointer;
-    }
-    @media screen and (min-width: 1920px) {
-        width: 400px;
-    }
-    @media screen and (min-width: 1024px) {
-        width: auto;
-        /*.actions {
-      position: absolute;
-      bottom: 20px;
-      margin: 0 auto;
-      left: 0;
-      right: 0;
-    }*/
-    }
-    @media screen and (max-width: 420px) {
-        height: auto;
     }
     &.small {
         height: 360px;
@@ -79,6 +65,7 @@ h3.title_destacada {
         .content_imagen {
             text-align: center;
             height: 220px;
+            margin: 0 10px;
             @media screen and (max-width: 420px) {
                 width: auto;
                 height: 200px;

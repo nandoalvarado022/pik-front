@@ -79,7 +79,7 @@ class Layout extends React.Component {
         : null;
     }
 
-    const script = document.createElement("script");
+    /*const script = document.createElement("script");
     script.src = "../../indigital/sdk.min.js";
     script.async = true;
     script.onload = () => {
@@ -89,7 +89,7 @@ class Layout extends React.Component {
         requestLocation: true,
       });
     };
-    document.body.appendChild(script);
+    document.body.appendChild(script);*/
 
     if (localStorage.getItem("user")) {
       this.setState({
@@ -145,6 +145,10 @@ class Layout extends React.Component {
           <meta name="google-site-verification" content="4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko" />
           <meta name="twitter:description" content={meta_descripcion} />
           <meta name="keywords" value="" />
+          <meta name="country" content="COL" />
+          <meta name="author" content="pikajuegos.com" />
+          <meta name="copyright" content="pikajuegos.com" />
+          <meta name="language" content="es-CO"></meta>
           {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-941382150"></script>
           <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

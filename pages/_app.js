@@ -5,7 +5,7 @@ import { createHttpLink } from "apollo-link-http"
 import { ApolloProvider } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { AppContextProvider } from "../contexts/context"
-import API_URL from "../lib/variables";
+import VARS from "../lib/variables";
 
 // Material UI
 import { ThemeProvider } from "@material-ui/core/styles"
@@ -17,7 +17,7 @@ import "../styles/globalStyles.scss"
 import "react-image-gallery/styles/css/image-gallery.css"
 
 const httpLink = createHttpLink({
-  uri: API_URL + "/graphql/",
+  uri: VARS.API_URL_GRAPHQL,
   fetch: fetch,
 });
 

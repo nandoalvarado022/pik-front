@@ -29,17 +29,8 @@ export default class Portada extends React.Component {
     if (!result) return
   }
 
-  obtenerNuevosUsados(feed) {
-    const obj = {
-      nuevos: feed.filter(item => item.is_new == 1),
-      usados: feed.filter(item => item.is_new == 0),
-    }
-    this.setState({ ...obj, feed })
-  }
-
   componentDidMount() {
     if (this.props.category) this.filtrarRodadas(this.props.category)
-    else this.obtenerNuevosUsados(this.state.feedOriginal)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -47,13 +38,10 @@ export default class Portada extends React.Component {
   }
 
   filtrarRodadas = (type) => {
-    this.setState({
-      feed: []
-    })
     let feed = null
     if (type) feed = this.state.feedOriginal.filter(item => item.type == type)
     else if (!type) feed = this.state.feedOriginal
-    this.obtenerNuevosUsados(feed)
+    this.setState({ feed })
   }
 
   renderSpecialBanner() {
@@ -91,22 +79,22 @@ export default class Portada extends React.Component {
         <div className={styles.main}>
           <Categorias scroll={false} />
           {/* NUEVOS */}
-          {this.state.nuevos && this.state.nuevos.length > 0 && <React.Fragment>
+          {this.state.feed && this.state.feed.filter(item => item.is_new) && <React.Fragment>
             <img src="/images/banners/sellados-nuevos.png" alt="Juegos nuevos, sellados" />
             <div className="listadoRodadas sellados">
-              {this.state.nuevos && this.state.nuevos.map((item, ind) => {
-                return <Card itemId={item.id} special_title="Más vendido" destacada={true} logDetalle={false} handleLike={this.handleLike} permitirLink={true} {...item} coleccion={item.coleccion} indice_item={ind} />
+              {this.state.feed && this.state.feed.filter(item => item.is_new).map((item, ind) => {
+                return <Card itemId={item.id} special_title="Más vendido" destacada={true} logDetalle={false} handleLike={this.handleLike} permitirLink={true} {...item} coleccion={item.coleccion} />
               })}
             </div>
           </React.Fragment>}
 
           {/* USADOS */}
-          {this.state.usados && this.state.usados.length > 0 && <React.Fragment>
+          {this.state.feed && this.state.feed.filter(item => !item.is_new) && <React.Fragment>
             <img src="/images/banners/usados.png" alt="Juegos usados" />
             <div className="listadoRodadas usados">
               {
-                this.state.usados && this.state.usados.map((item, ind) => {
-                  return <Card itemId={item.id} special_title={ind == 0 ? 'Más vendido de la semana' : null} logDetalle={false} handleLike={this.handleLike} permitirLink={true} {...item} coleccion={item.coleccion} indice_item={ind} />
+                this.state.feed && this.state.feed.filter(item => !item.is_new).map((item, ind) => {
+                  return <Card itemId={item.id} special_title={ind == 0 ? 'Más vendido de la semana' : null} logDetalle={false} handleLike={this.handleLike} permitirLink={true} {...item} coleccion={item.coleccion} />
                 })
               }
             </div>

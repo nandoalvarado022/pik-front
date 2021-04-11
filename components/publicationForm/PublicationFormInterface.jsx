@@ -8,68 +8,36 @@ import Button from '../button/Button'
 import TextField from '@material-ui/core/TextField'
 import styles from "./formPublication.module.scss"
 
-const PublicationForminterface = ({ publicationFormData, onChangeImage, handleCrear, imageLoading, errors, screenWidth, setPublicationFormData }) => {
+const PublicationForminterface = ({ publicationFormData, onChangeImage, handleSubmit, imageLoading, errors, screenWidth, setPublicationFormData, isEdit }) => {
+  debugger
   return <div className={styles.content}>
     <div className="Card">
       <p>
         <InputLabel id="label-tipo-publicacion">Plataforma</InputLabel>
         <Select labelId="label-tipo-publicacion"
           id="tipo_publicacion"
-          defaultValue={publicationFormData.type}
           value={publicationFormData.type}
           onChange={e => setPublicationFormData({ ...publicationFormData, type: e.target.value })}>
-          <MenuItem value='accesorios'>Accesorios</MenuItem>
-          <MenuItem value='switch'>Nintendo Switch</MenuItem>
-          <MenuItem value='ps4'>PS4</MenuItem>
-          <MenuItem value='ps5'>PS5</MenuItem>
-          <MenuItem value='xbox'>XBOX</MenuItem>
-          <MenuItem value='otros'>No lo tengo claro</MenuItem>
+          <option value={"accesorios"}>Accesorios</option>
+          <option value={"switch"}>Nintendo Switch</option>
+          <option value='ps4'>PS4</option>
+          <option value='ps5'>PS5</option>
+          <option value='xbox'>XBOX</option>
+          <option value='otros'>No lo tengo claro</option>
         </Select>
       </p>
 
-      <TextField
-        fullWidth={true}
-        label="Título"
-        multiline
-        margin="normal"
-        fullWidth
-        value={publicationFormData.title}
-        variant="outlined"
-        onChange={e => setPublicationFormData({ ...publicationFormData, title: e.target.value })} />
+      {/* <TextField fullWidth={true} label="Título" multiline margin="normal" fullWidth value={publicationFormData.title} variant="outlined" onChange={e => setPublicationFormData({ ...publicationFormData, title: e.target.value })} />
 
-      <TextField
-        fullWidth={true}
-        label="Descripción"
-        value={publicationFormData.description}
-        multiline
-        margin="normal"
-        fullWidth
-        variant="outlined"
-        onChange={e => setPublicationFormData({ ...publicationFormData, description: e.target.value })} />
+      <TextField fullWidth={true} label="Descripción" value={publicationFormData.description} multiline margin="normal" fullWidth variant="outlined" onChange={e => setPublicationFormData({ ...publicationFormData, description: e.target.value })} />
 
-      <TextField
-        fullWidth={true}
-        label="Precio"
-        placeholder=""
-        margin="normal"
-        value={publicationFormData.sale_price}
-        type='number'
-        variant="outlined"
-        onChange={e => setPublicationFormData({ ...publicationFormData, sale_price: Number(e.target.value) })} />
+      <TextField fullWidth={true} label="Precio" placeholder="" margin="normal" value={publicationFormData.sale_price} type='number' variant="outlined" onChange={e => setPublicationFormData({ ...publicationFormData, sale_price: Number(e.target.value) })} />
 
-      <TextField
-        fullWidth={true}
-        label="Cantidad disponible"
-        placeholder=""
-        margin="normal"
-        type='number'
-        value={publicationFormData.quantity}
-        variant="outlined"
-        onChange={e => setPublicationFormData({ ...publicationFormData, quantity: e.target.value })} />
+      <TextField fullWidth={true} label="Cantidad disponible" placeholder="" margin="normal" type='number' value={publicationFormData.quantity} variant="outlined" onChange={e => setPublicationFormData({ ...publicationFormData, quantity: e.target.value })} />
 
       <p>
         <FormControlLabel control={<Switch checked={Boolean(publicationFormData.is_new)} onChange={(e) => setPublicationFormData({ ...publicationFormData, is_new: e.target.checked })} inputProps={{ 'aria-label': 'primary checkbox' }} />} label="Articulo nuevo" />
-      </p>
+      </p> */}
 
       {
         imageLoading && <div>
@@ -96,7 +64,7 @@ const PublicationForminterface = ({ publicationFormData, onChangeImage, handleCr
       {errors && <div className="errors">{errors}</div>}
 
       <div className="actions" style={{ textAlign: "right" }}>
-        <Button onClick={handleCrear} className="green small m-l-10">Crear publicación</Button>
+        <Button onClick={handleSubmit} color="blue">{isEdit ? "Editar" : "Crear"}</Button>
       </div>
     </div>
 

@@ -49,12 +49,12 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
 
           <div className={`${styles.Card} ${styles["productos-relacionados"]}`}>
             <h3 className="text-center">Productos que te pueden interesar</h3>
-            <div className="listadoRodadas">
+            {/* <div className="listadoRodadas">
               {["", "", ""].map((current, ind) => {
                 const item = feed[ind]
                 return <Card key={ind} special_title="Más vendido" destacada={true} doc_id={item.id} permitirLink={true} {...item} coleccion={item.coleccion} indice_item={ind} />
               })}
-            </div>
+            </div> */}
           </div>
         </div>
 

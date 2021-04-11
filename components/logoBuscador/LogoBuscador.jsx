@@ -1,23 +1,40 @@
-import { useRouter } from "next/router";
-import Link from "next/link";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { getFeed, transformarFeed } from "../../lib/functions";
-import React, { useState, useEffect } from "react";
-import styles from "./logoBuscador.module.scss";
+import { gql, useLazyQuery } from '@apollo/client'
+import { useRouter } from "next/router"
+import Link from "next/link"
+import TextField from "@material-ui/core/TextField"
+import Autocomplete from "@material-ui/lab/Autocomplete"
+import { getFeed, transformarFeed } from "../../lib/functions"
+import React, { useState, useEffect, useMemo } from "react"
+import styles from "./logoBuscador.module.scss"
 
 function LogoBuscador({ partner }) {
   const router = useRouter()
-  const [top100Films, handleGetFeed] = useState([{ title: "" }]);
+  const [textSearch, setTextSearch] = useState("")
+
+  const PUBLICATIONS_QUERY = gql`
+  query Publications($slug: String){
+    publications(slug: $slug, status: true){
+      description
+      image_2
+      image_3
+      image_4
+      image_link
+      is_new
+      sale_price
+      title
+      type
+      slug
+    }
+  }`
+
+  const [getPublications, { data: products }] = useLazyQuery(PUBLICATIONS_QUERY)
 
   useEffect(() => {
-    getFeed().then((feed) => {
-      handleGetFeed(feed);
-    });
-  }, []);
+    getPublications()
+  }, [])
 
   function onTagsChange(event, values) {
-    const slug = top100Films.find((x) => x.title == values).slug;
+    const slug = products.publications.find((x) => x.title == values).slug;
     router.push("/publicacion/" + slug);
   }
 
@@ -45,7 +62,7 @@ function LogoBuscador({ partner }) {
           id={styles["free-solo-2-demo"]}
           disableClearable
           onChange={onTagsChange}
-          options={top100Films.map((option) => option.title)}
+          options={products && products.publications.map((option) => option.title)}
           renderInput={(params, ind) => (
             <TextField {...params} key={ind} className={styles.buscador} label="Busca aquí tus productos" margin="normal" variant="outlined" InputProps={{ ...params.InputProps, type: "search" }} />
           )}

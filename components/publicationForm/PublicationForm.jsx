@@ -7,24 +7,27 @@ import { subirImagen } from '../../lib/functions'
 import PublicationForminterface from './PublicationFormInterface'
 
 const QUERY_PUBLICATION = gql`
-query Publications($slug: String){
-	publications(slug: $slug){
-		description
-		image_2
-		image_3
-		image_4
-		image_link
-		is_new
-		sale_price
-		title
-		type
+	query Publications($slug: String){
+		publications(slug: $slug){
+			description
+			id
+			image_2
+			image_3
+			image_4
+			image_link
+			is_new
+			sale_price
+			title
+			type
+		}
 	}
-}`
+`
 
 const MUTATION_PUBLICATION = gql`
-mutation createPublication($input: PublicationInput){
-	createPublication(input: $input)
-}`
+	mutation createPublication($input: PublicationInput){
+		createPublication(input: $input)
+	}
+`
 
 const PublicationForm = (props) => {
 	const router = useRouter()
@@ -37,8 +40,7 @@ const PublicationForm = (props) => {
 	const [publicationFormData, setPublicationFormData] = useState({})
 	const { data: publicationEditData, errorPED, loading: loadingPED } = slugPublication ? useQuery(QUERY_PUBLICATION, { variables }) : {}
 	const [time, setTime] = useState()
-
-	console.log(`Publicacion a editar ${slugPublication}`)
+	const isEdit = props.router.query?.id ? true : false
 
 	useEffect(() => {
 		if (publicationEditData?.publications) {
@@ -49,13 +51,13 @@ const PublicationForm = (props) => {
 
 	async function onChangeImage(idImageElement) {
 		setImageLoading(true)
-		const image = await subirImagen({ tipoArchivo: "publicacion", idImageElement })
+		const image = await subirImagen({ tipoArchivo: "publicacion", idImageElement, isEdit })
 		const variable = idImageElement
 		setImageLoading(false)
 		setPublicationFormData({ ...publicationFormData, [variable]: image[0] })
 	}
 
-	function handleCrear() {
+	function handleSubmit() {
 		const validators = () => {
 			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.quantity || !publicationFormData.type || !publicationFormData.sale_price || !publicationFormData.image_link) {
 				setErrors("Por favor completa todos los campos de tu publicación")
@@ -65,21 +67,28 @@ const PublicationForm = (props) => {
 		}
 
 		if (!validators()) return false // Validation
-
 		const random_num = rn({ min: 0, max: 1000, integer: true })
 		const slug_prepared = slugify(publicationFormData.title, 60)
 		const slug = slug_prepared + "-" + random_num
 		const phone = JSON.parse(localStorage.getItem("user")).phone
+		delete publicationFormData.__typename
 		dispatchCreate({
 			variables:
 			{
-				input: { ...publicationFormData, slug, quantity: Number(publicationFormData.quantity), sale_price: Number(publicationFormData.sale_price), phone }
+				input: {
+					...publicationFormData,
+					isEdit,
+					phone,
+					quantity: Number(publicationFormData.quantity),
+					sale_price: Number(publicationFormData.sale_price),
+					slug
+				}
 			}
 		});
 		router.push("/publicaciones")
 	}
 
-	return <PublicationForminterface {...{ publicationFormData, onChangeImage, handleCrear, imageLoading, errors, screenWidth, setPublicationFormData }} />
+	return <PublicationForminterface {...{ isEdit, publicationFormData, onChangeImage, handleSubmit, imageLoading, errors, screenWidth, setPublicationFormData }} />
 }
 
 export default withRouter(PublicationForm)

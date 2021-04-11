@@ -24,9 +24,8 @@ export default class PublicacionPage extends React.Component {
       partner = window.location.host.split(".")[0];
     }
     const is_partner = ["juanchofenix"].includes(partner);
-    let feed = await getFeed(is_partner ? partner : null);
-    const datosPublicacion = feed.find((x) => x.slug == slug);
-    return { datosPublicacion, feed, is_partner, partner: is_partner ? partner : false };
+    let datosPublicacion = await getFeed(is_partner ? partner : null, slug);
+    return { datosPublicacion, is_partner, partner: is_partner ? partner : false };
   }
 
   state = {
@@ -114,7 +113,7 @@ export default class PublicacionPage extends React.Component {
     };
     const res = await instanciaFunc.saveRespuesta(data);
     return;
-  };
+  }
 
   validarAntesPagar() {
     let result = true;
@@ -218,7 +217,7 @@ export default class PublicacionPage extends React.Component {
       external: "true",
       response: "https://club2ruedas.com/gracias-por-tu-compra",
     });
-  };
+  }
 
   handleLike = async (params = {}) => {
     const elemento = params.event.currentTarget;
@@ -229,7 +228,7 @@ export default class PublicacionPage extends React.Component {
     };
     const result = await instanciaFunc.handleLike(obj);
     if (!result) return;
-  };
+  }
 
   configUbicacion() {
     localStorage.setItem("url_pendiente", window.location.pathname);
@@ -244,16 +243,15 @@ export default class PublicacionPage extends React.Component {
         ciudad,
       });
     }
+    if (this.props.datosPublicacion.length == 0) Router.push("/404")
   }
 
   render() {
-    if (!this.props.datosPublicacion) return <></>
-    const description = this.props.datosPublicacion?.description
-      ? this.props.datosPublicacion.description
-      : "";
-    const title = this.props.datosPublicacion?.title;
-    const meta_url = this.props.datosPublicacion?.slug;
-    const { pais, ciudad } = this.state;
+    const datosPublicacion = this.props?.datosPublicacion[0]
+    if (!datosPublicacion) return <div>Not found</div>
+
+    const { description, title, slug } = datosPublicacion
+    const { pais, ciudad } = this.state
     const listadoCiudades = [
       "Bogota",
       "Medellín",
@@ -274,26 +272,9 @@ export default class PublicacionPage extends React.Component {
     ];
 
     return (
-      <Layout
-        {...this.props}
-        meta_image={this.props.datosPublicacion.image_link}
-        meta_title={title}
-        title={title}
-        descripcion={description}
-        meta_url={meta_url}>
+      <Layout meta_image={datosPublicacion} meta_title={title} title={title} descripcion={description} meta_url={slug}>
         <div className="_publicacion">
-          <CardDetalleProducto
-            feed={this.props.feed}
-            meta_url={meta_url}
-            handleResponder={this.handleResponder}
-            nuevoPrecio={this.state.nuevoPrecio}
-            handleCupon={this.handleCupon}
-            handleComprar={this.handleComprar}
-            doc_id={this.props.datosPublicacion.id}
-            handleLike={this.handleLike}
-            logDetalle={true}
-            {...this.props.datosPublicacion}
-          />
+          <CardDetalleProducto meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} handleComprar={this.handleComprar} doc_id={datosPublicacion} handleLike={this.handleLike} logDetalle={true} {...datosPublicacion} />
           {
             // Modal para confirmar cédula y dirección
             this.state.modalIngresoCedula && (
@@ -360,7 +341,6 @@ export default class PublicacionPage extends React.Component {
               </div>
             )
           }
-
           {
             // Modal para ingresar cupón
             // this.state.logIngresarCupon && (
