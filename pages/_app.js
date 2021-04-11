@@ -5,12 +5,7 @@ import { createHttpLink } from "apollo-link-http"
 import { ApolloProvider } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { AppContextProvider } from "../contexts/context"
-import VARS from "../lib/variables";
-
-// Material UI
-import { ThemeProvider } from "@material-ui/core/styles"
-import CssBaseline from "@material-ui/core/CssBaseline"
-// import theme from "../src/theme"
+import VARS from "../lib/variables"
 
 // CSS/SCSS
 import "../styles/globalStyles.scss"
@@ -38,7 +33,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp(props) {
+  const { Component, pageProps, router } = props
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -49,10 +45,7 @@ export default function MyApp({ Component, pageProps }) {
 
   return <AppContextProvider>
     <ApolloProvider client={client} >
-      {/* <ThemeProvider theme={theme}> */}
-      {/* <CssBaseline /> */}
-      <Component {...pageProps} />
-      {/* </ThemeProvider> */}
+      <Component {...pageProps} key={router.name} />
     </ApolloProvider>
   </AppContextProvider>
 }

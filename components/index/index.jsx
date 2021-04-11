@@ -25,27 +25,9 @@ class EnteratePage extends React.Component {
     const url = category ? "https://pikajuegos.com/category/" + category : "https://pikajuegos.com"
     const meta_title = `${category ? this.capitalize(category) + " | " : ''} Videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch al mejor precio del mercado`
     const descripcion = "Pikajuegos es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
-    return this.props.is_partner ? (<Layout
-      {...this.props}
-      meta_url={url}
-      meta_descripcion={descripcion}
-      meta_title={meta_title}
-      title={meta_title}>
-      {/* <RodadasPartner
-        {...this.props}
-        clubs={this.props.clubs}
-        feed={this.props.feed}
-      /> */}
+    return <Layout meta_url={url} category={category} meta_descripcion={descripcion} meta_title={meta_title} title={meta_title}>
+      <Portada feed={this.props.feed} />
     </Layout>
-    ) : (<Layout
-      {...this.props}
-      meta_url={url}
-      category={category}
-      meta_descripcion={descripcion}
-      meta_title={meta_title}
-      title={meta_title}>
-      <Portada {...this.props} feed={this.props.feed} />
-    </Layout>)
   }
 }
 

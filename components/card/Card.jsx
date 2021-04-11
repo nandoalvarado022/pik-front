@@ -23,7 +23,7 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
     }
   }`)
 
-  return (<Grow key={itemId} in={true} style={{ transformOrigin: "0 0 0" }}>
+  return <Grow key={itemId} in={true} style={{ opacity: 1 }}>
     <Link href={slug ? "/publicacion/[id]" : "javascript:void(0)"} as={slug ? `/publicacion/${slug}` : "javascript:void(0)"}>
       <a className={itemId == 1 ? styles.destacada_Card : ""}>
         {special_title && (<h3 className={styles.title_destacada}>{special_title}</h3>)}
@@ -81,7 +81,6 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
       </a >
     </Link >
   </Grow >
-  );
 };
 
 export default Card;

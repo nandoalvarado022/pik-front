@@ -9,6 +9,7 @@ import { format_number } from "../../lib/utilidades"
 import ImageGallery from "react-image-gallery"
 import { useEffect } from "react"
 import styles from "./cardDetalleProducto.module.scss"
+import React from "react"
 
 const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", image_link, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, handleComprar, quantity } = {}) => {
   let images = [
@@ -33,9 +34,9 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
   let like = null;
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
 
-  return (<Grow key={indice_item} in={true} style={{ transformOrigin: "0 0 0" }}>
-    <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
-      <Categorias scroll={false} />
+  return <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
+    <Categorias scroll={false} />
+    <Grow key={indice_item} timeout={500} in={true} style={{ opacity: 1 }}>
       <div className={styles.descripcion_imagen}>
         <div className={styles.left}>
           <div className={styles.content_imagen}>
@@ -121,10 +122,9 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
           </div>
         )}
       </div>
-      <Footer />
-    </div>
-  </Grow>
-  )
+    </Grow>
+    <Footer />
+  </div>
 }
 
 export default CardProducto

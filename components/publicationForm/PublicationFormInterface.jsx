@@ -9,7 +9,6 @@ import TextField from '@material-ui/core/TextField'
 import styles from "./formPublication.module.scss"
 
 const PublicationForminterface = ({ publicationFormData, onChangeImage, handleSubmit, imageLoading, errors, screenWidth, setPublicationFormData, isEdit }) => {
-  debugger
   return <div className={styles.content}>
     <div className="Card">
       <p>
