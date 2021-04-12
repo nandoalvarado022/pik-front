@@ -26,7 +26,7 @@ class EnteratePage extends React.Component {
     const meta_title = `${category ? this.capitalize(category) + " | " : ''} Videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch al mejor precio del mercado`
     const descripcion = "Pikajuegos es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
     return <Layout meta_url={url} category={category} meta_descripcion={descripcion} meta_title={meta_title} title={meta_title}>
-      <Portada feed={this.props.feed} />
+      <Portada category={category} feed={this.props.feed} />
     </Layout>
   }
 }

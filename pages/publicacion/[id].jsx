@@ -32,6 +32,7 @@ export default class PublicacionPage extends React.Component {
     modalIngresoCedula: false,
     labelPagar: "Hablar con el vendedor",
     cuponDigitado: "",
+    loadingProductPage: false
   };
 
   onChange = (e) => {
@@ -40,7 +41,7 @@ export default class PublicacionPage extends React.Component {
     this.setState({
       [name]: value,
     });
-  };
+  }
 
   enviarWhatsapp() {
     const url = window.location
@@ -70,11 +71,11 @@ export default class PublicacionPage extends React.Component {
       // direccion,
       modalIngresoCedula: true,
     });
-  };
+  }
 
   handleCupon = () => {
     this.setState({ logIngresarCupon: true });
-  };
+  }
 
   handleValidarCupon = async () => {
     const cuponDigitado = this.state.cuponDigitado;
@@ -96,7 +97,7 @@ export default class PublicacionPage extends React.Component {
         precio: nuevoPrecio,
       });
     }
-  };
+  }
 
   mostrarAlerta(mensaje) {
     toastr.warning(mensaje);
@@ -236,14 +237,17 @@ export default class PublicacionPage extends React.Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem("user")) {
+    /*if (localStorage.getItem("user")) {
       const { pais, ciudad } = JSON.parse(localStorage.getItem("user"));
       this.setState({
         pais,
         ciudad,
       });
-    }
+    }*/
     if (this.props.datosPublicacion.length == 0) Router.push("/404")
+    setTimeout(() => {
+      this.setState({ loadingProductPage: true })
+    }, 10000)
   }
 
   render() {
@@ -252,121 +256,102 @@ export default class PublicacionPage extends React.Component {
 
     const { description, title, slug } = datosPublicacion
     const { pais, ciudad } = this.state
-    const listadoCiudades = [
-      "Bogota",
-      "Medellín",
-      "Barranquilla",
-      "Cali",
-      "Bucaramanga",
-      "Pasto",
-      "Barrancabermeja",
-      "Monteria",
-      "Cartagena",
-      "Santa Marta",
-      "Manizales",
-      "Cucuta",
-      "Pereira",
-      "Ibague",
-      "Maicao",
-      "Rioacha",
-    ];
+    const listadoCiudades = ["Bogota", "Medellín", "Barranquilla", "Cali", "Bucaramanga", "Pasto", "Barrancabermeja", "Monteria", "Cartagena", "Santa Marta", "Manizales", "Cucuta", "Pereira", "Ibague", "Maicao", "Rioacha"];
 
-    return (
-      <Layout meta_image={datosPublicacion} meta_title={title} title={title} descripcion={description} meta_url={slug}>
-        <div className="_publicacion">
-          <CardDetalleProducto meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} handleComprar={this.handleComprar} doc_id={datosPublicacion} handleLike={this.handleLike} logDetalle={true} {...datosPublicacion} />
-          {
-            // Modal para confirmar cédula y dirección
-            this.state.modalIngresoCedula && (
-              <div className={styles._modalIngresoInfo}>
-                <div className={styles.background}></div>
-                <div className={`Card ${styles.Card}`}>
-                  {this.state.tallas && (
-                    <>
-                      <InputLabel id="label-talla">
-                        Selecciona tú talla
-                      </InputLabel>
-                      <Select
-                        labelId="label-talla"
-                        placeholder="Seleccionar talla"
-                        value={this.state.talla}
-                        onChange={(e) =>
-                          this.setState({ talla: e.target.value })
-                        }
-                      >
-                        {this.state.tallas.map((talla, ind) => {
-                          return (
-                            <MenuItem value={String(talla).toLocaleLowerCase()}>
-                              {talla}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </>
-                  )}
-
-                  <h2>Tus datos para la entrega y pago</h2>
-                  <TextField
-                    autoComplete="nombre"
-                    name="nombre_completo"
-                    fullWidth={true}
-                    onChange={this.onChange}
-                    label="Nombre completo"
-                    margin="normal"
-                    size={25}
-                  />
-
-                  <div className="contentCiudad">
-                    <Autocomplete
-                      name="str_ciudad"
-                      options={listadoCiudades}
-                      onInputChange={(event, str_ciudad) => {
-                        this.setState({ str_ciudad });
-                      }}
-                      getOptionLabel={(option) => option}
-                      style={{ width: "100%" }}
-                      renderInput={(params) => {
+    return <Layout meta_image={datosPublicacion} meta_title={title} title={title} descripcion={description} meta_url={slug}>
+      <div className="_publicacion">
+        <CardDetalleProducto meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} handleComprar={this.handleComprar} doc_id={datosPublicacion} handleLike={this.handleLike} logDetalle={true} {...datosPublicacion} />
+        {
+          // Modal para confirmar cédula y dirección
+          this.state.modalIngresoCedula && (
+            <div className={styles._modalIngresoInfo}>
+              <div className={styles.background}></div>
+              <div className={`Card ${styles.Card}`}>
+                {this.state.tallas && (
+                  <>
+                    <InputLabel id="label-talla">
+                      Selecciona tú talla
+                    </InputLabel>
+                    <Select
+                      labelId="label-talla"
+                      placeholder="Seleccionar talla"
+                      value={this.state.talla}
+                      onChange={(e) =>
+                        this.setState({ talla: e.target.value })
+                      }
+                    >
+                      {this.state.tallas.map((talla, ind) => {
                         return (
-                          <TextField {...params} label="Seleccionar ciudad" />
+                          <MenuItem value={String(talla).toLocaleLowerCase()}>
+                            {talla}
+                          </MenuItem>
                         );
-                      }}
-                    />
-                  </div>
+                      })}
+                    </Select>
+                  </>
+                )}
 
-                  <div className={styles.actions}>
-                    <Button onClick={() => this.setState({ modalIngresoCedula: false })} color="red">Cancelar</Button>
-                    <Button onClick={this.handlePagar} color="blue">{this.state.labelPagar}</Button>
-                  </div>
+                <h2>Tus datos para la entrega y pago</h2>
+                <TextField
+                  autoComplete="nombre"
+                  name="nombre_completo"
+                  fullWidth={true}
+                  onChange={this.onChange}
+                  label="Nombre completo"
+                  margin="normal"
+                  size={25}
+                />
+
+                <div className="contentCiudad">
+                  <Autocomplete
+                    name="str_ciudad"
+                    options={listadoCiudades}
+                    onInputChange={(event, str_ciudad) => {
+                      this.setState({ str_ciudad });
+                    }}
+                    getOptionLabel={(option) => option}
+                    style={{ width: "100%" }}
+                    renderInput={(params) => {
+                      return (
+                        <TextField {...params} label="Seleccionar ciudad" />
+                      );
+                    }}
+                  />
+                </div>
+
+                <div className={styles.actions}>
+                  <Button onClick={() => this.setState({ modalIngresoCedula: false })} color="red">Cancelar</Button>
+                  <Button onClick={this.handlePagar} color="blue">{this.state.labelPagar}</Button>
                 </div>
               </div>
-            )
-          }
-          {
-            // Modal para ingresar cupón
-            // this.state.logIngresarCupon && (
-            //   <div className="_modalIngresoInfo">
-            //     <div className="background"></div>
-            //     <div className="Card">
-            //       <TextField
-            //         value={this.state.cuponDigitado}
-            //         name="cuponDigitado"
-            //         fullWidth={true}
-            //         onChange={this.onChange}
-            //         label="Cupón"
-            //         margin="normal"
-            //         size={25}
-            //       />
+            </div>
+          )
+        }
+        {
+          // Modal para ingresar cupón
+          // this.state.logIngresarCupon && (
+          //   <div className="_modalIngresoInfo">
+          //     <div className="background"></div>
+          //     <div className="Card">
+          //       <TextField
+          //         value={this.state.cuponDigitado}
+          //         name="cuponDigitado"
+          //         fullWidth={true}
+          //         onChange={this.onChange}
+          //         label="Cupón"
+          //         margin="normal"
+          //         size={25}
+          //       />
 
-            //       <div className="actions">
-            //         <Button onClick={() => this.setState({ logIngresarCupon: false })} className="yellow small m-l-10" text="Cancelar" />
-            //         <Button onClick={this.handleValidarCupon} className="green small m-l-10" text="Validar cupón" />
-            //       </div>
-            //     </div>
-            //   </div>
-            // )
-          }
-        </div>
-      </Layout>
-    );
+          //       <div className="actions">
+          //         <Button onClick={() => this.setState({ logIngresarCupon: false })} className="yellow small m-l-10" text="Cancelar" />
+          //         <Button onClick={this.handleValidarCupon} className="green small m-l-10" text="Validar cupón" />
+          //       </div>
+          //     </div>
+          //   </div>
+          // )
+        }
+      </div>
+    </Layout>
   }
 }

@@ -9,6 +9,7 @@ import VARS from "../lib/variables"
 
 // CSS/SCSS
 import "../styles/globalStyles.scss"
+import "../styles/articlesList.scss"
 import "react-image-gallery/styles/css/image-gallery.css"
 
 const httpLink = createHttpLink({
