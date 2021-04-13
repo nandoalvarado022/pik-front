@@ -446,7 +446,8 @@ span.MuiBadge-badge {
     float: right;
 }
 
-main.principal {
+main {
+    /*
     min-height: 100vh;
     font-size: 14px;
     // padding: 10px 0 0px;
@@ -459,9 +460,13 @@ main.principal {
     position: relative;
     @media screen and (max-width: 420px) {
         z-index: 1;
+        margin-top: 70px;
     }
     @media screen and (min-width: 1024px) {
         border-radius: 0px;
+    }*/
+    @media screen and (max-width: 420px) {
+        margin-top: 70px;
     }
     &::-webkit-scrollbar {
         width: 0px;

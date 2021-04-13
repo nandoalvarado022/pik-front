@@ -1,75 +1,84 @@
-#LogoBuscador {
-    background: white;
-    padding: 20px 0 10px;
-    border-bottom: 1px solid #dcdcdcb5;
-    ul {
+    #LogoBuscador {
+        background: white;
+        padding: 20px 0 10px;
+        border-bottom: 1px solid #dcdcdcb5;
         @media screen and (max-width: 420px) {
-            text-align: center;
-            padding: 0 20px;
+            padding: 10px 0 5px;
+            position: fixed;
+            top: 0;
+            z-index: 3;
+            width: 100%;
         }
-        @media screen and (min-width: 1024px) {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
+        ul {
             margin: 0;
-        }
-    }
-    &.partner {
-        max-width: 1280px;
-        margin: 0 auto;
-    }
-    .logo {
-        width: 200px;
-        cursor: pointer;
-        max-width: 100%;
-        @media screen and (min-width: 1024px) {
-            &.desktop {
-                display: block;
+            @media screen and (max-width: 420px) {
+                text-align: center;
+                padding: 0 10px;
+                display: flex;
             }
-        }
-        @media screen and (max-width: 420px) {
-            &.mobile {
-                display: block;
-            }
-        }
-        &.juancho {
-            height: 60px;
-            width: auto;
             @media screen and (min-width: 1024px) {
-                display: block;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
             }
         }
-    }
-    .icon {
-        width: 20px;
-    }
-    .content_buscador {
-        position: relative;
-        .input-buscador {
-            fieldset {
-                border: 1px solid #a9a9a9;
-                /*box-shadow: hsl(0, 0%, 80%) 0 5px 16px;*/
-            }
-        }
-        .buscador {
-            background: white;
-            @media screen and (min-width: 1024px) {
-                width: 600px;
-            }
-        }
-    }
-    .box_icon {
-        float: right;
-        top: 19px;
-        position: absolute;
-        right: 3px;
-        height: 50px;
-        line-height: 56px;
-        border-radius: 4px;
-        background: #ea4d42;
-        padding: 0 10px;
-        &:hover {
+        .logo {
+            width: 200px;
             cursor: pointer;
+            max-width: 100%;
+            @media screen and (min-width: 1024px) {
+                &.desktop {
+                    display: block;
+                }
+            }
+            @media screen and (max-width: 420px) {
+                width: 140px;
+                &.mobile {
+                    display: block;
+                }
+            }
+            &.juancho {
+                height: 60px;
+                width: auto;
+                @media screen and (min-width: 1024px) {
+                    display: block;
+                }
+            }
+        }
+        .icon {
+            width: 20px;
+        }
+        .content_buscador {
+            position: relative;
+            @media screen and (max-width: 420px) {
+                width: 170px;
+                margin: -4px 0 0 30px;
+            }
+            .input-buscador {
+                fieldset {
+                    border: 1px solid #a9a9a9;
+                    /*box-shadow: hsl(0, 0%, 80%) 0 5px 16px;*/
+                }
+            }
+            .buscador {
+                background: white;
+                @media screen and (min-width: 1024px) {
+                    width: 600px;
+                }
+            }
+        }
+        .box_icon {
+            float: right;
+            top: 19px;
+            position: absolute;
+            right: 3px;
+            height: 50px;
+            line-height: 56px;
+            border-radius: 4px;
+            background: #ea4d42;
+            padding: 0 10px;
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
-}

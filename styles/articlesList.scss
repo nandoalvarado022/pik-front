@@ -41,6 +41,9 @@
         z-index: 3;
         overflow: hidden;
         padding: 40px 0;
+        @media screen and (max-width: 420px) {
+            top: 80px;
+        }
     }
     .card-content {
         pointer-events: auto;
@@ -97,7 +100,7 @@
         text-transform: uppercase;
     }
     .overlay {
-        z-index: 1;
+        z-index: 2;
         position: fixed;
         will-change: opacity;
         top: 0;
@@ -122,6 +125,7 @@
         width: 90vw;
         @media only screen and (max-width: 420px) {
             padding: 260px 35px 35px 35px;
+            width: initial;
         }
     }
     p {

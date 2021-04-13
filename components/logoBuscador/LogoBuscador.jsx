@@ -5,6 +5,8 @@ import TextField from "@material-ui/core/TextField"
 import Autocomplete from "@material-ui/lab/Autocomplete"
 import { getFeed, transformarFeed } from "../../lib/functions"
 import React, { useState, useEffect, useMemo } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import styles from "./logoBuscador.module.scss"
 
 function LogoBuscador({ partner }) {
@@ -63,9 +65,7 @@ function LogoBuscador({ partner }) {
           disableClearable
           onChange={onTagsChange}
           options={products && products.publications.map((option) => option.title)}
-          renderInput={(params, ind) => (
-            <TextField {...params} key={ind} className={styles.buscador} label="Busca aquí tus productos" margin="normal" variant="outlined" InputProps={{ ...params.InputProps, type: "search" }} />
-          )}
+          renderInput={(params, ind) => <TextField inputProps={{ min: 0, style: { textAlign: "center" }, type: "search" }} {...params} key={ind} className={styles.buscador} label={<span>nintendo switch <FontAwesomeIcon icon={faSearch} /></span>} />}
         />
       </div>
       {/* {!partner && (
