@@ -1,0 +1,36 @@
+    ._modalIngresoInfo {
+        bottom: 200px;
+        left: 0;
+        margin: 0 auto;
+        max-width: 420px;
+        position: fixed;
+        right: 0;
+        top: calc((100vh / 2) - 300px);
+        width: 90%;
+        z-index: 99;
+        .background {
+            background: #00000052;
+            height: 100%;
+            top: 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            z-index: 1;
+        }
+        .Card {
+            padding: 10px 20px 20px;
+            position: relative;
+            width: 420px;
+            z-index: 9;
+            @media screen and (max-width: 420px) {
+                width: auto;
+            }
+            .actions {
+                margin-top: 10px;
+            }
+        }
+        .contentCiudad {
+            margin: 10px 0;
+        }
+    }

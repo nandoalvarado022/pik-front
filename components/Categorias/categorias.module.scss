@@ -5,6 +5,9 @@
     position: sticky;
     top: 50px;
     z-index: 2;
+    @media screen and (max-width: 420px) {
+        width: initial;
+    }
     ul {
         padding: 0;
         overflow: hidden;
@@ -13,7 +16,7 @@
         justify-content: center;
         margin: 0;
         @media screen and (max-width: 420px) {
-            overflow-x: scroll;
+            flex-wrap: wrap;
         }
     }
     li {

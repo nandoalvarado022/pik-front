@@ -1,27 +1,13 @@
 import Login from "../login/Login"
-import { register, unregister } from "next-offline/runtime"
+import { register } from "next-offline/runtime"
 import toastr from "toastr"
-import Grow from "@material-ui/core/Grow"
-// import firebase from "firebase";
-import Btn from "../btn/Btn"
+import Button from "../button/Button"
 import { initGA, logPageView } from "../../public/analytics"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faHandHoldingHeart,
-  faPlus,
-  faPencilAlt,
-  faQuestion,
-  faFlagCheckered,
-  faCalendarCheck,
-} from "@fortawesome/free-solid-svg-icons"
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
-import Link from "next/link"
 import Router from "next/router"
 import NProgress from "nprogress"
 import Head from "next/head"
 import React from "react"
 import Header from "../header/Header"
-import BottomNavbar from "../bottomNavbar/BottomNavbar"
 import LogoBuscador from "../logoBuscador/LogoBuscador"
 import styles from "./layout.module.scss"
 
@@ -79,7 +65,7 @@ class Layout extends React.Component {
         : null;
     }
 
-    const script = document.createElement("script");
+    /*const script = document.createElement("script");
     script.src = "../../indigital/sdk.min.js";
     script.async = true;
     script.onload = () => {
@@ -89,7 +75,7 @@ class Layout extends React.Component {
         requestLocation: true,
       });
     };
-    document.body.appendChild(script);
+    document.body.appendChild(script);*/
 
     if (localStorage.getItem("user")) {
       this.setState({
@@ -121,13 +107,10 @@ class Layout extends React.Component {
   }
 
   render() {
-    const isMobile = typeof window != "undefined" ? !localStorage.getItem("isMobile") : null;
-    const props = this.props;
-    const { growMenu } = this.state;
-    const { meta_descripcion, meta_title, meta_image } = this.props;
-    let { meta_url, is_partner, partner } = this.props;
-    const club_short_name = this.club_short_name;
-    const feed = this.feed;
+    const isMobile = typeof window != "undefined" ? !localStorage.getItem("isMobile") : null
+    const props = this.props
+    const { meta_descripcion, meta_title, meta_image } = this.props
+    let { meta_url, is_partner, partner } = this.props
     return (
       <div className="App font-a">
         <Head>
@@ -145,6 +128,10 @@ class Layout extends React.Component {
           <meta name="google-site-verification" content="4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko" />
           <meta name="twitter:description" content={meta_descripcion} />
           <meta name="keywords" value="" />
+          <meta name="country" content="COL" />
+          <meta name="author" content="pikajuegos.com" />
+          <meta name="copyright" content="pikajuegos.com" />
+          <meta name="language" content="es-CO"></meta>
           {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-941382150"></script>
           <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -171,68 +158,6 @@ class Layout extends React.Component {
         <main className={styles.principal}>
           {props.children}
         </main>
-        {/* 
-                MENU ADMINISTRACION
-                <div className={(String(this.state.swAdd)) + " add"} onClick={this.handleAdd}>
-                    <div className="background"></div>
-                    <div className="opciones font-b">
-                        <Grow timeout={1500} style={{ transformOrigin: "0 0 0" }} in={growMenu}>
-                            <div>
-                                <Link href="/publicacion/crear">
-                                    <a>
-                                        <span>Publicar</span>
-                                        <FontAwesomeIcon className="color-publicacion" icon={faPencilAlt} />
-                                    </a>
-                                </Link>
-                            </div>
-                        </Grow>
-                        
-                        <Grow timeout={600} style={{ transformOrigin: "0 0 0" }} in={growMenu}>
-                            <div>
-                                <Link href="/rodadas/crear">
-                                    <a>
-                                        <span>Crear Rodada</span>
-                                        <FontAwesomeIcon className="color-actividad" icon={faFlagCheckered} />
-                                    </a>
-                                </Link>
-                            </div>
-                        </Grow>
-                        <Grow timeout={900} style={{ transformOrigin: "0 0 0" }} in={growMenu}>
-                            <div>
-                                <Link href="/preguntas/crear">
-                                    <a>
-                                        <span>Hacer Pregunta</span>
-                                        <FontAwesomeIcon className="color-pregunta" icon={faQuestion} />
-                                    </a>
-                                </Link>
-                            </div>
-                        </Grow>
-                        <Grow timeout={300} style={{ transformOrigin: "0 0 0" }} in={growMenu}>
-                            <div>
-                                <Link href="/registrar-revision">
-                                    <a>
-                                        <span>Registrar Revisión</span>
-                                        <FontAwesomeIcon className="color-revision" icon={faCalendarCheck} />
-                                    </a>
-                                </Link>
-                            </div>
-                        </Grow>
-                        <Grow timeout={300} style={{ transformOrigin: "0 0 0" }} in={growMenu}>
-                            <div className="whatsapp">
-                                <a href="https://api.whatsapp.com/send?phone=573041032854&amp;text=¡Hola Club2ruedas!" target="_BLANK">
-                                    <span>Chatea con nosotros</span>
-                                    <FontAwesomeIcon style={{ color: "#3ce059" }} icon={faWhatsapp} />
-                                </a>
-                            </div>
-                        </Grow>
-                    </div>
-
-                    {/* <div className="content_plus">
-                        <FontAwesomeIcon icon={faPlus} />
-                    </div> 
-                </div>
-                */}
-
         {!this.state.tenemosCookies && (
           <div className="avisoCookies font-c">
             Pikajuegos utiliza cookies para medir el uso del sitio web,
@@ -240,19 +165,13 @@ class Layout extends React.Component {
             funciones de redes sociales. Para más información y ajustar tu
             configuración de cookies, haz clic aquí.
             <p>
-              <Btn
-                className="blue small m-l-10"
-                text="Aceptar"
-                onClick={this.tenemosCookies}
-              />
+              <Button className="blue small m-l-10" text="Aceptar" onClick={this.tenemosCookies} />
             </p>
           </div>
         )}
-
-        {/* <BottomNavbar {...this.props} /> */}
       </div>
-    );
+    )
   }
 }
 
-export default Layout;
+export default Layout

@@ -94,8 +94,10 @@ const Categorias = ({ scroll }) => {
             </Link>
           </li>
           <li className={style.logout} onClick={handleLogout}>
-            Salir
-        </li>
+            <a>
+              Salir
+            </a>
+          </li>
         </>
       }
     </ul>

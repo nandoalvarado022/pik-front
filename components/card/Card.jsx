@@ -6,7 +6,7 @@ import { format_number } from "../../lib/utilidades";
 import { useQuery, gql } from '@apollo/client';
 import styles from "./card.module.scss"
 
-const Card = ({ itemId, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
+const Card = ({ id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
   const usuario =
     typeof localStorage != "undefined"
       ? localStorage.getItem("user")
@@ -15,7 +15,7 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
       : null;
   let like = null;
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false;
-  destacada = itemId == 1 ? true : false;
+  destacada = id_publication == 1 ? true : false;
 
   const { loading, error, data } = useQuery(gql`{
     publications{
@@ -23,16 +23,26 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
     }
   }`)
 
-  return (<Grow key={itemId} in={true} style={{ transformOrigin: "0 0 0" }}>
+  return <Grow key={id_publication} in={true} style={{ opacity: 1 }}>
     <Link href={slug ? "/publicacion/[id]" : "javascript:void(0)"} as={slug ? `/publicacion/${slug}` : "javascript:void(0)"}>
-      <a className={itemId == 1 ? styles.destacada_Card : ""}>
+      <a className={id_publication == 1 ? styles.destacada_Card : ""}>
         {special_title && (<h3 className={styles.title_destacada}>{special_title}</h3>)}
-        <div key={itemId} className={`${styles.Card} ${destacada ? styles.destacada : ""}`} >
+        <div key={id_publication} className={`${styles.Card} ${destacada ? styles.destacada : ""}`} >
           <div className={styles.descripcion_imagen}>
             <div className={styles.content_imagen}>
-              {image_link && (
-                <img className="image-front" src={`${image_link}`} />
-              )}
+              <div className={styles.tags}>
+                <span className={styles.condition}>{is_new ? "NUEVO" : "USADO"}</span>
+                {
+                  tags && JSON.parse(tags).map((item, ind) => {
+                    return (<span /*style={{ background: item.background }}*/>
+                      {item.texto}
+                    </span>
+                    );
+                  })
+                }
+              </div>
+
+              {image_link && <img className="image-front" src={`${image_link}`} />}
             </div>
             {
               <div className={styles.descripcion}>
@@ -59,19 +69,6 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
                         </React.Fragment>
                       )
                     }
-
-                    {tags && (
-                      <div className={styles.tags}>
-                        {
-                          JSON.parse(tags).map((item, ind) => {
-                            return (<span style={{ background: item.background }}>
-                              {item.texto}
-                            </span>
-                            );
-                          })
-                        }
-                      </div>
-                    )}
                   </div>
                 </div>
               </div >
@@ -81,7 +78,6 @@ const Card = ({ itemId, tags, special_title, title, descuento = 0, description, 
       </a >
     </Link >
   </Grow >
-  );
 };
 
 export default Card;

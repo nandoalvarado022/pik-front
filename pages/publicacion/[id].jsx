@@ -5,13 +5,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Router from "next/router";
 import date from "date-and-time";
 import toastr from "toastr";
-import Btn from "../../components/btn/Btn";
-import TextField from "@material-ui/core/TextField";
-import CardDetalleProducto from "../../components/card/CardDetalleProducto";
-import React from "react";
-import Layout from "../../components/layout/Layout";
-import PuedeInteresarte from "../../components/puedeInteresarte/PuedeInteresarte";
-import { getFeed, transformarFeed } from "../../lib/functions";
+import Button from "../../components/button/Button"
+import TextField from "@material-ui/core/TextField"
+import CardDetalleProducto from "../../components/card/CardDetalleProducto"
+import React from "react"
+import Layout from "../../components/layout/Layout"
+// import PuedeInteresarte from "../../components/puedeInteresarte/PuedeInteresarte"
+import { getFeed, transformarFeed } from "../../lib/functions"
+import styles from "../../public/css/modalIngresoInfo.module.scss"
 
 export default class PublicacionPage extends React.Component {
   static async getInitialProps({ req, query }) {
@@ -23,15 +24,15 @@ export default class PublicacionPage extends React.Component {
       partner = window.location.host.split(".")[0];
     }
     const is_partner = ["juanchofenix"].includes(partner);
-    let feed = await getFeed(is_partner ? partner : null);
-    const datosPublicacion = feed.find((x) => x.slug == slug);
-    return { datosPublicacion, feed, is_partner, partner: is_partner ? partner : false };
+    let datosPublicacion = await getFeed(is_partner ? partner : null, slug);
+    return { datosPublicacion, is_partner, partner: is_partner ? partner : false };
   }
 
   state = {
     modalIngresoCedula: false,
     labelPagar: "Hablar con el vendedor",
     cuponDigitado: "",
+    loadingProductPage: false
   };
 
   onChange = (e) => {
@@ -40,18 +41,18 @@ export default class PublicacionPage extends React.Component {
     this.setState({
       [name]: value,
     });
-  };
+  }
 
   enviarWhatsapp() {
-    const url = window.location;
-    const texto = `Hola mi *nombre* es ${this.state.nombre_completo}, estoy interesado en este producto ${url} para enviarlo a la *dirección* ${this.state.direccion} en la *ciudad* de ${this.state.str_ciudad} *observaciones* ${this.state.observaciones}`;
+    const url = window.location
+    const texto = `Hola mi *nombre* es ${this.state.nombre_completo}, estoy interesado en este producto ${url} para envío a ${this.state.str_ciudad}`
     window.open(
       "https://api.whatsapp.com/send?phone=" +
       this.props.datosPublicacion.seller_phone +
       "&text=" +
       texto
     );
-    this.setState({ modalIngresoCedula: false });
+    this.setState({ modalIngresoCedula: false })
   }
 
   handleComprar = () => {
@@ -70,11 +71,11 @@ export default class PublicacionPage extends React.Component {
       // direccion,
       modalIngresoCedula: true,
     });
-  };
+  }
 
   handleCupon = () => {
     this.setState({ logIngresarCupon: true });
-  };
+  }
 
   handleValidarCupon = async () => {
     const cuponDigitado = this.state.cuponDigitado;
@@ -96,7 +97,7 @@ export default class PublicacionPage extends React.Component {
         precio: nuevoPrecio,
       });
     }
-  };
+  }
 
   mostrarAlerta(mensaje) {
     toastr.warning(mensaje);
@@ -113,7 +114,7 @@ export default class PublicacionPage extends React.Component {
     };
     const res = await instanciaFunc.saveRespuesta(data);
     return;
-  };
+  }
 
   validarAntesPagar() {
     let result = true;
@@ -129,6 +130,7 @@ export default class PublicacionPage extends React.Component {
   }
 
   handlePagar = async () => {
+    if (!this.state.nombre_completo || !this.state.str_ciudad) return
     this.enviarWhatsapp();
     return;
 
@@ -216,7 +218,7 @@ export default class PublicacionPage extends React.Component {
       external: "true",
       response: "https://club2ruedas.com/gracias-por-tu-compra",
     });
-  };
+  }
 
   handleLike = async (params = {}) => {
     const elemento = params.event.currentTarget;
@@ -227,7 +229,7 @@ export default class PublicacionPage extends React.Component {
     };
     const result = await instanciaFunc.handleLike(obj);
     if (!result) return;
-  };
+  }
 
   configUbicacion() {
     localStorage.setItem("url_pendiente", window.location.pathname);
@@ -235,196 +237,121 @@ export default class PublicacionPage extends React.Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem("user")) {
+    /*if (localStorage.getItem("user")) {
       const { pais, ciudad } = JSON.parse(localStorage.getItem("user"));
       this.setState({
         pais,
         ciudad,
       });
-    }
+    }*/
+    if (this.props.datosPublicacion.length == 0) Router.push("/404")
+    setTimeout(() => {
+      this.setState({ loadingProductPage: true })
+    }, 10000)
   }
 
   render() {
-    if (!this.props.datosPublicacion) return <></>
-    const description = this.props.datosPublicacion?.description
-      ? this.props.datosPublicacion.description
-      : "";
-    const title = this.props.datosPublicacion?.title;
-    const meta_url = this.props.datosPublicacion?.slug;
-    const { pais, ciudad } = this.state;
-    const listadoCiudades = [
-      "Bogota",
-      "Medellín",
-      "Barranquilla",
-      "Cali",
-      "Bucaramanga",
-      "Pasto",
-      "Barrancabermeja",
-      "Monteria",
-      "Cartagena",
-      "Santa Marta",
-      "Manizales",
-      "Cucuta",
-      "Pereira",
-      "Ibague",
-      "Maicao",
-      "Rioacha",
-    ];
+    const datosPublicacion = this.props?.datosPublicacion[0]
+    if (!datosPublicacion) return <div>Not found</div>
 
-    return (
-      <Layout
-        {...this.props}
-        meta_image={this.props.datosPublicacion.image_link}
-        meta_title={title}
-        title={title}
-        descripcion={description}
-        meta_url={meta_url}
-      >
-        <div className="_publicacion">
-          <CardDetalleProducto
-            feed={this.props.feed}
-            meta_url={meta_url}
-            handleResponder={this.handleResponder}
-            nuevoPrecio={this.state.nuevoPrecio}
-            handleCupon={this.handleCupon}
-            handleComprar={this.handleComprar}
-            doc_id={this.props.datosPublicacion.id}
-            handleLike={this.handleLike}
-            logDetalle={true}
-            {...this.props.datosPublicacion}
-          />
-          {
-            // Modal para confirmar cédula y dirección
-            this.state.modalIngresoCedula && (
-              <div className="_modalIngresoInfo">
-                <div className="background"></div>
-                <div className="Card">
-                  {this.state.tallas && (
-                    <>
-                      <InputLabel id="label-talla">
-                        Selecciona tú talla
-                      </InputLabel>
-                      <Select
-                        labelId="label-talla"
-                        placeholder="Seleccionar talla"
-                        value={this.state.talla}
-                        onChange={(e) =>
-                          this.setState({ talla: e.target.value })
-                        }
-                      >
-                        {this.state.tallas.map((talla, ind) => {
-                          return (
-                            <MenuItem value={String(talla).toLocaleLowerCase()}>
-                              {talla}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </>
-                  )}
+    const { description, title, slug } = datosPublicacion
+    const { pais, ciudad } = this.state
+    const listadoCiudades = ["Bogota", "Medellín", "Barranquilla", "Cali", "Bucaramanga", "Pasto", "Barrancabermeja", "Monteria", "Cartagena", "Santa Marta", "Manizales", "Cucuta", "Pereira", "Ibague", "Maicao", "Rioacha"];
 
-                  <h2>Tus datos para la entrega y pago</h2>
-                  <TextField
-                    autoComplete="nombre"
-                    name="nombre_completo"
-                    fullWidth={true}
-                    onChange={this.onChange}
-                    label="Nombre completo"
-                    margin="normal"
-                    size={25}
-                  />
-
-                  <div className="contentCiudad">
-                    <Autocomplete
-                      name="str_ciudad"
-                      options={listadoCiudades}
-                      onInputChange={(event, str_ciudad) => {
-                        this.setState({ str_ciudad });
-                      }}
-                      getOptionLabel={(option) => option}
-                      style={{ width: "100%" }}
-                      renderInput={(params) => {
-                        return (
-                          <TextField {...params} label="Seleccionar ciudad" />
-                        );
-                      }}
-                    />
-                  </div>
-
-                  <TextField
-                    value={this.state.direccion}
-                    autoComplete="direccion"
-                    name="direccion"
-                    fullWidth={true}
-                    onChange={this.onChange}
-                    label="Dirección de entrega"
-                    margin="normal"
-                    size={25}
-                  />
-
-                  <TextField
-                    value={this.state.observaciones}
-                    name="observaciones"
-                    fullWidth={true}
-                    onChange={this.onChange}
-                    label="Observaciones adicionales"
-                    margin="normal"
-                    size={25}
-                  />
-
-                  <div className="actions">
-                    <Btn
-                      onClick={() =>
-                        this.setState({ modalIngresoCedula: false })
+    return <Layout meta_image={datosPublicacion} meta_title={title} title={title} descripcion={description} meta_url={slug}>
+      <div className="_publicacion">
+        <CardDetalleProducto meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} handleComprar={this.handleComprar} doc_id={datosPublicacion} handleLike={this.handleLike} logDetalle={true} {...datosPublicacion} />
+        {
+          // Modal para confirmar cédula y dirección
+          this.state.modalIngresoCedula && (
+            <div className={styles._modalIngresoInfo}>
+              <div className={styles.background}></div>
+              <div className={`Card ${styles.Card}`}>
+                {this.state.tallas && (
+                  <>
+                    <InputLabel id="label-talla">
+                      Selecciona tú talla
+                    </InputLabel>
+                    <Select
+                      labelId="label-talla"
+                      placeholder="Seleccionar talla"
+                      value={this.state.talla}
+                      onChange={(e) =>
+                        this.setState({ talla: e.target.value })
                       }
-                      className="yellow small m-l-10"
-                      text="Cancelar"
-                    />
-                    <Btn
-                      onClick={this.handlePagar}
-                      className="green small m-l-10"
-                      text={this.state.labelPagar}
-                    />
-                  </div>
-                </div>
-              </div>
-            )
-          }
+                    >
+                      {this.state.tallas.map((talla, ind) => {
+                        return (
+                          <MenuItem value={String(talla).toLocaleLowerCase()}>
+                            {talla}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </>
+                )}
 
-          {
-            // Modal para ingresar cupón
-            this.state.logIngresarCupon && (
-              <div className="_modalIngresoInfo">
-                <div className="background"></div>
-                <div className="Card">
-                  <TextField
-                    value={this.state.cuponDigitado}
-                    name="cuponDigitado"
-                    fullWidth={true}
-                    onChange={this.onChange}
-                    label="Cupón"
-                    margin="normal"
-                    size={25}
+                <h2>Tus datos para la entrega y pago</h2>
+                <TextField
+                  autoComplete="nombre"
+                  name="nombre_completo"
+                  fullWidth={true}
+                  onChange={this.onChange}
+                  label="Nombre completo"
+                  margin="normal"
+                  size={25}
+                />
+
+                <div className="contentCiudad">
+                  <Autocomplete
+                    name="str_ciudad"
+                    options={listadoCiudades}
+                    onInputChange={(event, str_ciudad) => {
+                      this.setState({ str_ciudad });
+                    }}
+                    getOptionLabel={(option) => option}
+                    style={{ width: "100%" }}
+                    renderInput={(params) => {
+                      return (
+                        <TextField {...params} label="Seleccionar ciudad" />
+                      );
+                    }}
                   />
+                </div>
 
-                  <div className="actions">
-                    <Btn
-                      onClick={() => this.setState({ logIngresarCupon: false })}
-                      className="yellow small m-l-10"
-                      text="Cancelar"
-                    />
-                    <Btn
-                      onClick={this.handleValidarCupon}
-                      className="green small m-l-10"
-                      text="Validar cupón"
-                    />
-                  </div>
+                <div className={styles.actions}>
+                  <Button onClick={() => this.setState({ modalIngresoCedula: false })} color="red">Cancelar</Button>
+                  <Button onClick={this.handlePagar} color="blue">{this.state.labelPagar}</Button>
                 </div>
               </div>
-            )
-          }
-        </div>
-      </Layout>
-    );
+            </div>
+          )
+        }
+        {
+          // Modal para ingresar cupón
+          // this.state.logIngresarCupon && (
+          //   <div className="_modalIngresoInfo">
+          //     <div className="background"></div>
+          //     <div className="Card">
+          //       <TextField
+          //         value={this.state.cuponDigitado}
+          //         name="cuponDigitado"
+          //         fullWidth={true}
+          //         onChange={this.onChange}
+          //         label="Cupón"
+          //         margin="normal"
+          //         size={25}
+          //       />
+
+          //       <div className="actions">
+          //         <Button onClick={() => this.setState({ logIngresarCupon: false })} className="yellow small m-l-10" text="Cancelar" />
+          //         <Button onClick={this.handleValidarCupon} className="green small m-l-10" text="Validar cupón" />
+          //       </div>
+          //     </div>
+          //   </div>
+          // )
+        }
+      </div>
+    </Layout>
   }
 }

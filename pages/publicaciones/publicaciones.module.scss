@@ -1,0 +1,25 @@
+.content {
+    display: flex;
+    justify-content: center;
+    .wrapper-card {
+        position: relative;
+        a>div {}
+        .actions {
+            background: #00000075;
+            border-radius: 10px;
+            margin: 20px auto;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            display: block;
+            left: 0;
+            right: 0;
+            width: max-content;
+        }
+        &.disabled {
+            >a>div {
+                opacity: .3;
+            }
+        }
+    }
+}
