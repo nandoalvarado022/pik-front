@@ -1,4 +1,3 @@
-import Login from "../login/Login"
 import { register } from "next-offline/runtime"
 import toastr from "toastr"
 import Button from "../button/Button"
@@ -154,7 +153,6 @@ class Layout extends React.Component {
         </Head>
         <Header {...props} />
         <LogoBuscador partner={is_partner ? partner : null} />
-        {typeof localStorage != "undefined" && !localStorage.getItem("user") && <Login />}
         <main className={styles.principal}>
           {props.children}
         </main>

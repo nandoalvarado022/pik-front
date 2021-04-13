@@ -8,10 +8,12 @@ import Button from '../../components/button/Button'
 import { useEffect } from 'react'
 
 export default function MyPublications(props) {
+	const phone = typeof window != "undefined" ? JSON.parse(localStorage.getItem("user")).phone : null
 	const UPDATE_MUTATION = gql`
 	mutation ChangeStatePublication($id: Int!, $status: Boolean!){
 		changeStatePublication(id: $id, status: $status)
 	}`
+
 
 	const [changeStatePublication, { loading: loadingUpdate }] = useMutation(UPDATE_MUTATION);
 
@@ -28,7 +30,7 @@ export default function MyPublications(props) {
 	}`
 
 	const [getPublications, { loading: loadingPublications, error, data: reqPublications }] = useLazyQuery(PUBLICATIONS_QUERY, {
-		variables: { phone: "3187414972" }
+		variables: { phone }
 		// fetchPolicy: "network-only"
 	})
 

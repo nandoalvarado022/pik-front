@@ -65,7 +65,7 @@ function LogoBuscador({ partner }) {
           disableClearable
           onChange={onTagsChange}
           options={products && products.publications.map((option) => option.title)}
-          renderInput={(params, ind) => <TextField inputProps={{ min: 0, style: { textAlign: "center" }, type: "search" }} {...params} key={ind} className={styles.buscador} label={<span>nintendo switch <FontAwesomeIcon icon={faSearch} /></span>} />}
+          renderInput={(params, ind) => <TextField inputProps={{ min: 0, style: { textAlign: "center" }, type: "search" }} {...params} key={ind} className={styles.buscador} label={<span><FontAwesomeIcon icon={faSearch} /> &nbsp;nintendo switch</span>} />}
         />
       </div>
       {/* {!partner && (

@@ -1,22 +1,16 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import Grow from "@material-ui/core/Grow";
-import { format_number } from "../../lib/utilidades";
-import { useQuery, gql } from '@apollo/client';
+import Link from "next/link"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faHeart } from "@fortawesome/free-regular-svg-icons"
+import Grow from "@material-ui/core/Grow"
+import { format_number } from "../../lib/utilidades"
+import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 
 const Card = ({ id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
-  const usuario =
-    typeof localStorage != "undefined"
-      ? localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")).email
-        : null
-      : null;
-  let like = null;
-  if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false;
-  destacada = id_publication == 1 ? true : false;
-
+  const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
+  let like = null
+  if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
+  destacada = id_publication == 1 ? true : false
   const { loading, error, data } = useQuery(gql`{
     publications{
       title
@@ -42,7 +36,7 @@ const Card = ({ id: id_publication, is_new, tags, special_title, title, descuent
                 }
               </div>
 
-              {image_link && <img className="image-front" src={`${image_link}`} />}
+              {image_link && <img alt={title} className="image-front" src={`${image_link}`} />}
             </div>
             {
               <div className={styles.descripcion}>

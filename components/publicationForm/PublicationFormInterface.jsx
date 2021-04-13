@@ -17,16 +17,16 @@ const PublicationForminterface = ({ publicationFormData, onChangeImage, handleSu
           id="tipo_publicacion"
           value={publicationFormData.type}
           onChange={e => setPublicationFormData({ ...publicationFormData, type: e.target.value })}>
-          <option value={"accesorios"}>Accesorios</option>
-          <option value={"switch"}>Nintendo Switch</option>
-          <option value='ps4'>PS4</option>
-          <option value='ps5'>PS5</option>
-          <option value='xbox'>XBOX</option>
-          <option value='otros'>No lo tengo claro</option>
+          <MenuItem value={"accesorios"}>Accesorios</MenuItem>
+          <MenuItem value={"switch"}>Nintendo Switch</MenuItem>
+          <MenuItem value='ps4'>PS4</MenuItem>
+          <MenuItem value='ps5'>PS5</MenuItem>
+          <MenuItem value='xbox'>XBOX</MenuItem>
+          <MenuItem value='otros'>No lo tengo claro</MenuItem>
         </Select>
       </p>
 
-      {/* <TextField fullWidth={true} label="Título" multiline margin="normal" fullWidth value={publicationFormData.title} variant="outlined" onChange={e => setPublicationFormData({ ...publicationFormData, title: e.target.value })} />
+      <TextField fullWidth={true} label="Título" multiline margin="normal" fullWidth value={publicationFormData.title} variant="outlined" onChange={e => setPublicationFormData({ ...publicationFormData, title: e.target.value })} />
 
       <TextField fullWidth={true} label="Descripción" value={publicationFormData.description} multiline margin="normal" fullWidth variant="outlined" onChange={e => setPublicationFormData({ ...publicationFormData, description: e.target.value })} />
 
@@ -36,7 +36,7 @@ const PublicationForminterface = ({ publicationFormData, onChangeImage, handleSu
 
       <p>
         <FormControlLabel control={<Switch checked={Boolean(publicationFormData.is_new)} onChange={(e) => setPublicationFormData({ ...publicationFormData, is_new: e.target.checked })} inputProps={{ 'aria-label': 'primary checkbox' }} />} label="Articulo nuevo" />
-      </p> */}
+      </p>
 
       {
         imageLoading && <div>

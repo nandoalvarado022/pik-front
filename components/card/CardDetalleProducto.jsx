@@ -18,7 +18,7 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
   ]
 
   useEffect(() => {
-    ref_descripcion_imagen.current.scrollIntoView()
+    // ref_descripcion_imagen.current.scrollIntoView()
   }, [])
 
   if (image_2) images.push({ original: image_2, thumbnail: image_2, })
@@ -76,7 +76,7 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
               {sale_price && (<React.Fragment>
                 <br />
                 <span className={styles.nuevoPrecio}>
-                  $&nbsp;{sale_price}
+                  ${format_number(sale_price)}
                 </span>
               </React.Fragment>
               )}

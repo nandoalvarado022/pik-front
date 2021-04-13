@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Router from "next/router"
+import Login from "../login/Login"
 import style from "./categorias.module.scss"
 
 const handleLogout = () => {
@@ -87,7 +88,7 @@ const Categorias = ({ scroll }) => {
         </Link>
       </li>
       {
-        typeof localStorage != "undefined" && localStorage.getItem("user") && <>
+        typeof localStorage != "undefined" && localStorage.getItem("user") ? <>
           <li>
             <Link href="/publicaciones" as="/publicaciones">
               <a>Mis publicaciones</a>
@@ -99,6 +100,8 @@ const Categorias = ({ scroll }) => {
             </a>
           </li>
         </>
+          :
+          <Login />
       }
     </ul>
   </div>

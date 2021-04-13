@@ -6,11 +6,24 @@ import VARS from "../../lib/variables"
 
 export default function Login() {
 	const [isSubmitted, setIsSubmitted] = useState(false)
+	const [isOpen, setIsOpen] = useState(false);
+	const [isCodeSended, setIsCodeSended] = useState(false);
+
 	const handleEnviar = async () => {
 		const phone = document.getElementById("phoneLogin").value
 		const request = await fetch(`${VARS.API_URL}/login/sendmessage?phone=${phone}`, {
 			method: "POST"
 		})
+		setIsCodeSended(true)
+	}
+
+	const handleCloseDialog = () => {
+		setIsCodeSended(false)
+		setIsOpen(false)
+	}
+
+	const handleClickOpen = () => {
+		setIsOpen(true)
 	}
 
 	const handleKeyUp = async () => {
@@ -22,10 +35,16 @@ export default function Login() {
 			method: "POST"
 		})
 		const res = await request.json()
-		localStorage.setItem("user", JSON.stringify(res))
-		localStorage.setItem("token", res.token)
-		Router.push("/?login")
+		if (res) {
+			localStorage.setItem("user", JSON.stringify(res))
+			localStorage.setItem("token", res.token)
+			setIsOpen(false)
+			Router.push("/?login=on")
+		} else {
+			document.getElementById("verificationCode").value = ""
+			alert("Código no valido")
+		}
 	}
 
-	return <LoginInterface {...{ handleKeyUp, handleEnviar }} />
+	return <LoginInterface {...{ isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog }} />
 }
