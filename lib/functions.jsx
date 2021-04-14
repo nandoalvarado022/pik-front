@@ -677,14 +677,14 @@ export default class Funciones {
   }
 }
 
-export const getFeed = async (partner = "", slug = "") => {
+export const getFeed = async ({ slug = "", category = "" }) => {
   const res = await fetch(VARS.API_URL_GRAPHQL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       query: `
       query {
-        publications(status: true, slug: "${slug}") {
+        publications(status: true, slug: "${slug}", category: "${category}") {
           is_new
           description
           image_link
@@ -743,6 +743,11 @@ export const getFeed = async (partner = "", slug = "") => {
     return datos_retorno;
   }
 };*/
+
+export const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
 
 export const subirImagen = ({ tipoArchivo, idImageElement }) =>
   new Promise(async (resolve, reject) => {

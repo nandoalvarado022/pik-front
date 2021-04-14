@@ -3,22 +3,6 @@ import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import Categorias from '../categorias/Categorias'
 import styles from "./portada.module.scss"
-import ArticlesList from '../articlesList/ArticlesList'
-import { useEffect, useState } from "react";
-import Login from "../login/Login"
-
-const TwoBlocksWelcome = () => {
-  const [showList, setShowList] = useState(false)
-  useEffect(() => {
-    setTimeout(() => setShowList(true), 500);
-  }, [])
-
-  return <>
-    {showList && <Grow in={showList} style={{ opacity: 1 }}>
-      <ArticlesList />
-    </Grow>}
-  </>
-}
 
 const SpecialBanner = ({ category, handleLike, feed }) => {
   if (!category && feed.length > 2) {
@@ -47,7 +31,6 @@ const SpecialBanner = ({ category, handleLike, feed }) => {
 
 const PortadaInterface = ({ category, handleLike, feed }) => {
   return <React.Fragment>
-    <TwoBlocksWelcome />
     <Categorias scroll={false} />
     <SpecialBanner {...{ category, feed, handleLike }} />
     <div className={styles.view_Rodadas}>

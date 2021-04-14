@@ -16,16 +16,9 @@ import styles from "../../public/css/modalIngresoInfo.module.scss"
 
 export default class PublicacionPage extends React.Component {
   static async getInitialProps({ req, query }) {
-    let slug = query.id;
-    let partner = null;
-    if (req) {
-      partner = req.headers.host.split(".")[0];
-    } else {
-      partner = window.location.host.split(".")[0];
-    }
-    const is_partner = ["juanchofenix"].includes(partner);
-    let datosPublicacion = await getFeed(is_partner ? partner : null, slug);
-    return { datosPublicacion, is_partner, partner: is_partner ? partner : false };
+    let slug = query.id
+    let datosPublicacion = await getFeed({ slug })
+    return { datosPublicacion }
   }
 
   state = {
@@ -130,9 +123,9 @@ export default class PublicacionPage extends React.Component {
   }
 
   handlePagar = async () => {
-    if (!this.state.nombre_completo || !this.state.str_ciudad) return
+    // if (!this.state.nombre_completo || !this.state.str_ciudad) return
     this.enviarWhatsapp();
-    return;
+    return
 
     const validaciones = this.validarAntesPagar();
     if (!validaciones) return false;
@@ -244,7 +237,7 @@ export default class PublicacionPage extends React.Component {
         ciudad,
       });
     }*/
-    if (this.props.datosPublicacion.length == 0) Router.push("/404")
+    // if (this.props.datosPublicacion.length == 0) Router.push("/404")
     setTimeout(() => {
       this.setState({ loadingProductPage: true })
     }, 10000)
@@ -292,31 +285,15 @@ export default class PublicacionPage extends React.Component {
                 )}
 
                 <h2>Tus datos para la entrega y pago</h2>
-                <TextField
-                  autoComplete="nombre"
-                  name="nombre_completo"
-                  fullWidth={true}
-                  onChange={this.onChange}
-                  label="Nombre completo"
-                  margin="normal"
-                  size={25}
-                />
+                <TextField autoComplete="nombre" name="nombre_completo" fullWidth={true} onChange={this.onChange} label="Nombre" margin="normal" size={25} />
 
                 <div className="contentCiudad">
-                  <Autocomplete
-                    name="str_ciudad"
-                    options={listadoCiudades}
-                    onInputChange={(event, str_ciudad) => {
-                      this.setState({ str_ciudad });
-                    }}
+                  <Autocomplete name="str_ciudad" options={listadoCiudades} onInputChange={(event, str_ciudad) => {
+                    this.setState({ str_ciudad });
+                  }}
                     getOptionLabel={(option) => option}
                     style={{ width: "100%" }}
-                    renderInput={(params) => {
-                      return (
-                        <TextField {...params} label="Seleccionar ciudad" />
-                      );
-                    }}
-                  />
+                    renderInput={(params) => <TextField {...params} label="Ciudad en la que te encuentras" />} />
                 </div>
 
                 <div className={styles.actions}>

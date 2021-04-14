@@ -16,7 +16,11 @@ const Footer = ({ filtrarRodadas }) => {
     <hr />
     <div>
       <h3>Artículos de interes</h3>
-      <div>Quienes somos</div>
+      <Link href="/start">
+        <a>
+          Quienes somos
+        </a>
+      </Link>
     </div>
     <hr />
     <div>

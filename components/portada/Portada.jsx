@@ -34,11 +34,9 @@ export default class Portada extends React.Component {
   }
 
   filtrarRodadas = (type) => {
-    debugger
     let feed = null
-    if (type) feed = this.state.feedOriginal.filter(item => item.type == type)
+    if (type) feed = this.state.feedOriginal.filter(item => item.type.toLocaleLowerCase() == type.toLocaleLowerCase())
     else if (!type) feed = this.state.feedOriginal
-    debugger
     this.setState({ feed })
   }
 

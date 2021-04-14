@@ -20,7 +20,7 @@ const Categorias = ({ scroll }) => {
       <li filter="game">
         <Link scroll={scroll} href="/category/[id]" as="/category/accesorios">
           <a>
-            <img src="/images/icons/accesories.png" alt="" />
+            <img src="/images/icons/accesories.png" alt="accesorios" />
             Accesorios
           </a>
         </Link>
@@ -34,42 +34,26 @@ const Categorias = ({ scroll }) => {
         </Link>
       </li>
       <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/switch">
+        <Link scroll={scroll} href="/category/[id]" as="/category/nintendo">
           <a>
-            <img src="/images/icons/nintendo-switch.png" alt="switch" />
-            Switch
+            <img src="/images/icons/nintendo-switch.png" alt="nintendo (switch)" />
+            Nintendo (Switch)
           </a>
         </Link>
       </li>
       <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/ps5">
+        <Link scroll={scroll} href="/category/[id]" as="/category/playstation">
           <a>
-            <img src="/images/icons/ps5.png" alt="ps5" />
-            PS5
+            <img src="/images/icons/ps4.png" alt="playstation" />
+            Playstation
           </a>
         </Link>
       </li>
       <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/ps4">
+        <Link scroll={scroll} href="/category/[id]" as="/category/microsoft">
           <a>
-            <img src="/images/icons/ps4.png" alt="ps4" />
-            PS4
-          </a>
-        </Link>
-      </li>
-      <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/ps3">
-          <a>
-            <img src="/images/icons/ps3.png" alt="ps3" />
-            PS3
-          </a>
-        </Link>
-      </li>
-      <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/xbox">
-          <a>
-            <img src="/images/icons/xbox.png" alt="xbox" />
-            XBOX
+            <img src="/images/icons/xbox.png" alt="Microsoft (PC, XBOX)" />
+            Microsoft (PC, XBOX)
           </a>
         </Link>
       </li>

@@ -17,14 +17,5 @@ export const items = [
     backgroundColor: "#959684",
     description: "Tal vez ya te cansaste que lo repitamos tanto, pero la realidad es que la pandemia, la escasez de componentes y la alta demanda han provocado una situación de pesadillas para quienes quieren comprar una nueva consola. Hasta ahora, Nintendo Switch ha salido bien librado de esta situación, pero Nintendo teme que esto no dure para siempre.",
     image: "/images/girl-gamer.jpg"
-  },
-  {
-    id: "c",
-    category: "How to",
-    title: "Arrange Your Apple Devices for the Gram",
-    pointOfInterest: 120,
-    backgroundColor: "#959684",
-    description: "Tal vez ya te cansaste que lo repitamos tanto, pero la realidad es que la pandemia, la escasez de componentes y la alta demanda han provocado una situación de pesadillas para quienes quieren comprar una nueva consola. Hasta ahora, Nintendo Switch ha salido bien librado de esta situación, pero Nintendo teme que esto no dure para siempre.",
-    image: "/images/girl-gamer.jpg"
   }]
 export const openSpring = { type: "spring", stiffness: 200, damping: 30 };
