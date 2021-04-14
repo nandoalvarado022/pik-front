@@ -95,7 +95,6 @@
             }
         }
         >.descripcion {
-            white-space: pre-line;
             font-size: 14px;
             padding: 20px 30px 0;
             @media screen and (min-width: 1024px) {
@@ -108,7 +107,6 @@
             .description {
                 overflow: hidden;
                 font-size: 16px;
-                line-height: 25px;
                 .title {
                     font-weight: bold;
                     margin: 50px 0 0;
