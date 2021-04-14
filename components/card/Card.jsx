@@ -28,7 +28,7 @@ const Card = ({ id: id_publication, is_new, tags, special_title, title, descuent
                 <span className={styles.condition}>{is_new ? "NUEVO" : "USADO"}</span>
                 {
                   tags && JSON.parse(tags).map((item, ind) => {
-                    return (<span /*style={{ background: item.background }}*/>
+                    return (<span key={ind} /*style={{ background: item.background }}*/>
                       {item.texto}
                     </span>
                     );

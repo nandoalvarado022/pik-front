@@ -53,9 +53,9 @@ class Layout extends React.Component {
   };
 
   componentDidMount() {
-    AOS.init({
-      delay: 500,
-    });
+    /* AOS.init({
+       delay: 500,
+     });*/
     register();
     if (localStorage.getItem("user")) {
       this.club_short_name = JSON.parse(localStorage.getItem("user"))
@@ -138,11 +138,11 @@ class Layout extends React.Component {
           <link rel="canonical" href={meta_url} />
           <link rel="icon" type="image/png" href="/images/logos/logo48x48.png" />
           <link rel="manifest" href={`/manifest.json`} />
-          <link rel="stylesheet" href="/css/swiper.min.css"></link>
-          <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css"></link>
-          <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-          <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
-          <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+          {/* <link rel="stylesheet" href="/css/swiper.min.css"></link> */}
+          {/* <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css"></link> */}
+          {/* <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /> */}
+          {/* <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script> */}
+          {/* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> */}
           {() => {
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }

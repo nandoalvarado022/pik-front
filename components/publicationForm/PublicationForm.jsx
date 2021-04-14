@@ -19,6 +19,7 @@ const QUERY_PUBLICATION = gql`
 			sale_price
 			title
 			type
+			quantity
 		}
 	}
 `

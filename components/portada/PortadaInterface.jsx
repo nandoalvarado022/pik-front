@@ -55,8 +55,10 @@ const PortadaInterface = ({ category, handleLike, feed }) => {
         {/* NUEVOS */}
         {feed && feed.filter(item => item.is_new) && <React.Fragment>
           <div className="listadoRodadas sellados">
-            {feed && feed.map((item, ind) => {
-              return <Card special_title="Más vendido" destacada={true} logDetalle={false} handleLike={handleLike} permitirLink={true} {...item} coleccion={item.coleccion} />
+            {feed && feed.map((item) => {
+              return <div key={item.id}>
+                <Card special_title="Más vendido" handleLike={handleLike} {...item} />
+              </div>
             })}
           </div>
         </React.Fragment>}
