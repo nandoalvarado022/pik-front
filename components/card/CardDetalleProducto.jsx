@@ -89,36 +89,8 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
               <ReactMarkdown source={description} escapeHtml={false}></ReactMarkdown>
             </div>
 
-            <div className={styles.social_media}>
-              <a href="#"
-                onClick={() => {
-                  window.open(
-                    `http://www.facebook.com/sharer.php?u=${meta_url}&t=${title}', '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600`
-                  );
-                  return false;
-                }}>
-                <img src="/images/icons/icon-facebook.png" />
-              </a>
-              <a href="http://twitter.com/share?text={{data.name}}&url={{urlSite}}&hashtags=equipos_kebco,hashtag2"
-                onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                <img src="/images/icons/icon-twitter.png" />
-              </a>
-              <a href="whatsapp://send?text=The text to share!"
-                data-action="share/whatsapp/share"
-                onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                <img src="/images/icons/icon-whatsapp.png" />
-              </a>
-            </div>
             <div>
-              {/* <DiscussionEmbed
-                shortname="pikajuegos-1"
-                config={{
-                  url: meta_url,
-                  identifier: meta_url,
-                  title: title,
-                  language: "es_ES",
-                }}
-              /> */}
+              <DiscussionEmbed shortname="pikajuegos-1" config={{ url: meta_url, identifier: meta_url, title: title, language: "es_ES" }} />
             </div>
           </div>
         )}

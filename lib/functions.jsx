@@ -678,71 +678,36 @@ export default class Funciones {
 }
 
 export const getFeed = async ({ slug = "", category = "" }) => {
+  const query = `
+    query {
+      publications(status: true, slug: "${slug}", category: "${category}") {
+        is_new
+        description
+        image_link
+        image_2
+        image_3
+        image_4
+        image_5
+        price
+        quantity
+        tags
+        title
+        type
+        user_picture
+        user_phone
+        slug
+        sale_price
+      }
+    }`
+
   const res = await fetch(VARS.API_URL_GRAPHQL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: `
-      query {
-        publications(status: true, slug: "${slug}", category: "${category}") {
-          is_new
-          description
-          image_link
-          image_2
-          image_3
-          image_4
-          image_5
-          price
-          quantity
-          tags
-          title
-          type
-          slug
-          sale_price          
-        }
-      }`
-    })
+    body: JSON.stringify({ query })
   })
   const data = await res.json()
   return data?.data?.publications
-
-  if (!partner) {
-    // const arrayUrls = data.map((item) => fetch(item.url));
-    // const [pikajuegos, juancho] = await Promise.all(arrayUrls);
-    // const datosPikajuegos = await pikajuegos.json();
-    // const datosJuancho = await juancho.json();
-    const datos = [
-      { id: "asd", title: "asd", price: "12000", slug: "asdasdasd", image_link: "https://http2.mlstatic.com/D_NQ_NP_620288-MCO40851664062_022020-O.webp", type: "game", tags: [{ texto: "asd", background: "red" }], special_title: "asdasda", likes: 5 },
-      { id: "asd", title: "asd", price: "12000", slug: "asdasdasd", image_link: "https://http2.mlstatic.com/D_NQ_NP_620288-MCO40851664062_022020-O.webp", type: "game", tags: [{ texto: "asd", background: "red" }], special_title: "asdasda", likes: 5 },
-
-    ]
-    return datos;
-  } else {
-    const reqPartner = await fetch(data.find((item) => item.key == partner).url);
-    const datosPartner = await reqPartner.json();
-    // const datos = [...transformarFeed(datosPartner)];
-    return datosPartner;
-  }
 }
-
-/*export const transformarFeed = (datos) => {
-  if ("values" in datos) {
-    const fields = datos.values[0];
-    let datos_retorno = [];
-    datos.values.length > 0 &&
-      datos.values.map((item, ind) => {
-        let nuevo_item = {};
-        if (ind > 0) {
-          item.map((value, ind) => {
-            nuevo_item[fields[ind]] = value;
-          });
-          nuevo_item.tags = JSON.parse(nuevo_item.tags);
-          datos_retorno.push(nuevo_item);
-        }
-      });
-    return datos_retorno;
-  }
-};*/
 
 export const capitalize = (s) => {
   if (typeof s !== 'string') return ''
@@ -783,3 +748,9 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
       );
     });
   });
+
+export const handleLogout = () => {
+  localStorage.removeItem("user")
+  localStorage.removeItem("token")
+  Router.push("/?logout")
+}

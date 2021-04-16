@@ -6,7 +6,7 @@ import { format_number } from "../../lib/utilidades"
 import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 
-const Card = ({ id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
+const Card = ({ id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -40,6 +40,7 @@ const Card = ({ id: id_publication, is_new, tags, special_title, title, descuent
             </div>
             {
               <div className={styles.descripcion}>
+                <img className={styles.user_picture} src={user_picture} alt="" />
                 <h2>{title}</h2>
                 {quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>}
                 <div className={styles["likes-precio"]}>

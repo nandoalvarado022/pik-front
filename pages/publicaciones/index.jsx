@@ -47,9 +47,6 @@ export default function MyPublications(props) {
 
 	useEffect(() => {
 		getPublications()
-		return () => {
-			getPublications()
-		}
 	}, [])
 
 	return <Layout title="Crear publicación" meta_title="Crear publicación en club2ruedas.com" meta_url="https://club2ruedas.com/publicacion/crear">

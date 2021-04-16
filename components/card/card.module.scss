@@ -122,27 +122,25 @@ h3.title_destacada {
             white-space: pre-line;
             font-size: 14px;
             text-align: center;
-            .texto {
+            .user_picture {
+                float: left;
+                width: 50px;
+                margin-left: 20px;
+            }
+            h2 {
+                font-size: 18px;
+                margin: 6px 20px 0 0px;
+                max-height: 44px;
                 overflow: hidden;
-                font-weight: bold;
-                font-size: 24px;
-                p {
-                    margin: 0 0 5px;
+                text-align: left;
+                @media screen and (max-width: 420px) {
+                    margin: 20px 20px 0 10px;
                 }
             }
         }
     }
     .fecha_sistema {
         margin-left: 10px;
-    }
-    h2 {
-        font-size: 18px;
-        margin: 10px 20px 0 10px;
-        max-height: 44px;
-        overflow: hidden;
-        @media screen and (max-width: 420px) {
-            margin: 20px 20px 0 10px;
-        }
     }
     .quantity {}
     .date {

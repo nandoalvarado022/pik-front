@@ -3,12 +3,6 @@ import Router from "next/router"
 import Login from "../login/Login"
 import style from "./categorias.module.scss"
 
-const handleLogout = () => {
-  localStorage.removeItem("user")
-  localStorage.removeItem("token")
-  Router.push("/?logout")
-}
-
 const Categorias = ({ scroll }) => {
   return <div className={style.Categorias}>
     <ul>
@@ -78,10 +72,10 @@ const Categorias = ({ scroll }) => {
               <a>Mis publicaciones</a>
             </Link>
           </li>
-          <li className={style.logout} onClick={handleLogout}>
-            <a>
-              Salir
-            </a>
+          <li className={style.logout}>
+            <Link href="/perfil" as="/perfil">
+              <a>Perfil</a>
+            </Link>
           </li>
         </>
           :

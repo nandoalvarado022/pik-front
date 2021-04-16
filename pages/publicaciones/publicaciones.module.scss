@@ -1,6 +1,7 @@
 .content {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     .wrapper-card {
         position: relative;
         a>div {}

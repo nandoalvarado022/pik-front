@@ -18,7 +18,7 @@ export default class PublicacionPage extends React.Component {
   static async getInitialProps({ req, query }) {
     let slug = query.id
     let datosPublicacion = await getFeed({ slug })
-    return { datosPublicacion }
+    return { datosPublicacion: datosPublicacion[0] }
   }
 
   state = {
@@ -37,14 +37,10 @@ export default class PublicacionPage extends React.Component {
   }
 
   enviarWhatsapp() {
+    debugger
     const url = window.location
     const texto = `Hola mi *nombre* es ${this.state.nombre_completo}, estoy interesado en este producto ${url} para envío a ${this.state.str_ciudad}`
-    window.open(
-      "https://api.whatsapp.com/send?phone=" +
-      this.props.datosPublicacion.seller_phone +
-      "&text=" +
-      texto
-    );
+    window.open("https://api.whatsapp.com/send?phone=" + this.props.datosPublicacion.user_phone + "&text=" + texto)
     this.setState({ modalIngresoCedula: false })
   }
 
@@ -244,7 +240,7 @@ export default class PublicacionPage extends React.Component {
   }
 
   render() {
-    const datosPublicacion = this.props?.datosPublicacion[0]
+    const datosPublicacion = this.props?.datosPublicacion
     if (!datosPublicacion) return <div>Not found</div>
 
     const { description, title, slug } = datosPublicacion
@@ -260,30 +256,6 @@ export default class PublicacionPage extends React.Component {
             <div className={styles._modalIngresoInfo}>
               <div className={styles.background}></div>
               <div className={`Card ${styles.Card}`}>
-                {this.state.tallas && (
-                  <>
-                    <InputLabel id="label-talla">
-                      Selecciona tú talla
-                    </InputLabel>
-                    <Select
-                      labelId="label-talla"
-                      placeholder="Seleccionar talla"
-                      value={this.state.talla}
-                      onChange={(e) =>
-                        this.setState({ talla: e.target.value })
-                      }
-                    >
-                      {this.state.tallas.map((talla, ind) => {
-                        return (
-                          <MenuItem value={String(talla).toLocaleLowerCase()}>
-                            {talla}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </>
-                )}
-
                 <h2>Tus datos para la entrega y pago</h2>
                 <TextField autoComplete="nombre" name="nombre_completo" fullWidth={true} onChange={this.onChange} label="Nombre" margin="normal" size={25} />
 

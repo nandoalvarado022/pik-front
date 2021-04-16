@@ -3,7 +3,6 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import TextField from "@material-ui/core/TextField"
 import Autocomplete from "@material-ui/lab/Autocomplete"
-import { getFeed, transformarFeed } from "../../lib/functions"
 import React, { useState, useEffect, useMemo } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
@@ -46,14 +45,7 @@ function LogoBuscador({ partner }) {
         <Link href="/">
           <span>
             <img className={styles.logo} src="/images/logos/logo-pikajuegos.png" alt="" />
-            {/* <img className="mobile logo" src="/images/logos/Logo pikajuegos y juancho.png" alt="" /> */}
           </span>
-        </Link>
-      )}
-
-      {partner && (
-        <Link href="/">
-          <img src={`/images/partners/${partner}.png`} />
         </Link>
       )}
 
@@ -68,9 +60,6 @@ function LogoBuscador({ partner }) {
           renderInput={(params, ind) => <TextField inputProps={{ min: 0, style: { textAlign: "center" }, type: "search" }} {...params} key={ind} className={styles.buscador} label={<span><FontAwesomeIcon icon={faSearch} /> &nbsp;nintendo switch</span>} />}
         />
       </div>
-      {/* {!partner && (
-        <img className="logo juancho" src="/images/logos/logo_juancho.png" alt="" />
-      )} */}
     </ul>
   </div>
   )
