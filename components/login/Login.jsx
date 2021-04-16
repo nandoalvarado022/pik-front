@@ -28,7 +28,7 @@ export default function Login() {
 
 	const handleKeyUp = async () => {
 		const verificationCode = document.getElementById("verificationCode").value
-		const phone = document.getElementById("phoneLogin").value
+		const phone = "57" + document.getElementById("phoneLogin").value
 		if (verificationCode) Number(verificationCode)
 		if (verificationCode < 999) return
 		const request = await fetch(`${VARS.API_URL}/login/validateLogin?phone=${phone}&code=${verificationCode}`, {

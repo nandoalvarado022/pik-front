@@ -2,6 +2,9 @@ import Layout from "../components/layout/Layout"
 import { getFeed } from "../lib/functions"
 import Portada from "../components/portada/Portada"
 import ArticlesList from '../components/articlesList/ArticlesList'
+import Router from "next/router"
+
+// export const config = { unstable_runtimeJS: false }
 
 class Index extends React.Component {
   static async getInitialProps({ req, query }) {

@@ -133,7 +133,6 @@ class Layout extends React.Component {
           <meta name="language" content="es-CO"></meta>
           {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
           <script async src="https://www.googletagmanager.com/gtag/js?id=AW-941382150"></script>
-          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
           <link rel="alternate" href={meta_url} hrefLang="es-CO" />
           <link rel="canonical" href={meta_url} />
           <link rel="icon" type="image/png" href="/images/logos/logo48x48.png" />
