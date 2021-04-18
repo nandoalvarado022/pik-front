@@ -1,10 +1,6 @@
 .Newsletter {
-    background-image: url("https://http2.mlstatic.com/posters-afiches-mario-bros-nintendo-impresion-banner-vinil-D_NQ_NP_629489-MLV42459901628_072020-F.jpg");
-    background-position: center 0px;
     position: relative;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: #24292e;
     height: 40px;
     line-height: 40px;
     cursor: pointer;
@@ -15,15 +11,6 @@
     h3 {
         color: white;
         margin: 0;
-    }
-    &:before {
-        content: "";
-        height: 100%;
-        width: 100%;
-        background: #000000bf;
-        top: 0;
-        left: 0;
-        position: absolute;
     }
     .content {
         color: white;

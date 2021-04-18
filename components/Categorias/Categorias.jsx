@@ -1,10 +1,13 @@
+
+import React from "react"
 import Link from "next/link"
 import Router from "next/router"
 import Login from "../login/Login"
-import style from "./categorias.module.scss"
+import styles from "./categorias.module.scss"
 
 const Categorias = ({ scroll }) => {
-  return <div className={style.Categorias}>
+  const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture
+  return <div className={styles.Categorias}>
     <ul>
       <li filter="game">
         <Link scroll={scroll} href="/">
@@ -58,7 +61,7 @@ const Categorias = ({ scroll }) => {
           </a>
         </Link>
       </li>
-      <li className={style["crear-publicacion"]}>
+      <li className={styles["crear-publicacion"]}>
         <Link href="/publicacion/crear" as="/publicacion/crear">
           <a>
             <b>¡Crear Publicación!</b>
@@ -66,18 +69,21 @@ const Categorias = ({ scroll }) => {
         </Link>
       </li>
       {
-        typeof localStorage != "undefined" && localStorage.getItem("user") ? <>
+        typeof localStorage != "undefined" && localStorage.getItem("user") ? <React.Fragment>
           <li>
             <Link href="/publicaciones" as="/publicaciones">
               <a>Mis publicaciones</a>
             </Link>
           </li>
-          <li className={style.logout}>
+          <li className={styles.logout}>
             <Link href="/perfil" as="/perfil">
-              <a>Perfil</a>
+              <a className={styles.perfil}>
+                <img className={styles.picture} src={picture} alt="" />
+                Perfil
+              </a>
             </Link>
           </li>
-        </>
+        </React.Fragment>
           :
           <Login />
       }

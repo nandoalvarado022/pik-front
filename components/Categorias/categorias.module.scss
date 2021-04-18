@@ -8,6 +8,16 @@
     @media screen and (max-width: 420px) {
         width: initial;
     }
+    .perfil {
+        background: #24292e;
+        border-radius: 20px;
+        padding: 0 15px 0 10px;
+        color: #00a5c9;
+        font-weight: bold;
+        .picture {
+            border-radius: 50%;
+        }
+    }
     ul {
         padding: 0;
         overflow: hidden;
@@ -24,6 +34,7 @@
         cursor: pointer;
         height: 40px;
         list-style: none;
+        text-align: center;
         &:hover {
             a {
                 color: #585858;

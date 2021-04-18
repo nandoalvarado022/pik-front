@@ -1,12 +1,15 @@
 export const items = [
   // Photo by ivan Torres on Unsplash
   {
-    id: "a",
-    category: "Preventa",
+    id: "preventa-preventa-new-pokemon-snap-separa-tu-cupo-ya-somos-juancho-fenix",
+    category: "Preventa de videojuegos",
     title: "",
     pointOfInterest: 80,
     backgroundColor: "#814A0E",
-    description: `<p>Hola queridos <strong>gamer.&nbsp;</strong>Bienvenidos a PIK</p>`,
+    description: `<p>!PREVENTA PREVENTA!
+    New Pokémon snap
+    Separa tu cupo YA
+    somos Juancho Fenix</p>`,
     image: "https://scontent.feoh1-1.fna.fbcdn.net/v/t1.6435-9/171016889_309594877213712_8384006492508599937_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=e3f864&_nc_eui2=AeGgp4L9a9vN4lras8ZbGNBaWP-sSmi-BMZY_6xKaL4ExhonQ6Rj7jJtoQ9PNhyFMFM&_nc_ohc=YAuEaAaN9_0AX8Act8V&_nc_ht=scontent.feoh1-1.fna&oh=8dab370d667e9c927033553c79b50f39&oe=609903B5"
   },
   {

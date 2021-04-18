@@ -9,6 +9,7 @@ import React from "react"
 import Header from "../header/Header"
 import LogoBuscador from "../logoBuscador/LogoBuscador"
 import styles from "./layout.module.scss"
+import Categorias from "../categorias/Categorias"
 
 toastr.options.progressBar = true;
 toastr.options.timeOut = 5000;
@@ -153,6 +154,7 @@ class Layout extends React.Component {
         <Header {...props} />
         <LogoBuscador partner={is_partner ? partner : null} />
         <main className={styles.principal}>
+          <Categorias scroll={false} />
           {props.children}
         </main>
         {!this.state.tenemosCookies && (

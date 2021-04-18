@@ -1,5 +1,3 @@
-import Card from "../card/Card"
-import Categorias from "../categorias/Categorias"
 import Footer from "../footer/Footer"
 import Button from "../button/Button"
 import { DiscussionEmbed } from "disqus-react"
@@ -11,15 +9,11 @@ import { useEffect, useRef } from "react"
 import styles from "./cardDetalleProducto.module.scss"
 import React from "react"
 
-const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", image_link, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, handleComprar, quantity } = {}) => {
+const CardProducto = ({ meta_url, title, descuento = 0, description = "", image_link, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, handleComprar, quantity } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = [
     { original: image_link, thumbnail: image_link, }
   ]
-
-  useEffect(() => {
-    // ref_descripcion_imagen.current.scrollIntoView()
-  }, [])
 
   if (image_2) images.push({ original: image_2, thumbnail: image_2, })
   if (image_3) images.push({ original: image_3, thumbnail: image_3, })
@@ -36,7 +30,6 @@ const CardProducto = ({ feed, meta_url, title, descuento = 0, description = "", 
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
 
   return <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
-    <Categorias scroll={false} />
     <Grow key={indice_item} timeout={500} in={true} style={{ opacity: 1 }}>
       <div ref={ref_descripcion_imagen} className={styles.descripcion_imagen}>
         <div className={styles.left}>

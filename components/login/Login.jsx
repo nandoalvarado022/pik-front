@@ -5,15 +5,21 @@ import LoginInterface from "./LoginInterface"
 import VARS from "../../lib/variables"
 
 export default function Login() {
-	const [isSubmitted, setIsSubmitted] = useState(false)
-	const [isOpen, setIsOpen] = useState(false);
-	const [isCodeSended, setIsCodeSended] = useState(false);
+	const [isOpen, setIsOpen] = useState(false)
+	const [isCodeSended, setIsCodeSended] = useState(false)
+	const [buttonText, setButtonText] = useState("Enviar")
 
 	const handleEnviar = async () => {
+		setButtonText("Enviando...")
 		const phone = document.getElementById("phoneLogin").value
-		const request = await fetch(`${VARS.API_URL}/login/sendmessage?phone=${phone}`, {
+		if (!phone) {
+			alert("Debes escribir un número celular, recuerda que a este número llegará el código de acceso")
+			return
+		}
+		const request = await fetch(`${VARS.API_URL}/login/sendmessage?phone=57${phone}`, {
 			method: "POST"
 		})
+		setButtonText("Validar")
 		setIsCodeSended(true)
 	}
 
@@ -46,5 +52,5 @@ export default function Login() {
 		}
 	}
 
-	return <LoginInterface {...{ isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog }} />
+	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog }} />
 }

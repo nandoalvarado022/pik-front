@@ -724,7 +724,7 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
       const datestring = d.getDate() + "_" + (d.getMonth() + 1) + "_" + d.getFullYear() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds();
       const random = rn({ min: 0, max: 100, integer: true });
       const nombre_archivo = `${datestring}_${random}`;
-      let ubicacionGuardar = storage.ref("/images/publicaciones/" + nombre_archivo + ".jpg");
+      let ubicacionGuardar = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + ".jpg");
       const uploadTask = ubicacionGuardar.put(file);
       uploadTask.on(
         "state_changed",

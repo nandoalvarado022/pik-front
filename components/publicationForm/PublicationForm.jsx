@@ -52,7 +52,7 @@ const PublicationForm = (props) => {
 
 	async function onChangeImage(idImageElement) {
 		setImageLoading(true)
-		const image = await subirImagen({ tipoArchivo: "publicacion", idImageElement, isEdit })
+		const image = await subirImagen({ tipoArchivo: "publications", idImageElement, isEdit })
 		const variable = idImageElement
 		setImageLoading(false)
 		setPublicationFormData({ ...publicationFormData, [variable]: image[0] })

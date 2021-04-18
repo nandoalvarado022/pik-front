@@ -1,8 +1,7 @@
-import Grow from "@material-ui/core/Grow";
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
-import Categorias from '../categorias/Categorias'
 import styles from "./portada.module.scss"
+import ArticlesList from "../articlesList/ArticlesList";
 
 const SpecialBanner = ({ category, handleLike, feed }) => {
   if (!category && feed.length > 2) {
@@ -31,17 +30,17 @@ const SpecialBanner = ({ category, handleLike, feed }) => {
 
 const PortadaInterface = ({ category, handleLike, feed }) => {
   return <React.Fragment>
-    <Categorias scroll={false} />
     <SpecialBanner {...{ category, feed, handleLike }} />
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
         {/* NUEVOS */}
         {feed && feed.filter(item => item.is_new) && <React.Fragment>
           <div className="listadoRodadas sellados">
-            {feed && feed.map((item) => {
-              return <div key={item.id}>
+            {feed && feed.map((item, ind) => {
+              return <React.Fragment>
                 <Card special_title="Más vendido" handleLike={handleLike} {...item} />
-              </div>
+                {ind == 3 && <ArticlesList />}
+              </React.Fragment>
             })}
           </div>
         </React.Fragment>}
