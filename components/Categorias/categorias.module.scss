@@ -12,10 +12,16 @@
         background: #24292e;
         border-radius: 20px;
         padding: 0 15px 0 10px;
-        color: #00a5c9;
+        color: #dedede;
         font-weight: bold;
         .picture {
             border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            background-size: 40px;
+            margin-right: 10px;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     }
     ul {

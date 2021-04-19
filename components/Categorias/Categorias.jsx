@@ -78,7 +78,7 @@ const Categorias = ({ scroll }) => {
           <li className={styles.logout}>
             <Link href="/perfil" as="/perfil">
               <a className={styles.perfil}>
-                <img className={styles.picture} src={picture} alt="" />
+                <span className={styles.picture} style={{ "background-image": `url(${picture})` }} />
                 Perfil
               </a>
             </Link>

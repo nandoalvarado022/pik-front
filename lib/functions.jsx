@@ -693,6 +693,7 @@ export const getFeed = async ({ slug = "", category = "" }) => {
         tags
         title
         type
+        user_name
         user_picture
         user_phone
         slug

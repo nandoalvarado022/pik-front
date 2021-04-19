@@ -5,8 +5,9 @@ import Grow from "@material-ui/core/Grow"
 import { format_number } from "../../lib/utilidades"
 import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
+import { faStar } from "@fortawesome/free-solid-svg-icons"
 
-const Card = ({ id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
+const Card = ({ id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -22,6 +23,15 @@ const Card = ({ id: id_publication, is_new, tags, special_title, title, descuent
       <a className={id_publication == 1 ? styles.destacada_Card : ""}>
         {special_title && (<h3 className={styles.title_destacada}>{special_title}</h3>)}
         <div key={id_publication} className={`${styles.Card} ${destacada ? styles.destacada : ""}`} >
+          <div className={styles.author}>
+            <span className={styles.user_picture} style={{ backgroundImage: `url(${user_picture})` }} />
+            <p>
+              <h3>{user_name}</h3>
+              <div className={styles.stars}>
+                <FontAwesomeIcon icon={faStar} /> (4,5)
+              </div>
+            </p>
+          </div>
           <div className={styles.descripcion_imagen}>
             <div className={styles.content_imagen}>
               <div className={styles.tags}>
@@ -40,7 +50,6 @@ const Card = ({ id: id_publication, is_new, tags, special_title, title, descuent
             </div>
             {
               <div className={styles.descripcion}>
-                <img className={styles.user_picture} src={user_picture} alt="" />
                 <h2>{title}</h2>
                 {quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>}
                 <div className={styles["likes-precio"]}>

@@ -55,11 +55,17 @@
 
 .errors {
     background: #f9d0d0;
+    font-size: 14px;
+    margin: 0 0 10px 0;
     padding: 10px;
-    margin: 0 -10px 10px;
+    text-align: center;
+    border-bottom: 1px solid #ff4c3f;
 }
 
-.preview-card {
+.preview_card {
+    height: 400px;
+    margin: 0 auto 10px;
+    width: max-content;
     @media screen and (max-width: 420px) {
         display: none;
     }

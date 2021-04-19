@@ -23,6 +23,59 @@ h3.title_destacada {
             width: 320px;
         }
     }
+    .author {
+        align-items: flex-start;
+        background: #24292ee3;
+        border-radius: 5px;
+        border: 1px solid #003367;
+        display: flex;
+        height: 0;
+        left: 0;
+        margin: -30px auto;
+        opacity: 0;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        transition: .3s ease;
+        width: 50%;
+        z-index: 1;
+        span {
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            background-size: 40px;
+            margin-right: 10px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        p {
+            color: white;
+            font-size: 12px;
+            padding-left: 10px;
+            margin: 0;
+            opacity: 1;
+        }
+        h3 {
+            color: white;
+            font-size: 10px;
+            font-weight: 100;
+            margin: 0;
+        }
+        .stars {
+            font-size: 10px;
+            svg {
+                position: relative;
+                top: 2px;
+                color: #fd9700;
+            }
+        }
+    }
+    &:hover {
+        .author {
+            opacity: 1;
+            height: 30px;
+        }
+    }
     .tachado {
         font-size: 14px;
     }
@@ -129,10 +182,8 @@ h3.title_destacada {
             }
             h2 {
                 font-size: 18px;
-                margin: 6px 20px 0 0px;
                 max-height: 44px;
                 overflow: hidden;
-                text-align: left;
                 @media screen and (max-width: 420px) {
                     margin: 20px 20px 0 10px;
                 }
