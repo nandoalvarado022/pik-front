@@ -5,12 +5,17 @@ import { createHttpLink } from "apollo-link-http"
 import { ApolloProvider } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { AppContextProvider } from "../contexts/context"
+import TagManager from 'react-gtm-module'
 import VARS from "../lib/variables"
 
 // CSS/SCSS
 import "../styles/globalStyles.scss"
 import "../styles/articlesList.scss"
 import "react-image-gallery/styles/css/image-gallery.css"
+
+const tagManagerArgs = {
+  id: 'GTM-5WB6P7C'
+}
 
 const httpLink = createHttpLink({
   uri: VARS.API_URL_GRAPHQL,
@@ -42,6 +47,7 @@ export default function MyApp(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+    TagManager.initialize(tagManagerArgs)
   }, []);
 
   return <AppContextProvider>

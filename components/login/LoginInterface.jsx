@@ -17,7 +17,7 @@ export default function LoginInterface({ buttonText, isCodeSended, isOpen, handl
           </DialogContentText>
         {/* Fields */}
         <div className={styles.flex} style={{ display: isCodeSended ? "none" : "flex" }}>
-          <img className={styles.icon_colombia} src="/images/icons/colombia.png" alt="" />
+          <img height="42" width="40" className={styles.icon_colombia} src="/images/icons/colombia.png" alt="" />
           <span>(+57)</span>
           <TextField autoFocus margin="dense" id="phoneLogin" label="Número de celular" type="email" fullWidth />
         </div>

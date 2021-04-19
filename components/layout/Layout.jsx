@@ -111,46 +111,46 @@ class Layout extends React.Component {
     const props = this.props
     const { meta_descripcion, meta_title, meta_image } = this.props
     let { meta_url, is_partner, partner } = this.props
-    return (
-      <div className="App font-a">
-        <Head>
-          <title>{meta_title}</title>
-          <meta property="title" content={meta_title} />
-          <meta property="og:title" content={meta_title} />
-          <meta name="description" content={meta_descripcion} />
-          <meta property="og:description" content={meta_descripcion} />
-          <meta property="og:image" content={meta_image} />
-          <meta name="url" content={meta_url} />
-          <meta name="og:url" content={meta_url} />
-          <meta name="og:site_name" content="Pikajuegos" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
-          <meta name="theme-color" content="#4d9afa" />
-          <meta name="google-site-verification" content="4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko" />
-          <meta name="twitter:description" content={meta_descripcion} />
-          <meta name="keywords" value="" />
-          <meta name="country" content="COL" />
-          <meta name="author" content="pikajuegos.com" />
-          <meta name="copyright" content="pikajuegos.com" />
-          <meta name="language" content="es-CO"></meta>
-          {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-941382150"></script>
-          <link rel="alternate" href={meta_url} hrefLang="es-CO" />
-          <link rel="canonical" href={meta_url} />
-          <link rel="icon" type="image/png" href="/images/logos/logo48x48.png" />
-          <link rel="manifest" href={`/manifest.json`} />
-          {/* <link rel="stylesheet" href="/css/swiper.min.css"></link> */}
-          {/* <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css"></link> */}
-          {/* <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /> */}
-          {/* <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script> */}
-          {/* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> */}
-          {() => {
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'AW-941382150');
-            gtag('event', 'conversion', { 'send_to': 'AW-941382150/e71oCMvon-0BEIa08cAD' });
-          }}()
+    return <React.Fragment>
+      <Head>
+        <title>{meta_title}</title>
+        <meta property="title" content={meta_title} />
+        <meta property="og:title" content={meta_title} />
+        <meta name="description" content={meta_descripcion} />
+        <meta property="og:description" content={meta_descripcion} />
+        <meta property="og:image" content={meta_image} />
+        <meta name="url" content={meta_url} />
+        <meta name="og:url" content={meta_url} />
+        <meta name="og:site_name" content="Pikajuegos" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+        <meta name="theme-color" content="#4d9afa" />
+        <meta name="google-site-verification" content="4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko" />
+        <meta name="twitter:description" content={meta_descripcion} />
+        <meta name="keywords" value="" />
+        <meta name="country" content="COL" />
+        <meta name="author" content="pikajuegos.com" />
+        <meta name="copyright" content="pikajuegos.com" />
+        <meta name="language" content="es-CO"></meta>
+        {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-941382150"></script>
+        <link rel="alternate" href={meta_url} hrefLang="es-CO" />
+        <link rel="canonical" href={meta_url} />
+        <link rel="icon" type="image/png" href="/images/logos/logo48x48.png" />
+        <link rel="manifest" href={`/manifest.json`} />
+        {/* <link rel="stylesheet" href="/css/swiper.min.css"></link> */}
+        {/* <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css"></link> */}
+        {/* <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /> */}
+        {/* <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script> */}
+        {/* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> */}
+        {() => {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'AW-941382150');
+          gtag('event', 'conversion', { 'send_to': 'AW-941382150/e71oCMvon-0BEIa08cAD' });
+        }}()
         </Head>
+      <body className="App font-a">
         <Header {...props} />
         <LogoBuscador partner={is_partner ? partner : null} />
         <main className={styles.principal}>
@@ -168,8 +168,8 @@ class Layout extends React.Component {
             </p>
           </div>
         )}
-      </div>
-    )
+      </body>
+    </React.Fragment>
   }
 }
 
