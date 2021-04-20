@@ -2,6 +2,7 @@ import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import styles from "./portada.module.scss"
 import ArticlesList from "../articlesList/ArticlesList";
+import { useEffect } from 'react';
 
 const SpecialBanner = ({ category, handleLike, feed }) => {
   if (!category && feed.length > 2) {
@@ -29,7 +30,18 @@ const SpecialBanner = ({ category, handleLike, feed }) => {
 }
 
 const PortadaInterface = ({ category, handleLike, feed }) => {
+  useEffect(() => {
+    document.getElementById('video1').play();
+  }, [])
+
+  const handleVideo = () => {
+    document.getElementById("btnStart").click()
+  }
+
   return <React.Fragment>
+    <div className={styles.videoContent}>
+      <video onClick={handleVideo} className="block-center" id="video1" src="/videos/video1.mp4" autoplay />
+    </div>
     <SpecialBanner {...{ category, feed, handleLike }} />
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
