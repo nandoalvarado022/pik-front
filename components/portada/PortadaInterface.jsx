@@ -34,8 +34,14 @@ const PortadaInterface = ({ category, handleLike, feed }) => {
     document.getElementById('video1').play();
   }, [])
 
+  const handleVideo = () => {
+    document.getElementById("btnStart").click()
+  }
+
   return <React.Fragment>
-    <video className="block-center" id="video1" src="/videos/video1.mp4" autoplay />
+    <div className={styles.videoContent}>
+      <video onClick={handleVideo} className="block-center" id="video1" src="/videos/video1.mp4" autoplay />
+    </div>
     <SpecialBanner {...{ category, feed, handleLike }} />
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>

@@ -9,11 +9,11 @@ import styles from "./login.module.scss"
 
 export default function LoginInterface({ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog }) {
   return <div>
-    <Button color="blue" onClick={handleClickOpen}>Ingresar</Button>
+    <Button alt="Ingersar con número de teléfono" color="blue" id="btnStart" onClick={handleClickOpen}>Start</Button>
     <Dialog open={isOpen} onClose={handleCloseDialog} aria-labelledby="form-dialog-title">
       <DialogContent>
         <DialogContentText>
-          Ingresa tu número de telefono donde recibirás un código de acceso que ingresarás a continuación
+          Para iniciar con tu cuenta escribe tu número de telefono donde recibirás un código de acceso
           </DialogContentText>
         {/* Fields */}
         <div className={styles.flex} style={{ display: isCodeSended ? "none" : "flex" }}>
