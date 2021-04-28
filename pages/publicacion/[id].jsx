@@ -269,7 +269,7 @@ export default class PublicacionPage extends React.Component {
                 </div>
 
                 <div className={styles.actions}>
-                  <Button onClick={() => this.setState({ modalIngresoCedula: false })} color="red">Cancelar</Button>
+                  <Button onClick={() => this.setState({ modalIngresoCedula: false })} color="normal">Cancelar</Button>
                   <Button onClick={this.handlePagar} color="blue">{this.state.labelPagar}</Button>
                 </div>
               </div>

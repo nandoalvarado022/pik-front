@@ -1,5 +1,4 @@
 .Categorias {
-    margin: 0px 0px 20px;
     width: calc(100vw - 8px);
     box-shadow: 0px 4px 4px #5252522e;
     position: sticky;
@@ -7,6 +6,13 @@
     z-index: 2;
     @media screen and (max-width: 420px) {
         width: initial;
+        top: -215px;
+        position: absolute;
+    }
+    &.active {
+        @media screen and (max-width: 420px) {
+            top: 60px;
+        }
     }
     .perfil {
         background: #24292e;

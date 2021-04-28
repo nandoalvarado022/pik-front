@@ -8,15 +8,13 @@ h3.title_destacada {
     box-shadow: 2px 2px 5px 0 #ababab52;
     box-sizing: border-box;
     color: #585858;
+    cursor: pointer;
     max-height: 420px;
     margin: 0px 20px 40px;
     padding: 10px 0;
     position: relative;
     z-index: 1;
     width: 320px;
-    &:hover {
-        cursor: pointer;
-    }
     &.small {
         height: 360px;
         @media screen and (min-width: 1024px) {
@@ -33,7 +31,7 @@ h3.title_destacada {
         left: 0;
         margin: -30px auto;
         opacity: 0;
-        padding: 10px;
+        padding: 5px 0px 10px 10px;
         position: absolute;
         right: 0;
         transition: .3s ease;
@@ -60,6 +58,12 @@ h3.title_destacada {
             font-size: 10px;
             font-weight: 100;
             margin: 0;
+            svg {
+                top: 2px;
+                position: relative;
+                margin: 0 5px 0 0;
+                color: #04a4c4;
+            }
         }
         .stars {
             font-size: 10px;

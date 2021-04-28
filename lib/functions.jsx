@@ -681,6 +681,9 @@ export const getFeed = async ({ slug = "", category = "" }) => {
   const query = `
     query {
       publications(status: true, slug: "${slug}", category: "${category}") {
+        banner_bottom
+        banner_top
+        certificate
         is_new
         description
         image_link

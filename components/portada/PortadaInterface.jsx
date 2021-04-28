@@ -31,7 +31,9 @@ const SpecialBanner = ({ category, handleLike, feed }) => {
 
 const PortadaInterface = ({ category, handleLike, feed }) => {
   useEffect(() => {
-    document.getElementById('video1').play();
+    setTimeout(() => {
+      document.getElementById('video1').play();
+    }, 500)
   }, [])
 
   const handleVideo = () => {

@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react"
 import styles from "./cardDetalleProducto.module.scss"
 import React from "react"
 
-const CardProducto = ({ meta_url, title, descuento = 0, description = "", image_link, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, handleComprar, quantity } = {}) => {
+const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, description = "", image_link, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, handleComprar, quantity } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = [
     { original: image_link, thumbnail: image_link, }
@@ -43,7 +43,7 @@ const CardProducto = ({ meta_url, title, descuento = 0, description = "", image_
           </div>
 
           <div className={`${styles.Card} ${styles["productos-relacionados"]}`}>
-            <h3 className="text-center">Productos que te pueden interesar</h3>
+            {/* <h3 className="text-center">Productos que te pueden interesar</h3> */}
             {/* <div className="listadoRodadas">
               {["", "", ""].map((current, ind) => {
                 const item = feed[ind]
@@ -83,12 +83,18 @@ const CardProducto = ({ meta_url, title, descuento = 0, description = "", image_
             </div>
 
             <div>
-              <DiscussionEmbed shortname="pikajuegos-1" config={{ url: meta_url, identifier: meta_url, title: title, language: "es_ES" }} />
+              <DiscussionEmbed shortname="pikajuegos" config={{ url: meta_url, identifier: meta_url, title: title, language: "es_ES" }} />
             </div>
           </div>
         )}
+
       </div>
     </Grow>
+    {
+      banner_bottom && <div>
+        <img className={`${styles.banner_bottom} block-center`} src={banner_bottom} alt="" />
+      </div>
+    }
     <Footer />
   </div>
 }

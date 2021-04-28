@@ -2,6 +2,9 @@
 
 .videoContent {
     cursor: pointer;
+    @media screen and (max-width: 420px) {
+        display: none;
+    }
 }
 
 #SpecialBanner {

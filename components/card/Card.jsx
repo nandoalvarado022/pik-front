@@ -1,13 +1,14 @@
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faHeart } from "@fortawesome/free-regular-svg-icons"
+import { faCheckCircle, faHeart } from "@fortawesome/free-regular-svg-icons"
 import Grow from "@material-ui/core/Grow"
 import { format_number } from "../../lib/utilidades"
 import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 
-const Card = ({ id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
+const Card = ({ certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
+  debugger
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -25,11 +26,16 @@ const Card = ({ id: id_publication, is_new, tags, special_title, title, descuent
         <div key={id_publication} className={`${styles.Card} ${destacada ? styles.destacada : ""}`} >
           <div className={styles.author}>
             <span className={styles.user_picture} style={{ backgroundImage: `url(${user_picture})` }} />
-            <p>
-              <h3>{user_name}</h3>
-              <div className={styles.stars}>
-                <FontAwesomeIcon icon={faStar} /> (4,5)
-              </div>
+            <p title={certificate ? "El usuario esta certificado, puedes confiar en esta oferta" : ""}>
+              <h3>
+                {certificate && <FontAwesomeIcon icon={faCheckCircle} />}
+                {user_name}
+              </h3>
+              {
+                certificate && <div className={styles.stars}>
+                  <FontAwesomeIcon icon={faStar} /> 4,5
+                </div>
+              }
             </p>
           </div>
           <div className={styles.descripcion_imagen}>
