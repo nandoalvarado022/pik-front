@@ -41,6 +41,10 @@ const Perfil = () => {
     if (picture) input.picture = picture
 
     // saving in the server
+    delete input.banner_bottom
+    delete input.banner_top
+    delete input.certificate
+    delete input.certificate
     const variables = { input }
     updateUser({ variables })
 

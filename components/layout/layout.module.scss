@@ -50,6 +50,31 @@
     }
 }
 
+.btn-whatsapp {
+    border: none;
+    position: fixed;
+    right: 20px;
+    z-index: 5;
+    bottom: 20px;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    @media screen and (max-width: 420px) {
+        right: 10px;
+    }
+    img {
+        width: 60px;
+        @media screen and (max-width: 420px) {
+            width: 50px;
+        }
+    }
+    span {
+        font-size: 14px;
+        display: block;
+        color: #585858;
+    }
+}
+
 .mobile-none {
     @media screen and (max-width: 420px) {
         display: none;

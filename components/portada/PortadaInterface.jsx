@@ -1,8 +1,8 @@
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import styles from "./portada.module.scss"
-import ArticlesList from "../articlesList/ArticlesList";
-import { useEffect } from 'react';
+// import ArticlesList from "../articlesList/ArticlesList";
+import { useEffect, useState } from 'react';
 
 const SpecialBanner = ({ category, handleLike, feed }) => {
   if (!category && feed.length > 2) {
@@ -21,18 +21,25 @@ const SpecialBanner = ({ category, handleLike, feed }) => {
     </div>
   } else {
     switch (category) {
-      case "ps4":
-        return <img className="block-center" src="https://www.combogamer.com/wp-content/uploads/2014/05/ps4-launch-banner.png" />
-      default:
-        return <img className="block-center" src="https://switchplayer.net/wp-content/uploads/2017/03/Nintendo-Switch-List-Banner-1-820x171.png" />
+      case "playstation":
+        return <img className="block-center m-t-20" src="https://www.combogamer.com/wp-content/uploads/2014/05/ps4-launch-banner.png" />
+      case "nintendo-switch":
+        return <img className="block-center m-t-20" src="https://switchplayer.net/wp-content/uploads/2017/03/Nintendo-Switch-List-Banner-1-820x171.png" />
     }
   }
 }
 
 const PortadaInterface = ({ category, handleLike, feed }) => {
+  const [showVideo, setShowVideo] = useState(false)
+
   useEffect(() => {
+    if (localStorage.getItem("user") == null) {
+      setShowVideo(true)
+    }
     setTimeout(() => {
-      document.getElementById('video1').play();
+      document.querySelectorAll("video").forEach(item => {
+        item.play()
+      })
     }, 500)
   }, [])
 
@@ -41,23 +48,22 @@ const PortadaInterface = ({ category, handleLike, feed }) => {
   }
 
   return <React.Fragment>
-    <div className={styles.videoContent}>
-      <video onClick={handleVideo} className="block-center" id="video1" src="/videos/video1.mp4" autoplay />
-    </div>
+    {
+      showVideo && <div className={styles.videoContent}>
+        <video onClick={handleVideo} className="block-center" src="/videos/video1.mp4" autoplay />
+      </div>
+    }
     <SpecialBanner {...{ category, feed, handleLike }} />
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
-        {/* NUEVOS */}
-        {feed && feed.filter(item => item.is_new) && <React.Fragment>
-          <div className="listadoRodadas sellados">
-            {feed && feed.map((item, ind) => {
-              return <React.Fragment>
-                <Card special_title="Más vendido" handleLike={handleLike} {...item} />
-                {ind == 3 && <ArticlesList />}
-              </React.Fragment>
-            })}
-          </div>
-        </React.Fragment>}
+        <div className="listadoRodadas">
+          {feed && feed.map((item, ind) => {
+            return <React.Fragment>
+              {ind == 4 && <video className="block-center video-evita-estafas" src="/videos/evita-estafas.mp4" autoplay />}
+              <Card special_title="Más vendido" handleLike={handleLike} {...item} />
+            </React.Fragment>
+          })}
+        </div>
       </div>
     </div>
     <Footer />

@@ -1,42 +1,45 @@
 .SideToSide {
-  background: #fcfcfc;
-  color: #585858;
-  display: flex;
-  justify-content: space-evenly;
-  padding: 20px;
-  margin: 50px 0 0;
-  box-shadow: 0px -5px 5px 0 #ababab52;
-  > div {
-    width: 50%;
-    text-align: center;
-  }
-  h3 {
-  }
-  a {
+    background: #fcfcfc;
     color: #585858;
-  }
-  .somos {
-    p {
-      font-size: 14px;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+    margin: 50px 0 0;
+    box-shadow: 0px -5px 5px 0 #ababab52;
+    @media screen and (max-width: 420px) {
+        flex-direction: column;
+        align-items: center;
     }
-  }
-  .categorias {
-    ul {
-      padding: 0;
-      li {
-        list-style: none;
-      }
+    >div {
+        width: 50%;
+        text-align: center;
     }
-  }
-  hr {
-    background: #d4d4d4;
-    margin: 0 40px;
-    width: 1px;
-    border: none;
-  }
-  .Categorias {
-    img {
-      display: none;
+    h3 {}
+    a {
+        color: #585858;
     }
-  }
+    .somos {
+        p {
+            font-size: 14px;
+        }
+    }
+    .categorias {
+        ul {
+            padding: 0;
+            li {
+                list-style: none;
+            }
+        }
+    }
+    hr {
+        background: #d4d4d4;
+        margin: 0 40px;
+        width: 1px;
+        border: none;
+    }
+    .Categorias {
+        img {
+            display: none;
+        }
+    }
 }

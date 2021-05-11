@@ -1,13 +1,48 @@
+import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import Router from "next/router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useAppContext } from '../../contexts/context'
 import LoginInterface from "./LoginInterface"
 import VARS from "../../lib/variables"
+import { loadAudio } from '../../lib/functions'
 
 export default function Login() {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isCodeSended, setIsCodeSended] = useState(false)
 	const [buttonText, setButtonText] = useState("Enviar")
+	const VALIDATE_QUERY = gql`
+  query validateLogin($phone: String, $code: Int){
+    validateLogin(phone: $phone, code: $code)
+  }`
+
+	const [validateLogin, { data: dataValidate, error: errorValidate }] = useLazyQuery(VALIDATE_QUERY, {
+		onCompleted: (data) => {
+			const { validateLogin } = dataValidate
+			if (validateLogin) {
+				localStorage.setItem("user", validateLogin)
+				localStorage.setItem("token", JSON.parse(validateLogin).token)
+				setIsOpen(false)
+				loadAudio("/audios/noti.mp3")
+				Router.push("/?login=on")
+			} else {
+				document.getElementById("verificationCode").value = ""
+				alert("Código no valido")
+				setButtonText("Validar")
+			}
+		},
+		onError: (err) => {
+			document.getElementById("verificationCode").value = ""
+			alert("Código no valido")
+			setButtonText("Validar")
+		}
+	})
+
+	const LOGIN_MUTATION = gql`
+  mutation Login($phone: String){
+		setLoginCode(phone: $phone)
+  }`
+
+	const [dispatchLogin, { }] = useMutation(LOGIN_MUTATION);
 
 	const handleEnviar = async () => {
 		setButtonText("Enviando...")
@@ -16,9 +51,7 @@ export default function Login() {
 			alert("Debes escribir un número celular, recuerda que a este número llegará el código de acceso")
 			return
 		}
-		const request = await fetch(`${VARS.API_URL}/login/sendmessage?phone=57${phone}`, {
-			method: "POST"
-		})
+		dispatchLogin({ variables: { phone: "57" + phone } });
 		setButtonText("Validar")
 		setIsCodeSended(true)
 	}
@@ -37,20 +70,12 @@ export default function Login() {
 		const phone = "57" + document.getElementById("phoneLogin").value
 		if (verificationCode) Number(verificationCode)
 		if (verificationCode < 999) return
-		const request = await fetch(`${VARS.API_URL}/login/validateLogin?phone=${phone}&code=${verificationCode}`, {
-			method: "POST"
-		})
-		const res = await request.json()
-		if (res) {
-			localStorage.setItem("user", JSON.stringify(res))
-			localStorage.setItem("token", res.token)
-			setIsOpen(false)
-			Router.push("/?login=on")
-		} else {
-			document.getElementById("verificationCode").value = ""
-			alert("Código no valido")
-		}
+		setButtonText("Validando...")
+		validateLogin({ variables: { phone, code: parseInt(verificationCode) } })
 	}
+
+	useEffect(() => {
+	}, [])
 
 	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog }} />
 }

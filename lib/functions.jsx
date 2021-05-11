@@ -677,10 +677,10 @@ export default class Funciones {
   }
 }
 
-export const getFeed = async ({ slug = "", category = "" }) => {
+export const getFeed = async ({ slug = "", category = null }) => {
   const query = `
     query {
-      publications(status: true, slug: "${slug}", category: "${category}") {
+      publications(status: true, slug: "${slug}", category: ${category}) {
         banner_bottom
         banner_top
         certificate
@@ -757,4 +757,12 @@ export const handleLogout = () => {
   localStorage.removeItem("user")
   localStorage.removeItem("token")
   Router.push("/?logout")
+}
+
+export const loadAudio = function (fuente) {
+  // const fuente = "/audios/noti.mp3"
+  const sonido = document.querySelector("audio")
+  sonido.src = fuente
+  sonido.volume = 0.2
+  sonido.play()
 }

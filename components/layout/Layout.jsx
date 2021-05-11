@@ -132,7 +132,6 @@ class Layout extends React.Component {
         <meta name="copyright" content="pikajuegos.com" />
         <meta name="language" content="es-CO"></meta>
         {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-941382150"></script>
         <link rel="alternate" href={meta_url} hrefLang="es-CO" />
         <link rel="canonical" href={meta_url} />
         <link rel="icon" type="image/png" href="/images/logos/logo48x48.png" />
@@ -153,9 +152,16 @@ class Layout extends React.Component {
       <body className="App font-a">
         <Header {...props} />
         <LogoBuscador partner={is_partner ? partner : null} />
+        <audio />
         <main className={styles.principal}>
           <Categorias scroll={false} />
           {props.children}
+          <a target="_BLANK" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">
+            <button className={styles["btn-whatsapp"]}>
+              <img src="/images/icons/whatsapp.png" alt="Botón Whatsapp" />
+              <span>Hablar con un asesor</span>
+            </button>
+          </a>
         </main>
         {!this.state.tenemosCookies && (
           <div className="avisoCookies font-c">

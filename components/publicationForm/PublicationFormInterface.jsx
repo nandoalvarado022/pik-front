@@ -10,9 +10,9 @@ import { useEffect, useState } from 'react'
 import Fade from '@material-ui/core/Fade'
 import styles from "./publicationForm.module.scss"
 import Button from '../button/Button'
+import { getCategories } from "../../lib/utilidades"
 
 const PublicationForminterface = ({ publicationFormData, onChangeImage, handleSubmit, imageLoading, errors, screenWidth, setPublicationFormData, isEdit }) => {
-  const categories = ["Accesorios", "Nintendo", "Playstation", "Microsoft", "Apple", "Otros"]
   const [menuPosition, setMenuPosition] = useState(null)
 
   const handleRightClick = (event) => {
@@ -28,9 +28,9 @@ const PublicationForminterface = ({ publicationFormData, onChangeImage, handleSu
       <div className="fields">
         <div className="Card">
           <div onContextMenu={handleRightClick}>
-            <Button color="normal" aria-controls="tipo_publicacion" onClick={handleRightClick} aria-haspopup="true">{!publicationFormData.type ? "Seleccionar la plataforma que más se acomode a su producto" : "Publicación asociada a " + publicationFormData.type}</Button>
+            <Button color="border-button" aria-controls="tipo_publicacion" onClick={handleRightClick} aria-haspopup="true">{!publicationFormData.type ? "Seleccionar la categoria" : "Categoria: " + getCategories(publicationFormData.type).name}</Button>
             <Menu anchorReference="anchorPosition" anchorPosition={menuPosition} onClose={() => setMenuPosition(null)} TransitionComponent={Fade} keepMounted open={!!menuPosition} className={styles.tipo_publicacion}>
-              {categories.map(item => <MenuItem onClick={() => { setPublicationFormData({ ...publicationFormData, type: item }); setMenuPosition(null) }} value={item}>{item}</MenuItem>)}
+              {getCategories().map(item => <MenuItem onClick={() => { setPublicationFormData({ ...publicationFormData, type: item.id }); setMenuPosition(null) }} value={item.id}>{item.name}</MenuItem>)}
             </Menu>
           </div>
         </div>

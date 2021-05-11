@@ -26,19 +26,19 @@ export default class Portada extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.category) this.filtrarRodadas(this.props.category)
+    // if (this.props.category) this.filtrarRodadas(this.props.category)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.category != this.props.category) this.filtrarRodadas(this.props.category)
+    // if (prevProps.category != this.props.category) this.filtrarRodadas(this.props.category)
   }
 
-  filtrarRodadas = (type) => {
+  /*filtrarRodadas = (type) => {
     let feed = null
     if (type) feed = this.state.feedOriginal.filter(item => item.type.toLocaleLowerCase() == type.toLocaleLowerCase())
     else if (!type) feed = this.state.feedOriginal
     this.setState({ feed })
-  }
+  }*/
 
   render() {
     return <PortadaInterface {...{ category: this.props.category, handleLike: this.handleLike, feed: this.state.feed }} />

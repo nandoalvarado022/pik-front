@@ -4,6 +4,7 @@ import Link from "next/link"
 import Router from "next/router"
 import Login from "../login/Login"
 import styles from "./categorias.module.scss"
+import { getCategories, slugify } from "../../lib/utilidades"
 
 const Categorias = ({ scroll }) => {
   const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture
@@ -14,15 +15,18 @@ const Categorias = ({ scroll }) => {
           Ver todo
         </Link>
       </li>
-      <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/accesorios">
-          <a>
-            <img src="/images/icons/accesories.png" alt="accesorios" />
-            Accesorios
-          </a>
-        </Link>
-      </li>
-      <li filter="game">
+      {
+        getCategories().map((category) => <li filter="game">
+          <Link scroll={scroll} href="/category/[id]" as={"/category/" + slugify(category.name)}>
+            <a>
+              <img src={"/images/icons/" + category.id + ".png"} alt={category.name} />
+              {category.name}
+            </a>
+          </Link>
+        </li>)
+      }
+
+      {/* <li filter="game">
         <Link scroll={scroll} href="/category/[id]" as="/category/suscripciones">
           <a>
             <img src="/images/icons/subscription.png" alt="suscripciones" />
@@ -61,6 +65,7 @@ const Categorias = ({ scroll }) => {
           </a>
         </Link>
       </li>
+      */}
       <li className={styles["crear-publicacion"]}>
         <Link href="/publicacion/crear" as="/publicacion/crear">
           <a>
@@ -88,7 +93,7 @@ const Categorias = ({ scroll }) => {
           <Login />
       }
     </ul>
-  </div>
+  </div >
 }
 
 export default Categorias

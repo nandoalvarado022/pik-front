@@ -7,6 +7,12 @@ button.btn {
     margin: 5px;
     padding: 10px 20px;
     text-transform: initial;
+    &.border-button {
+        border-bottom: 1px solid #8c8c8c;
+        color: #8c8c8c;
+        border-radius: 0;
+        box-shadow: none;
+    }
     &.normal {
         background: #a9a9a9;
         border: 1px solid #8c8c8c;

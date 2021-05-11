@@ -8,7 +8,6 @@ import styles from "./card.module.scss"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 
 const Card = ({ certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
-  debugger
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false

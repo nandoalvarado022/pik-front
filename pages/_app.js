@@ -13,10 +13,6 @@ import "../styles/globalStyles.scss"
 import "../styles/articlesList.scss"
 import "react-image-gallery/styles/css/image-gallery.css"
 
-const tagManagerArgs = {
-  id: 'GTM-5WB6P7C'
-}
-
 const httpLink = createHttpLink({
   uri: VARS.API_URL_GRAPHQL,
   fetch: fetch,
@@ -47,7 +43,7 @@ export default function MyApp(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-    TagManager.initialize(tagManagerArgs)
+    TagManager.initialize({ gtmId: 'GTM-5WB6P7C' })
   }, []);
 
   return <AppContextProvider>

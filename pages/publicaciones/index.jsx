@@ -29,15 +29,17 @@ export default function MyPublications(props) {
 	}`
 
 	const [getPublications, { loading: loadingPublications, error, data: reqPublications }] = useLazyQuery(PUBLICATIONS_QUERY, {
-		variables: { phone }
-		// fetchPolicy: "network-only"
+		variables: { phone },
+		fetchPolicy: "no-cache"
 	})
 
-	const handleDesactive = (id, status) => {
+	const handleChangeState = (id, status) => {
 		changeStatePublication({
 			variables: { id, status }
 		});
-		getPublications()
+		setTimeout(() => {
+			getPublications()
+		}, 1000)
 	}
 
 	const handleEdit = (slug) => {
@@ -56,7 +58,7 @@ export default function MyPublications(props) {
 						<Card key={item.id} {...item} />
 						<div className={styles.actions}>
 							<Button onClick={() => handleEdit(item.slug)} color="blue">Editar</Button>
-							<Button onClick={() => handleDesactive(item.id, !item.status)} color="red">
+							<Button onClick={() => handleChangeState(item.id, !item.status)} color="red">
 								{
 									item.status == true ? <>Desactivar</> : <>Activar</>
 								}
