@@ -46,7 +46,7 @@ function LogoBuscador({ partner }) {
           <span>
             <img className={styles.logo} src="/images/logos/logo-pikajuegos.png" alt="" />
             <div className={styles.slogan}>
-              <i>Videogames Marketplace</i>
+              <span>Videogames Marketplace</span>
             </div>
           </span>
         </Link>

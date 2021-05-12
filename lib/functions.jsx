@@ -684,23 +684,25 @@ export const getFeed = async ({ slug = "", category = null }) => {
         banner_bottom
         banner_top
         certificate
-        is_new
         description
-        image_link
+        id
         image_2
         image_3
         image_4
         image_5
+        image_link
+        is_new
         price
         quantity
+        sale_price
+        slug
         tags
         title
         type
         user_name
-        user_picture
         user_phone
-        slug
-        sale_price
+        user_picture
+        views
       }
     }`
 

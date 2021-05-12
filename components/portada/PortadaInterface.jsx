@@ -4,19 +4,17 @@ import styles from "./portada.module.scss"
 // import ArticlesList from "../articlesList/ArticlesList";
 import { useEffect, useState } from 'react';
 
-const SpecialBanner = ({ category, handleLike, feed }) => {
-  if (!category && feed.length > 2) {
-    const items = [feed[0], feed[1]]
-
+const SpecialBanner = ({ starItem, popularyItem, category, handleLike }) => {
+  if (!category) {
     return <div id={styles.SpecialBanner}>
       <div className={styles.box}>
         <div className={styles.title}>Lo más popular</div>
-        <Card key={items[0].id} handleLike={handleLike} permitirLink={true} {...items[0]} />
+        <Card key={popularyItem.id} handleLike={handleLike} permitirLink={true} {...popularyItem} />
       </div>
       <img src="/images/banners/banner-varios-juegos.png" alt="Juegos SSwitch en promoción" />
       <div className={styles.box}>
         <div className={styles.title}>Lo más vendido</div>
-        <Card key={items[1].id} handleLike={handleLike} permitirLink={true} {...items[1]} />
+        <Card key={starItem.id} handleLike={handleLike} permitirLink={true} {...starItem} />
       </div>
     </div>
   } else {
@@ -31,7 +29,11 @@ const SpecialBanner = ({ category, handleLike, feed }) => {
 
 const PortadaInterface = ({ category, handleLike, feed }) => {
   const [showVideo, setShowVideo] = useState(false)
+  const popularyItem = feed.reduce((prev, current) => {
+    return prev.views > current.views ? prev : current
+  })
 
+  const starItem = feed.find((item) => item.id == 68)
   useEffect(() => {
     if (localStorage.getItem("user") == null) {
       setShowVideo(true)
@@ -53,7 +55,7 @@ const PortadaInterface = ({ category, handleLike, feed }) => {
         <video onClick={handleVideo} className="block-center" src="/videos/video1.mp4" autoplay />
       </div>
     }
-    <SpecialBanner {...{ category, feed, handleLike }} />
+    <SpecialBanner {...{ starItem, popularyItem, category, handleLike }} />
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
         <div className="listadoRodadas">

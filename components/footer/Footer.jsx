@@ -10,10 +10,6 @@ const Footer = ({ filtrarRodadas }) => {
       </Link>
     </div>
     <hr />
-    <div className="categorias">
-      {/* <Categorias scroll={true} /> */}
-    </div>
-    <hr />
     <div>
       <h3>Artículos de interes</h3>
       <Link href="/start">
@@ -27,23 +23,21 @@ const Footer = ({ filtrarRodadas }) => {
       <h3>Aliados</h3>
       <a href="https://juanchofenix.pik.com.co/">
         Juancho Fenix
-          </a>
+      </a>
     </div>
     <hr />
     <div>
       <h3>Contáctanos</h3>
-      <div>
-        <a href="https://api.whatsapp.com/send?phone=573124532441&text=Hola, quisiera conversar con Pikajuegos" target="_BLANK">Conversemos por Whatsapp</a>
-      </div>
-      <div>
+      <p>Medellín - Colombia</p>
+      <p>
         pikajuegoscolombia@gmail.com
-        </div>
-      <div>
+      </p>
+      <p>
         <a target="_BLANK" href="https://www.instagram.com/pikajuegos">https://www.instagram.com/pikajuegos</a>
-      </div>
-      <div>
+      </p>
+      <p>
         <a target="_BLANK" href="https://www.facebook.com/pikajuegos">https://www.facebook.com/pikajuegos</a>
-      </div>
+      </p>
     </div>
   </div>
   );

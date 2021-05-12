@@ -89,7 +89,7 @@ function checkIsMobile(userAgent) {
 }
 
 function getCategories(id) {
-	const categories = [{ id: 1, name: "Accesorios" }, { id: 2, name: "Nintendo Switch" }, { id: 3, name: "Playstation" }, { id: 4, name: "XBOX" }, { id: 5, name: "Otros" }]
+	const categories = [{ id: 1, name: "Accesorios" }, { id: 2, name: "Nintendo Switch" }, { id: 3, name: "Playstation" }, { id: 4, name: "Xbox" }, { id: 5, name: "Otros" }]
 	if (id) return categories.find(item => item.id == id)
 	return categories
 }
