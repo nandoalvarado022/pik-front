@@ -1,7 +1,7 @@
 import Layout from "../../components/layout/Layout"
-import { getFeed, capitalize } from "../../lib/functions"
+import { getFeed, capitalize } from "../../lib/utils"
 import Portada from "../../components/portada/Portada"
-import { getCategories } from "../../lib/utilidades"
+import { getCategories } from "../../lib/utils"
 
 class CategoryPage extends React.Component {
   static async getInitialProps({ req, query }) {

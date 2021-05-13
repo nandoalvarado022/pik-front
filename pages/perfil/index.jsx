@@ -4,7 +4,7 @@ import Router from "next/router"
 import { useEffect, useState } from "react"
 import Button from "../../components/button/Button"
 import Layout from "../../components/layout/Layout"
-import { handleLogout, subirImagen } from "../../lib/functions"
+import { handleLogout, subirImagen } from "../../lib/utils"
 import styles from "./perfil.module.scss"
 
 const CHANGE_PROFILE = gql`

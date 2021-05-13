@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useAppContext } from '../../contexts/context'
 import LoginInterface from "./LoginInterface"
 import VARS from "../../lib/variables"
-import { loadAudio } from '../../lib/functions'
+import { loadAudio } from '../../lib/utils'
 
 export default function Login() {
 	const [isOpen, setIsOpen] = useState(false)

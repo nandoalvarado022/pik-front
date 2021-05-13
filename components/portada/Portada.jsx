@@ -1,46 +1,30 @@
 import date from 'date-and-time'
-import Funciones from '../../lib/functions'
 import PortadaInterface from './PortadaInterface'
+import { useState } from 'react';
+import { useRouter } from 'next/router'
 import 'date-and-time/locale/es'
-
-const instanciaFunc = new Funciones
 
 date.locale('es');
 
-export default class Portada extends React.Component {
-  state = {
-    feed: this.props.feed,
-    feedOriginal: this.props.feed,
-  }
+function Portada({ category, feed: feedProps }) {
+  const router = useRouter()
+  const [feed, setFeed] = useState(feedProps)
+  const popularyItem = feed && feed.reduce((prev, current) => {
+    return prev.views > current.views ? prev : current
+  }, [])
 
-  async handleLike(params = {}) {
+  const starItem = feed && feed.find((item) => item.id == 68)
+
+  const handleLike = async (params = {}) => {
     const elemento = params.event.currentTarget
     const obj = {
       docID: elemento.getAttribute("doc_id"),
       tipo_coleccion: elemento.getAttribute("tipo_coleccion"),
       elemento
     }
-
-    const result = await instanciaFunc.handleLike(obj)
-    if (!result) return
   }
 
-  componentDidMount() {
-    // if (this.props.category) this.filtrarRodadas(this.props.category)
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    // if (prevProps.category != this.props.category) this.filtrarRodadas(this.props.category)
-  }
-
-  /*filtrarRodadas = (type) => {
-    let feed = null
-    if (type) feed = this.state.feedOriginal.filter(item => item.type.toLocaleLowerCase() == type.toLocaleLowerCase())
-    else if (!type) feed = this.state.feedOriginal
-    this.setState({ feed })
-  }*/
-
-  render() {
-    return <PortadaInterface {...{ category: this.props.category, handleLike: this.handleLike, feed: this.state.feed }} />
-  }
+  return <PortadaInterface {...{ feed, category, handleLike, popularyItem, starItem }} />
 }
+
+export default Portada

@@ -31,11 +31,12 @@ h3.title_destacada {
         left: 0;
         margin: -30px auto;
         opacity: 0;
-        padding: 5px 0px 10px 10px;
+        padding: 5px 5px 10px 10px;
         position: absolute;
         right: 0;
         transition: .3s ease;
-        width: 50%;
+        max-width: 80%;
+        width: max-content;
         z-index: 1;
         span {
             border-radius: 50%;

@@ -1,5 +1,5 @@
 import Layout from "../../components/layout/Layout"
-import { getFeed } from "../../lib/functions"
+import { getFeed } from "../../lib/utils"
 import ArticlesList from '../../components/articlesList/ArticlesList'
 
 class Index extends React.Component {

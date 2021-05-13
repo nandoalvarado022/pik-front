@@ -11,7 +11,7 @@ import CardDetalleProducto from "../../components/card/CardDetalleProducto"
 import React from "react"
 import Layout from "../../components/layout/Layout"
 // import PuedeInteresarte from "../../components/puedeInteresarte/PuedeInteresarte"
-import { getFeed, transformarFeed } from "../../lib/functions"
+import { getFeed, transformarFeed } from "../../lib/utils"
 import styles from "../../public/css/modalIngresoInfo.module.scss"
 
 export default class PublicacionPage extends React.Component {

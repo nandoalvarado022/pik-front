@@ -2,13 +2,14 @@ import { useRouter, withRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { gql, useMutation, useQuery } from '@apollo/client'
 import rn from 'random-number'
-import { slugify } from "../../lib/utilidades"
-import { subirImagen } from '../../lib/functions'
+import { slugify } from "../../lib/utils"
+import { subirImagen } from '../../lib/utils'
 import PublicationForminterface from './PublicationFormInterface'
 
 const QUERY_PUBLICATION = gql`
 	query Publications($slug: String){
 		publications(slug: $slug){
+			category
 			description
 			id
 			image_2
@@ -18,7 +19,6 @@ const QUERY_PUBLICATION = gql`
 			is_new
 			sale_price
 			title
-			type
 			quantity
 		}
 	}
@@ -60,7 +60,7 @@ const PublicationForm = (props) => {
 
 	function handleSubmit() {
 		const validators = () => {
-			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.quantity || !publicationFormData.type || !publicationFormData.sale_price || !publicationFormData.image_link) {
+			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.quantity || !publicationFormData.category || !publicationFormData.image_link) {
 				setErrors("Por favor completa todos los campos de tu publicación")
 				return false
 			}

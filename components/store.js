@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import Funciones from '../lib/functions'
+import Funciones from '../lib/utils'
 
 const { Provider, Consumer } = createContext();
 

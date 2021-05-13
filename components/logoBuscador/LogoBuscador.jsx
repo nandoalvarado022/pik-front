@@ -15,6 +15,7 @@ function LogoBuscador({ partner }) {
   const PUBLICATIONS_QUERY = gql`
   query Publications($slug: String){
     publications(slug: $slug, status: true){
+      category
       description
       image_2
       image_3
@@ -22,8 +23,7 @@ function LogoBuscador({ partner }) {
       image_link
       is_new
       sale_price
-      title
-      type
+      title      
       slug
     }
   }`

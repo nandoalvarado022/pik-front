@@ -1,7 +1,7 @@
 import Typist from 'react-typist'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
-import Funciones from '../../lib/functions'
+import Funciones from '../../lib/utils'
 
 const instanciaFunc = new Funciones
 

@@ -4,7 +4,7 @@ import Link from "next/link"
 import Router from "next/router"
 import Login from "../login/Login"
 import styles from "./categorias.module.scss"
-import { getCategories, slugify } from "../../lib/utilidades"
+import { getCategories, slugify } from "../../lib/utils"
 
 const Categorias = ({ scroll }) => {
   const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture

@@ -2,7 +2,7 @@ import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheckCircle, faHeart } from "@fortawesome/free-regular-svg-icons"
 import Grow from "@material-ui/core/Grow"
-import { format_number } from "../../lib/utilidades"
+import { format_number } from "../../lib/utils"
 import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 import { faStar } from "@fortawesome/free-solid-svg-icons"

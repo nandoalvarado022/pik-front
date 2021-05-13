@@ -1,11 +1,12 @@
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import styles from "./portada.module.scss"
-// import ArticlesList from "../articlesList/ArticlesList";
 import { useEffect, useState } from 'react';
+import Link from 'next/link'
+// import ArticlesList from "../articlesList/ArticlesList";
 
-const SpecialBanner = ({ starItem, popularyItem, category, handleLike }) => {
-  if (!category) {
+const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
+  if (!category && popularyItem && starItem) {
     return <div id={styles.SpecialBanner}>
       <div className={styles.box}>
         <div className={styles.title}>Lo más popular</div>
@@ -23,17 +24,15 @@ const SpecialBanner = ({ starItem, popularyItem, category, handleLike }) => {
         return <img className="block-center m-t-20" src="https://www.combogamer.com/wp-content/uploads/2014/05/ps4-launch-banner.png" />
       case "nintendo-switch":
         return <img className="block-center m-t-20" src="https://switchplayer.net/wp-content/uploads/2017/03/Nintendo-Switch-List-Banner-1-820x171.png" />
+      default:
+        return <div></div>
     }
   }
 }
 
-const PortadaInterface = ({ category, handleLike, feed }) => {
+const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popularyItem, starItem }) => {
   const [showVideo, setShowVideo] = useState(false)
-  const popularyItem = feed.reduce((prev, current) => {
-    return prev.views > current.views ? prev : current
-  })
 
-  const starItem = feed.find((item) => item.id == 68)
   useEffect(() => {
     if (localStorage.getItem("user") == null) {
       setShowVideo(true)
@@ -55,7 +54,17 @@ const PortadaInterface = ({ category, handleLike, feed }) => {
         <video onClick={handleVideo} className="block-center" src="/videos/video1.mp4" autoplay />
       </div>
     }
-    <SpecialBanner {...{ starItem, popularyItem, category, handleLike }} />
+    <SpecialBanner {...{ category, handleLike, popularyItem, starItem }} />
+    {
+      // Subcategories
+      // <div>
+      //   <h3>
+      //     <Link href="/subcategory/membresia-nintendo-switch">
+      //       <a>Membresias</a>
+      //     </Link>
+      //   </h3>
+      // </div>
+    }
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
         <div className="listadoRodadas">
