@@ -866,7 +866,10 @@ export function getCategories(id) {
 
 export function getSubcategories(id) {
   const subcategories = [
-    { id: 1, name: "Membresia Nintendo Switch" }
+    { id: 1, name: "Membresias Nintendo Switch", image: "/images/icons/1.png", url: "/subcategory/membresias-nintendo-switch" },
+    { id: 2, name: "Membresias Playstation", image: "/images/icons/icon-membresia-ps.png", url: "/subcategory/membresias-playstation" },
+    { id: 3, name: "Promociones", image: "/images/icons/icon-discount.png", url: "/subcategory/promociones" },
+    { id: 4, name: "Juegos Clasicos en Descuento", image: "/images/icons/mario-classic.png", url: "/subcategory/juegos-clasicos-en-descuento" },
   ]
   if (id) return subcategories.find(item => item.id == id)
   return subcategories

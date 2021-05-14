@@ -1,0 +1,26 @@
+ul.subcategories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    text-align: center;
+    li {
+        list-style: none;
+        margin: 0 20px;
+        h3,
+        a {
+            color: #585858;
+            font-size: 14px;
+            font-weight: normal;
+            width: 180px;
+            @media screen and (max-width: 420px) {
+                width: 120px;
+            }
+        }
+        img {
+            height: 50px;
+            margin-bottom: 0px;
+        }
+    }
+}

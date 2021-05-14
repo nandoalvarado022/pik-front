@@ -1,14 +1,15 @@
 .SideToSide {
     background: #fcfcfc;
+    box-shadow: 0px -5px 5px 0 #ababab52;
     color: #585858;
     display: flex;
     justify-content: space-evenly;
-    padding: 20px;
     margin: 50px 0 0;
-    box-shadow: 0px -5px 5px 0 #ababab52;
+    padding: 20px;
     @media screen and (max-width: 420px) {
-        flex-direction: column;
         align-items: center;
+        flex-direction: column;
+        overflow: hidden;
     }
     >div {
         width: 50%;
@@ -25,8 +26,8 @@
     }
     hr {
         background: #d4d4d4;
+        border: none;
         margin: 0 40px;
         width: 1px;
-        border: none;
     }
 }

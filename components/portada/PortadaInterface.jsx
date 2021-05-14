@@ -3,6 +3,7 @@ import Footer from '../footer/Footer'
 import styles from "./portada.module.scss"
 import { useEffect, useState } from 'react';
 import Link from 'next/link'
+import Subcategories from '../subcategories';
 // import ArticlesList from "../articlesList/ArticlesList";
 
 const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
@@ -41,7 +42,7 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
       document.querySelectorAll("video").forEach(item => {
         item.play()
       })
-    }, 500)
+    }, 1000)
   }, [])
 
   const handleVideo = () => {
@@ -56,14 +57,7 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
     }
     <SpecialBanner {...{ category, handleLike, popularyItem, starItem }} />
     {
-      // Subcategories
-      // <div>
-      //   <h3>
-      //     <Link href="/subcategory/membresia-nintendo-switch">
-      //       <a>Membresias</a>
-      //     </Link>
-      //   </h3>
-      // </div>
+      <Subcategories />
     }
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
