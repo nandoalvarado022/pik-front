@@ -1,0 +1,13 @@
+.Insignias {
+    li {
+        list-style: none;
+        .circle {
+            border-radius: 50%;
+            border: 2px solid red;
+            display: block;
+            height: 40px;
+            width: 40px;
+        }
+        span {}
+    }
+}

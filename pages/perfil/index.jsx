@@ -3,6 +3,7 @@ import { Input, TextField } from "@material-ui/core"
 import Router from "next/router"
 import { useEffect, useState } from "react"
 import Button from "../../components/button/Button"
+import Insignias from "../../components/insignias"
 import Layout from "../../components/layout/Layout"
 import { handleLogout, subirImagen } from "../../lib/utils"
 import styles from "./perfil.module.scss"
@@ -69,6 +70,10 @@ const Perfil = () => {
       <div className="Card">
         <label>Cambiar imagen de perfil</label>
         <input type='file' id="profileElement" />
+      </div>
+
+      <div className="Card">
+        <Insignias />
       </div>
 
       <div className="Card">
