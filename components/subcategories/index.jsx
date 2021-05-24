@@ -6,17 +6,13 @@ const Subcategories = () => {
   const list = getSubcategories()
   return <ul className={styles.subcategories}>
     {
-      list.map(item => <li>
-
-        <Link href={item.url}>
-          <a>
-            <img className="Card" src={item.image} alt={item.name} />
-            <h3>
-              {item.name}
-            </h3>
-          </a>
-        </Link>
-      </li>
+      list.map(item => <Link href={item.url}>
+        <a className="Card" style={{ backgroundImage: `url(${item.image})` }} >
+          <h3>
+            {item.name}
+          </h3>
+        </a>
+      </Link>
       )
     }
   </ul>
