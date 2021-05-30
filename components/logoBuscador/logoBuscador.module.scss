@@ -58,11 +58,31 @@
         .icon {
             width: 20px;
         }
+        .icon-search-mobile {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            display: none;
+            @media screen and (max-width: 420px) {
+                display: block;
+            }
+            svg {
+                transform: scale(1.5);
+                color: #bec4ca;
+            }
+        }
         .content_buscador {
             position: relative;
             @media screen and (max-width: 420px) {
-                width: 170px;
-                margin: -4px 0 0 30px;
+                width: calc(100% - 20px);
+                top: 78px;
+                position: fixed;
+                padding: 10px 10px 10px;
+                margin: 0;
+                left: 0;
+                height: 60px;
+                box-shadow: 2px 2px 5px 0 #ababab52;
+                background: white;
             }
             .input-buscador {
                 fieldset {

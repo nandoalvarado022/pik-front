@@ -237,11 +237,12 @@ export default class PublicacionPage extends React.Component {
     setTimeout(() => {
       this.setState({ loadingProductPage: true })
     }, 10000)
+    if (!this.props?.datosPublicacion) Router.push("/404")
   }
 
   render() {
     const datosPublicacion = this.props?.datosPublicacion
-    if (!datosPublicacion) return <div>Not found</div>
+    if (!datosPublicacion) return <div>Redireccionando...</div>
 
     const { description, title, slug } = datosPublicacion
     const { pais, ciudad } = this.state
