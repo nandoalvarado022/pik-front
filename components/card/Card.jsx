@@ -7,7 +7,7 @@ import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 
-const Card = ({ certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
+const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -40,7 +40,8 @@ const Card = ({ certificate, id: id_publication, is_new, tags, special_title, ti
           <div className={styles.descripcion_imagen}>
             <div className={styles.content_imagen}>
               <div className={styles.tags}>
-                <span className={styles.condition}>{is_new ? "NUEVO" : "USADO"}</span>
+                {!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
+                {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                 {
                   tags && JSON.parse(tags).map((item, ind) => {
                     return (<span key={ind} /*style={{ background: item.background }}*/>
