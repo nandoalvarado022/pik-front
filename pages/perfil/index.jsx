@@ -1,12 +1,9 @@
 import { gql, useMutation } from "@apollo/client"
-import { Input, TextField } from "@material-ui/core"
 import Router from "next/router"
 import { useEffect, useState } from "react"
-import Button from "../../components/button/Button"
-import Insignias from "../../components/insignias"
 import Layout from "../../components/layout/Layout"
 import { handleLogout, subirImagen } from "../../lib/utils"
-import styles from "./perfil.module.scss"
+import Interface from "./Interface"
 
 const CHANGE_PROFILE = gql`
 mutation ChangeProfileData($input: UserInput){
@@ -58,33 +55,7 @@ const Perfil = () => {
   }
 
   return <Layout>
-    <section className={styles.perfil}>
-      <div className="Card">
-        <TextField fullWidth={true} label="Tú nombre o el nombre de tu tienda" margin="normal" value={userData?.name} onChange={(e) => setUserData({ ...userData, name: e.target.value })} />
-      </div>
-
-      <div className="Card">
-        <TextField fullWidth={true} label="Correo electrónico" margin="normal" value={userData?.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
-      </div>
-
-      <div className="Card">
-        <label>Cambiar imagen de perfil</label>
-        <input type='file' id="profileElement" />
-      </div>
-
-      <div className="Card">
-        <Insignias />
-      </div>
-
-      <div className="Card">
-        <div>
-          <Button color={!isSaving ? "blue" : "disabled"} onClick={handleSave}>
-            {isSaving ? "Gaurdando..." : "Guardar"}
-          </Button>
-          <Button color="red" onClick={handleLogout}>Salir</Button>
-        </div>
-      </div>
-    </section>
+    <Interface {...{ userData, isSaving, handleSave, handleLogout, setUserData }} />
   </Layout>
 }
 

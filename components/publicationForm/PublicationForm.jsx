@@ -9,6 +9,7 @@ import PublicationForminterface from './PublicationFormInterface'
 const QUERY_PUBLICATION = gql`
 	query Publications($slug: String){
 		publications(slug: $slug){
+			accept_changues
 			category
 			description
 			id
