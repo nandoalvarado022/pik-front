@@ -10,8 +10,7 @@ import styles from "./logoBuscador.module.scss"
 
 function LogoBuscador({ partner }) {
   const router = useRouter()
-  const [textSearch, setTextSearch] = useState("")
-
+  const [showSearchBox, setShowSearchBox] = useState(false)
   const PUBLICATIONS_QUERY = gql`
   query Publications($slug: String){
     publications(slug: $slug, status: true){
@@ -32,6 +31,7 @@ function LogoBuscador({ partner }) {
 
   useEffect(() => {
     getPublications()
+    if (window.screen.width > 420) setShowSearchBox(true)
   }, [])
 
   function onTagsChange(event, values) {
@@ -52,17 +52,22 @@ function LogoBuscador({ partner }) {
         </Link>
       )}
 
-      <div className={styles.content_buscador}>
-        <Autocomplete
-          freeSolo
-          className="input-buscador"
-          id={styles["free-solo-2-demo"]}
-          disableClearable
-          onChange={onTagsChange}
-          options={products ? products.publications.map((option) => option.title) : []}
-          renderInput={(params, ind) => <TextField inputProps={{ min: 0, style: { textAlign: "center" }, type: "search" }} {...params} key={ind} className={styles.buscador} label={<span><FontAwesomeIcon icon={faSearch} /> &nbsp;nintendo switch</span>} />}
-        />
+      <div onClick={() => setShowSearchBox(!showSearchBox)} className={styles["icon-search-mobile"]}>
+        <FontAwesomeIcon icon={faSearch} />
       </div>
+      {
+        <div className={styles.content_buscador} style={{ display: showSearchBox ? "block" : "none" }}>
+          <Autocomplete
+            freeSolo
+            className="input-buscador"
+            id={styles["free-solo-2-demo"]}
+            disableClearable
+            onChange={onTagsChange}
+            options={products ? products.publications.map((option) => option.title) : []}
+            renderInput={(params, ind) => <TextField inputProps={{ min: 0, style: { textAlign: "center" }, type: "search" }} {...params} key={ind} className={styles.buscador} label={<span><FontAwesomeIcon icon={faSearch} /> &nbsp;nintendo switch, ps5, controles de xbox</span>} />}
+          />
+        </div>
+      }
     </ul>
   </div>
   )

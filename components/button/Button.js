@@ -4,7 +4,7 @@ import styles from './button.module.scss'
 
 export default function Button({ id, children, blockClick, color, className, onClick, databutton }) {
     return (
-        <ButtonMat id={id} databutton={databutton} onClick={blockClick ? null : onClick} className={`${styles.btn} ${styles[color]}`}>
+        <ButtonMat id={id} databutton={databutton} onClick={blockClick ? null : onClick} className={`${styles.btn} ${styles[color]} ${className}`}>
             <span className="text">{children}</span>
         </ButtonMat>
     )

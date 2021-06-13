@@ -35,14 +35,12 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
   const [showVideo, setShowVideo] = useState(false)
 
   useEffect(() => {
-    if (localStorage.getItem("user") == null) {
-      setShowVideo(true)
-    }
+    if (localStorage.getItem("user") == null) setShowVideo(true)
     setTimeout(() => {
       document.querySelectorAll("video").forEach(item => {
         item.play()
       })
-    }, 1000)
+    }, 2000)
   }, [])
 
   const handleVideo = () => {
@@ -52,7 +50,7 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
   return <React.Fragment>
     {
       showVideo && <div className={styles.videoContent}>
-        <video onClick={handleVideo} className="block-center" src="/videos/video1.mp4" autoplay />
+        <video onClick={handleVideo} className="block-center" src="/videos/video1.mp4" />
       </div>
     }
     <SpecialBanner {...{ category, handleLike, popularyItem, starItem }} />
@@ -64,7 +62,7 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
         <div className="listadoRodadas">
           {feed && feed.map((item, ind) => {
             return <React.Fragment>
-              {ind == 4 && <video className="block-center video-evita-estafas" src="/videos/evita-estafas.mp4" autoplay />}
+              {ind == 4 && <video className="block-center video-evita-estafas" src="/videos/evita-estafas.mp4" />}
               <Card special_title="Más vendido" handleLike={handleLike} {...item} />
             </React.Fragment>
           })}

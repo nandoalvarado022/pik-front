@@ -680,6 +680,7 @@ export default class Funciones {
 export const getFeed = async ({ slug = "", category = null, subcategory = null }) => {
   const query = `query {
       publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}) {
+        accept_changues
         banner_bottom
         banner_top
         category
@@ -866,10 +867,12 @@ export function getCategories(id) {
 
 export function getSubcategories(id) {
   const subcategories = [
-    { id: 1, name: "Membresias Nintendo Switch", image: "/images/icons/1.png", url: "/subcategory/membresias-nintendo-switch" },
-    { id: 2, name: "Membresias Playstation", image: "/images/icons/icon-membresia-ps.png", url: "/subcategory/membresias-playstation" },
-    { id: 3, name: "Promociones", image: "/images/icons/icon-discount.png", url: "/subcategory/promociones" },
-    { id: 4, name: "Juegos Clasicos en Descuento", image: "/images/icons/mario-classic.png", url: "/subcategory/juegos-clasicos-en-descuento" },
+    { id: 1, name: "Membresias Nintendo Switch", url: "/subcategory/membresias-nintendo-switch" },
+    { id: 2, name: "Membresias Playstation", url: "/subcategory/membresias-playstation" },
+    { id: 3, name: "Promociones", url: "/subcategory/promociones" },
+    { id: 4, name: "Juegos Clasicos", url: "/subcategory/juegos-clasicos" },
+    { id: 5, name: "Combos", url: "/subcategory/combos" },
+    { id: 6, name: "Sorteos", url: "/subcategory/sorteos" },
   ]
   if (id) return subcategories.find(item => item.id == id)
   return subcategories

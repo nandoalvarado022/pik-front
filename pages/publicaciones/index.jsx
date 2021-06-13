@@ -19,6 +19,7 @@ export default function MyPublications(props) {
 	const PUBLICATIONS_QUERY = gql`
 	query Publications($phone: String){
 		publications(phone: $phone){
+			accept_changues
 			id
 			image_link
 			slug

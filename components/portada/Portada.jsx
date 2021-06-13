@@ -6,9 +6,8 @@ import 'date-and-time/locale/es'
 
 date.locale('es');
 
-function Portada({ category, feed: feedProps }) {
+function Portada({ category, feed }) {
   const router = useRouter()
-  const [feed, setFeed] = useState(feedProps)
   const popularyItem = feed && feed.reduce((prev, current) => {
     return prev.views > current.views ? prev : current
   }, [])
