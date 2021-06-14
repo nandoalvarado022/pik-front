@@ -1,9 +1,11 @@
 import { gql, useMutation } from "@apollo/client"
 import Router from "next/router"
+import { useRouter } from 'next/router'
 import { useEffect, useState } from "react"
 import Layout from "../../components/layout/Layout"
 import { handleLogout, subirImagen } from "../../lib/utils"
 import Interface from "./Interface"
+import Notification from "../../components/notification/"
 
 const CHANGE_PROFILE = gql`
 mutation ChangeProfileData($input: UserInput){
@@ -11,19 +13,27 @@ mutation ChangeProfileData($input: UserInput){
 }`
 
 const Perfil = () => {
+  const router = useRouter()
+  const showSavedMessage = !!Object.keys(router.query).find(x => x == "updated")
   const [updateUser, { data, error, loading }] = useMutation(CHANGE_PROFILE)
   const [userData, setUserData] = useState()
   const [isSaving, setIsSaving] = useState(false)
+  const [isProfileComplete, setIsProfileComplete] = useState(true)
 
-  useEffect(() => {
+  const loadUserInformation = () => {
     const user = JSON.parse(localStorage.getItem("user"))
     delete user.login_code
+    if (!user.name || !user.email || !user.picture) setIsProfileComplete(false)
+    else setIsProfileComplete(true)
     setUserData(user)
+  }
+
+  useEffect(() => {
+    loadUserInformation()
   }, [])
 
   const handleSave = async () => {
     setIsSaving(true)
-
     // saving image in firebase
     let picture = document.getElementById("profileElement")
     if (picture.value) {
@@ -49,12 +59,18 @@ const Perfil = () => {
     // saving in localstorage
     const user = JSON.parse(localStorage.getItem("user"))
     localStorage.setItem("user", JSON.stringify({ ...user, ...input }))
-
-    setTimeout(() => setIsSaving(false), 1000)
-    Router.push("/perfil?updated")
+    setTimeout(() => {
+      setIsSaving(false)
+      loadUserInformation()
+      Router.push("/perfil?updated")
+    }, 1000)
   }
 
+  let message = !isProfileComplete ? "Completa tu perfil lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore dicta quas voluptates." : null
+  if(showSavedMessage) message = "Perfil actualizado!"
+
   return <Layout>
+    {message && <Notification message={message} />}
     <Interface {...{ userData, isSaving, handleSave, handleLogout, setUserData }} />
   </Layout>
 }
