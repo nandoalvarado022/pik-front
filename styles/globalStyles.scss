@@ -672,11 +672,14 @@ h3 {
 }
 
 a {
+    color: #585858;
     text-decoration: none;
+    &.underline {
+        text-decoration: underline;
+    }
 }
 
 .image-gallery-thumbnails-wrapper {
-    background: #ececec;
     padding: 0 10px;
 }
 
