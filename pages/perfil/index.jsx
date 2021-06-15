@@ -66,11 +66,11 @@ const Perfil = () => {
     }, 1000)
   }
 
-  let message = !isProfileComplete ? "Completa tu perfil lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore dicta quas voluptates." : null
+  let message = !isProfileComplete ? "Completa tu perfil" : null
   if(showSavedMessage) message = "Perfil actualizado!"
 
   return <Layout>
-    {message && <Notification message={message} />}
+    {message && <Notification isOpen={true} message={message} />}
     <Interface {...{ userData, isSaving, handleSave, handleLogout, setUserData }} />
   </Layout>
 }

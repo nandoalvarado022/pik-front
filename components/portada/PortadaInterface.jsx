@@ -4,7 +4,9 @@ import styles from "./portada.module.scss"
 import { useEffect, useState } from 'react';
 import Link from 'next/link'
 import Subcategories from '../subcategories';
-// import ArticlesList from "../articlesList/ArticlesList";
+import Notification from "../notification";
+import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
   if (!category && popularyItem && starItem) {
@@ -43,14 +45,24 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
     }, 2000)
   }, [])
 
-  const handleVideo = () => {
+  const handlePlay = () => {
     document.getElementById("btnStart").click()
   }
 
+  const message = <div>
+    <p>🔵 Bienvenido a pikajuegos</p>
+    <p>💙 Nuestra misión es reducir y desaparecer las estafas en línea, si conoces algún estafador que este en nuestra plataforma no dudes en dar click en el botón denunciar.</p>
+    <p>🤝 Recuerda que puedes confiar plenamente en los aliados que tengan el icono <span style={{ color: "#04a4c4;" }}><FontAwesomeIcon icon={faCheckCircle} /></span> al lado de su nombre, a estos los respaldamos completamente.</p>
+    <p>Puedes hacer login haciendo click ➡ <span onClick={handlePlay}>aquí.</span></p>
+  </div>
+
+  let isOpen = typeof window != "undefined" && !sessionStorage.getItem("hasFirstHome") ? true : false
+
   return <React.Fragment>
+    {isOpen && <Notification isOpen={isOpen} message={message} />}
     {
       showVideo && <div className={styles.videoContent}>
-        <video onClick={handleVideo} className="block-center" src="/videos/video1.mp4" />
+        <video onClick={handlePlay} className="block-center" src="/videos/video1.mp4" />
       </div>
     }
     <SpecialBanner {...{ category, handleLike, popularyItem, starItem }} />

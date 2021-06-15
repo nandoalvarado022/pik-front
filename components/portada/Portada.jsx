@@ -3,11 +3,13 @@ import PortadaInterface from './PortadaInterface'
 import { useState } from 'react';
 import { useRouter } from 'next/router'
 import 'date-and-time/locale/es'
+import { useEffect } from 'react';
 
 date.locale('es');
 
 function Portada({ category, feed }) {
   const router = useRouter()
+  const [open, setOpen] = useState(false)
   const popularyItem = feed && feed.reduce((prev, current) => {
     return prev.views > current.views ? prev : current
   }, [])
@@ -23,7 +25,13 @@ function Portada({ category, feed }) {
     }
   }
 
-  return <PortadaInterface {...{ feed, category, handleLike, popularyItem, starItem }} />
+  useEffect(() => {
+    setTimeout(() => {
+      sessionStorage.setItem("hasFirstHome", true)
+    }, 1000);
+  }, [])
+
+  return <PortadaInterface {...{ feed, category, handleLike, open, popularyItem, starItem }} />
 }
 
 export default Portada

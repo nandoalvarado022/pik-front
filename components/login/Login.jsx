@@ -11,9 +11,9 @@ export default function Login() {
 	const [isCodeSended, setIsCodeSended] = useState(false)
 	const [buttonText, setButtonText] = useState("Enviar")
 	const VALIDATE_QUERY = gql`
-  query validateLogin($phone: String, $code: Int){
-    validateLogin(phone: $phone, code: $code)
-  }`
+	query validateLogin($phone: String, $code: Int){
+		validateLogin(phone: $phone, code: $code)
+	}`
 
 	const [validateLogin, { data: dataValidate, error: errorValidate }] = useLazyQuery(VALIDATE_QUERY, {
 		onCompleted: (data) => {
@@ -38,9 +38,9 @@ export default function Login() {
 	})
 
 	const LOGIN_MUTATION = gql`
-  mutation Login($phone: String){
-		setLoginCode(phone: $phone)
-  }`
+	mutation Login($phone: String){
+			setLoginCode(phone: $phone)
+	}`
 
 	const [dispatchLogin, { }] = useMutation(LOGIN_MUTATION);
 
