@@ -747,8 +747,12 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
           reject(err);
         },
         async function (snapshot) {
-          let downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-          arrayURLS.push(downloadURL);
+          let downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
+          /*const file_name = uploadTask.snapshot.ref.name
+          debugger*/
+          // uploadTask.snapshot.ref
+          // debugger
+          arrayURLS.push(downloadURL)
           if (arrayURLS.length == $imagenes.files.length) resolve(arrayURLS);
         }
       );
