@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons"
+import { faImage } from "@fortawesome/free-solid-svg-icons"
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -26,10 +26,10 @@ const PublicationForminterface = ({ currentStep, nextStep, textButton, previusSt
 
   if (!!publicationFormData?.title || !isEdit) {
     return <div className={styles.content}>
-      <div className="fields">
+      <div className={styles.fields}>
         {
           currentStep == 1 && <>
-            <div className="Card">
+            <div className={`Card ${styles.card}`}>
               <TextField autoFocus fullWidth={true} label="Título" margin="normal" fullWidth value={title} onChange={e => setPublicationFormData({ ...publicationFormData, title: e.target.value })} />
               <div onContextMenu={handleRightClick}>
                 <Button className="button_category" color="border-button" aria-controls="tipo_publicacion" onClick={handleRightClick} aria-haspopup="true">{!publicationFormData.category ? "Seleccionar la categoria" : "Categoria: " + getCategories(publicationFormData.category).name}</Button>
@@ -73,15 +73,20 @@ const PublicationForminterface = ({ currentStep, nextStep, textButton, previusSt
             <div className={`Card ${styles.images_list}`}>
               {
                 ["image_link", "image_2", "image_3", "image_4"].map(item => {
-                  return <li>
+                  return <>
                     {
-                      publicationFormData[item] == null && <input type='file' id={item} onChange={() => onChangeImage(item)} />
+                      publicationFormData[item] == null && <label class={styles.fileWrapper}>
+                        <input type='file' id={item} onChange={() => onChangeImage(item)} />
+                        <FontAwesomeIcon icon={faImage} />
+                        <p>Subir imágen</p>
+                      </label>
                     }
                     {
-                      publicationFormData[item] != null && <img style={{ maxWidth: "100px", display: "block" }}
-                        className="imageRodada" src={publicationFormData[item]} />
+                      publicationFormData[item] != null && <label class={styles.fileWrapper}>
+                        <img style={{ maxWidth: "100px", display: "block" }} className="imageRodada" src={publicationFormData[item]} />
+                      </label>
                     }
-                  </li>
+                  </>
                 })
               }
             </div>
