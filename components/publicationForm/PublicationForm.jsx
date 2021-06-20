@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight, faCheck } from "@fortawesome/free-solid-svg-icons"
 import { useRouter, withRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { gql, useMutation, useQuery } from '@apollo/client'
@@ -43,6 +45,15 @@ const PublicationForm = (props) => {
 	const { data: publicationEditData, errorPED, loading: loadingPED } = slugPublication ? useQuery(QUERY_PUBLICATION, { variables }) : {}
 	const [time, setTime] = useState()
 	const isEdit = props.router.query?.id ? true : false
+	const [currentStep, setCurrentStep] = useState(1)
+	let textButton = <>
+		Siguiente
+		<FontAwesomeIcon icon={faChevronRight} />
+	</>
+	if (currentStep == 3) textButton = <>
+		Guardar
+		<FontAwesomeIcon icon={faCheck} />
+	</>
 
 	useEffect(() => {
 		if (publicationEditData?.publications) {
@@ -59,6 +70,15 @@ const PublicationForm = (props) => {
 		setPublicationFormData({ ...publicationFormData, [variable]: image[0] })
 	}
 
+	function previusStep() {
+		setCurrentStep(currentStep - 1)
+	}
+
+	function nextStep() {
+		if (currentStep == 3) handleSubmit()
+		else setCurrentStep(currentStep + 1)
+	}
+
 	function handleSubmit() {
 		const validators = () => {
 			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.quantity || !publicationFormData.category || !publicationFormData.image_link) {
@@ -68,7 +88,16 @@ const PublicationForm = (props) => {
 			return true
 		}
 
-		if (!validators()) return false // Validation
+		const validateUser = () => {
+			if (!!!localStorage.getItem("user")) {
+				document.getElementById("btnStart").click()
+				return false
+			} else {
+				return true
+			}
+		}
+
+		if (!validators() || !validateUser()) return false // Validation
 		const random_num = rn({ min: 0, max: 1000, integer: true })
 		const slug_prepared = slugify(publicationFormData.title, 60)
 		const slug = slug_prepared + "-" + random_num
@@ -90,7 +119,7 @@ const PublicationForm = (props) => {
 		router.push("/publicaciones")
 	}
 
-	return <PublicationForminterface {...{ isEdit, publicationFormData, onChangeImage, handleSubmit, imageLoading, errors, screenWidth, setPublicationFormData }} />
+	return <PublicationForminterface {...{ currentStep, errors, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton }} />
 }
 
 export default withRouter(PublicationForm)

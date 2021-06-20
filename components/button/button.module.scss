@@ -40,4 +40,17 @@ button.btn {
     &.remove {
         display: none;
     }
+    .text {
+        display: flex;
+        align-items: center;
+        svg {
+            margin-left: 5px;
+            transition: .2s ease-in;
+        }
+    }
+    &.animation:hover {
+        .text svg {
+            transform: translateX(5px);
+        }
+    }
 }
