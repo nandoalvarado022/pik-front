@@ -749,7 +749,7 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
         },
         async function (snapshot) {
           setTimeout(async () => {
-            const ref_thumbnail = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_250x250.jpg");
+            const ref_thumbnail = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_320x320.jpg");
             const ref_full = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_1080x1080.jpg");
             const url_thumbnail = await ref_thumbnail.getDownloadURL()
             const url_full = await ref_full.getDownloadURL()
@@ -757,7 +757,7 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
             arrayURLS.push(url_full)
             // if (arrayURLS.length == $imagenes.files.length) 
             resolve(arrayURLS);
-          }, 2000)
+          }, 3000)
           /*const file_name = uploadTask.snapshot.ref.name
           debugger*/
           // uploadTask.snapshot.ref
