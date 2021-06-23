@@ -72,7 +72,7 @@ const PublicationForminterface = ({ currentStep, nextStep, textButton, previusSt
 
             <div className={`Card ${styles.images_list}`}>
               {
-                ["image_link", "image_2", "image_3", "image_4"].map(item => {
+                ["image_1", "image_2", "image_3", "image_4"].map(item => {
                   return <>
                     {
                       publicationFormData[item] == null && <label class={styles.fileWrapper}>

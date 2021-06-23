@@ -687,6 +687,7 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
         certificate
         description
         id
+        image_1
         image_2
         image_3
         image_4
@@ -747,13 +748,20 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
           reject(err);
         },
         async function (snapshot) {
-          let downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
+          setTimeout(async () => {
+            const ref_thumbnail = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_250x250.jpg");
+            const ref_full = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_1080x1080.jpg");
+            const url_thumbnail = await ref_thumbnail.getDownloadURL()
+            const url_full = await ref_full.getDownloadURL()
+            arrayURLS.push(url_thumbnail)
+            arrayURLS.push(url_full)
+            // if (arrayURLS.length == $imagenes.files.length) 
+            resolve(arrayURLS);
+          }, 2000)
           /*const file_name = uploadTask.snapshot.ref.name
           debugger*/
           // uploadTask.snapshot.ref
           // debugger
-          arrayURLS.push(downloadURL)
-          if (arrayURLS.length == $imagenes.files.length) resolve(arrayURLS);
         }
       );
     });
