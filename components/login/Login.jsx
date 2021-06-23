@@ -23,7 +23,7 @@ export default function Login() {
 				localStorage.setItem("token", JSON.parse(validateLogin).token)
 				setIsOpen(false)
 				loadAudio("/audios/noti.mp3")
-				Router.push("/?login=on")
+				Router.push("?login=on")
 			} else {
 				document.getElementById("verificationCode").value = ""
 				alert("Código no valido")

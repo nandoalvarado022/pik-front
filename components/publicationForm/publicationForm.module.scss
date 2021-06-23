@@ -4,6 +4,12 @@
     }
 }
 
+.fields {
+    > div:not(.actions) {
+        margin-bottom: 10px;
+    }
+}
+
 .actions {
     margin-top: 5px;
     text-align: right;
@@ -32,12 +38,24 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
-    li {
-        list-style: none;
-        width: 45%;
-        margin-bottom: 20px;
+
+    .fileWrapper {
+        align-items: center;
+        border: #04a4c4 1px dashed;
+        color: #04a4c4;
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        justify-content: center;
+        margin: 10px 5px;
+        padding: 10px;
+        width: 100px;
         input {
+            display: none;
             padding: 5px;
+        }
+        p {
+            margin: 5px 5px 0 0;
         }
     }
 }
@@ -47,7 +65,7 @@
     @media screen and (min-width: 768px) {
         display: flex;
         width: 1200px;
-        >* {
+        > * {
             width: 45%;
         }
     }
@@ -69,7 +87,6 @@
 }
 
 .preview_card {
-    height: 400px;
     margin: 0 auto 10px;
     width: max-content;
     @media screen and (max-width: 420px) {
