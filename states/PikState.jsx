@@ -5,17 +5,22 @@ import { createContext } from "react"
 const PikState = (props) => {
   const initialState = {
     isOpenPreviewProfile: false,
-    coins: 1505,
+    isOpenNotifications: false,
+    coins: 15,
     selectedUser: null,
   }
 
   const [state, dispatch] = useReducer(PikReducer, initialState);
 
+  const customDispatch = (values) => {
+    dispatch(values)
+  }
+
   return (
     <PikContext.Provider
       value={{
         ...state,
-        dispatch,
+        customDispatch,
       }}
     >
       {props.children}

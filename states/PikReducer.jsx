@@ -1,15 +1,16 @@
 const PikReducer = (state, action) => {
   const { payload, type } = action
   switch (type) {
-    case "IS_OPEN_PREVIEW_PROFILE":
+    case "CHANGE_PROPERTY":
+      const { property, value } = payload
       return {
         ...state,
-        isOpenPreviewProfile: payload,
+        [property]: value
       }
-    case "GET_PROFILE":
+    case "RECLAMAR_COINS":
       return {
         ...state,
-        selectedUser: payload,
+        coins: state.coins + payload.coins,
       }
     default:
       return state;

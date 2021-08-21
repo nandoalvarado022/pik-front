@@ -15,7 +15,7 @@
         }
     }
     .perfil {
-        box-shadow: 1px 1px 4px #0a0a0a9e;
+        // box-shadow: 1px 1px 2px #0a0a0a9e;
         display: inline-flex;
         background: #152c44;
         border-radius: 20px;
@@ -23,9 +23,6 @@
         color: #efefef;
         cursor: pointer;
         font-weight: bold;
-        .PreviewUser {
-            height: 180px !important;
-        }
         &:hover {
             .PreviewUser {
                 height: 180px;

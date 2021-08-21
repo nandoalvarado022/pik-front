@@ -33,7 +33,7 @@ export const PreviewUser = ({ showPreview }) => {
     getCoins()
   }, [])
 
-  return <div className={`${styles.PreviewUser} ${context.isOpenPreviewProfile ? styles.actived : null}`}>
+  return <div className={`${styles.PreviewUser} PreviewUser ${context.isOpenPreviewProfile ? styles.actived : null}`}>
     <ol>
       <Link href="/perfil" as="/perfil">
         Mi cuenta
@@ -52,9 +52,7 @@ export const PreviewUser = ({ showPreview }) => {
         <span>x</span>
         <picture className={styles.coin} />
       </div>
-      <div className={styles.text}>
-        ¡tienes 14 monedas <br />en espera!
-      </div>
+      <div className={styles.text} title="Aún estan en proceso las transacciones por las cuales ganastes estas monedas. Una vez se validen estas tus monedas se confirmaran">¡tienes 14 monedas <br />en espera!</div>
     </ol>
   </div>
 }

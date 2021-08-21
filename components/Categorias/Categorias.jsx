@@ -8,9 +8,11 @@ import styles from "./categorias.module.scss"
 import { getCategories, slugify } from "../../lib/utils"
 import { PreviewUser } from "../previewUser/PreviewUser"
 import { PikContext } from '../../states/PikState'
+import UserNotifications from '../userNotifications/UserNotifications'
 
 const Categorias = ({ scroll }) => {
   const [showPreview, setShowPreview] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(false)
   const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture
   const context = useContext(PikContext)
   return <div className={styles.Categorias}>
@@ -81,16 +83,17 @@ const Categorias = ({ scroll }) => {
       {
         typeof localStorage != "undefined" && localStorage.getItem("user") ? <React.Fragment>
           <li className={styles.logout}>
-            <a className={styles.perfil} onClick={() => context.dispatch({ type: "IS_OPEN_PREVIEW_PROFILE", payload: !context.isOpenPreviewProfile }) /*setShowPreview(!showPreview)*/}>
+            <a className={styles.perfil} onClick={() => context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "isOpenPreviewProfile", value: !context.isOpenPreviewProfile } })}>
               <span className={styles.picture} style={{ "background-image": `url(${picture})` }} />
-              Perfil <FontAwesomeIcon className={`${styles.arrow} ${showPreview ? styles.actived : null}`} icon={faArrowDown} />
+              Perfil <FontAwesomeIcon className={`${styles.arrow} ${context.isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} />
             </a>
-            <PreviewUser {...{ showPreview }} />
+            <PreviewUser />
           </li>
         </React.Fragment>
           :
           <Login />
       }
+      <UserNotifications />
     </ul>
   </div >
 }
