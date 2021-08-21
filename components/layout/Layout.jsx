@@ -31,7 +31,6 @@ const events = {
   onChanged: function (event) { }
 };
 
-
 class Layout extends React.Component {
   club_short_name = null;
   state = {
@@ -148,7 +147,7 @@ class Layout extends React.Component {
           gtag('config', 'AW-941382150');
           gtag('event', 'conversion', { 'send_to': 'AW-941382150/e71oCMvon-0BEIa08cAD' });
         }}()
-        </Head>
+      </Head>
       <body className="App font-a">
         <Header {...props} />
         <LogoBuscador partner={is_partner ? partner : null} />

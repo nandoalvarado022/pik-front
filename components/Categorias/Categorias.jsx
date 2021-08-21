@@ -1,13 +1,18 @@
-
-import React from "react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import React, { useContext, useState } from "react"
 import Link from "next/link"
 import Router from "next/router"
 import Login from "../login/Login"
 import styles from "./categorias.module.scss"
 import { getCategories, slugify } from "../../lib/utils"
+import { PreviewUser } from "../previewUser/PreviewUser"
+import { PikContext } from '../../states/PikState'
 
 const Categorias = ({ scroll }) => {
+  const [showPreview, setShowPreview] = useState(false)
   const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture
+  const context = useContext(PikContext)
   return <div className={styles.Categorias}>
     <ul>
       <li filter="game">
@@ -75,18 +80,12 @@ const Categorias = ({ scroll }) => {
       </li>
       {
         typeof localStorage != "undefined" && localStorage.getItem("user") ? <React.Fragment>
-          <li>
-            <Link href="/publicaciones" as="/publicaciones">
-              <a>Mis publicaciones</a>
-            </Link>
-          </li>
           <li className={styles.logout}>
-            <Link href="/perfil" as="/perfil">
-              <a className={styles.perfil}>
-                <span className={styles.picture} style={{ "background-image": `url(${picture})` }} />
-                Perfil
-              </a>
-            </Link>
+            <a className={styles.perfil} onClick={() => context.dispatch({ type: "IS_OPEN_PREVIEW_PROFILE", payload: !context.isOpenPreviewProfile }) /*setShowPreview(!showPreview)*/}>
+              <span className={styles.picture} style={{ "background-image": `url(${picture})` }} />
+              Perfil <FontAwesomeIcon className={`${styles.arrow} ${showPreview ? styles.actived : null}`} icon={faArrowDown} />
+            </a>
+            <PreviewUser {...{ showPreview }} />
           </li>
         </React.Fragment>
           :

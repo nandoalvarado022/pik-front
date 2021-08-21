@@ -4,7 +4,7 @@ import fetch from "node-fetch";
 import { createHttpLink } from "apollo-link-http"
 import { ApolloProvider } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
-import { AppContextProvider } from "../contexts/context"
+import PikState from "../states/PikState"
 import TagManager from 'react-gtm-module'
 import VARS from "../lib/variables"
 
@@ -46,9 +46,9 @@ export default function MyApp(props) {
     TagManager.initialize({ gtmId: 'GTM-5WB6P7C' })
   }, []);
 
-  return <AppContextProvider>
+  return <PikState>
     <ApolloProvider client={client} >
       <Component {...pageProps} key={router.name} />
     </ApolloProvider>
-  </AppContextProvider>
+  </PikState>
 }

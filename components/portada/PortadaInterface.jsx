@@ -7,6 +7,7 @@ import Subcategories from '../subcategories';
 import Notification from "../notification";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import HolaJuanito from "../holaJuanito/HolaJuanito"
 
 const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
   if (!category && popularyItem && starItem) {
@@ -59,6 +60,7 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
   let isOpen = typeof window != "undefined" && !sessionStorage.getItem("hasFirstHome") ? true : false
 
   return <React.Fragment>
+    <HolaJuanito />
     {isOpen && <Notification isOpen={isOpen} message={message} />}
     {
       showVideo && <div className={styles.videoContent}>

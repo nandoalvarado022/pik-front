@@ -1,7 +1,6 @@
 import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import Router from "next/router"
 import { useEffect, useState } from "react"
-import { useAppContext } from '../../contexts/context'
 import LoginInterface from "./LoginInterface"
 import VARS from "../../lib/variables"
 import { loadAudio } from '../../lib/utils'

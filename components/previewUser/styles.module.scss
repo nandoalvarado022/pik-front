@@ -1,0 +1,62 @@
+.PreviewUser {
+    background: #24292e;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px #5252522e;
+    color: white;
+    font-size: 14px;
+    height: 0;
+    margin: -20px 0 0 0;
+    overflow: hidden;
+    transition: .5s ease;
+    z-index: -2;
+    &.actived {
+        height: 180px;
+    }
+    ol {
+        border-bottom: 1px solid #424950;
+        margin: 10px 0;
+        padding: 0 20px 10px;
+        text-align: center;
+        &:nth-of-type(1) {
+            margin-top: 30px;
+        }
+        a {
+            color: white;
+            justify-content: center;
+        }
+        .flex {
+            align-items: center;
+            display: flex;
+            height: 20px;
+            justify-content: space-around;
+            margin: 0 auto;
+            width: 80px;
+        }
+        .coin {
+            animation: like 1s steps(6) infinite;
+            background-image: url("/images/gifs/coins.png");
+            background-position-x: -8px;
+            background-position-y: 0px;
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            transform: scale(0.6);
+        }
+        .number {
+            font-size: 18px;
+        }
+        .text {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    }
+}
+
+@keyframes like {
+    100% {
+        background-position-x: -8px;
+    }
+    0% {
+        background-position-x: 292px;
+    }
+}

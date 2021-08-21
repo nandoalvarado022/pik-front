@@ -1,0 +1,39 @@
+.HolaJuanito {
+    position: relative;
+    margin: 50px auto 50px;
+    width: 1300px;
+    .texts {
+        display: inline-block;
+        margin: 0px 0 0 50px;
+        width: 500px;
+        .text1 {
+            color: #575656;
+            font-size: 36px;
+        }
+        .text2 {
+            color: #575656;
+            display: inline-block;
+        }
+    }
+    .categories {
+        display: inline-flex;
+        vertical-align: top;
+        >* {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px 0 #ababab52;
+            box-sizing: border-box;
+            color: #585858;
+            margin: 0px 20px 40px;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 1;
+        }
+    }
+    img {
+        position: absolute;
+        right: 0;
+        top: 0px;
+        width: 300px;
+    }
+}

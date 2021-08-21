@@ -1,6 +1,6 @@
 .Categorias {
     width: calc(100vw - 8px);
-    box-shadow: 0px 4px 4px #5252522e;
+    box-shadow: 0px 2px 2px #5252522e;
     position: sticky;
     top: 50px;
     z-index: 2;
@@ -15,11 +15,29 @@
         }
     }
     .perfil {
-        background: #24292e;
+        box-shadow: 1px 1px 4px #0a0a0a9e;
+        display: inline-flex;
+        background: #152c44;
         border-radius: 20px;
         padding: 0 15px 0 10px;
         color: #efefef;
+        cursor: pointer;
         font-weight: bold;
+        .PreviewUser {
+            height: 180px !important;
+        }
+        &:hover {
+            .PreviewUser {
+                height: 180px;
+            }
+        }
+        .arrow {
+            color: #b3b3b3;
+            margin-left: 10px;
+            &.actived {
+                transform: rotate( 180deg);
+            }
+        }
         .picture {
             border-radius: 50%;
             height: 30px;
@@ -32,7 +50,6 @@
     }
     ul {
         padding: 0;
-        overflow: hidden;
         display: flex;
         background-color: white;
         justify-content: center;
