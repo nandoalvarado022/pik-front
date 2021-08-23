@@ -46,9 +46,9 @@ export default function MyApp(props) {
     TagManager.initialize({ gtmId: 'GTM-5WB6P7C' })
   }, []);
 
-  return <PikState>
-    <ApolloProvider client={client} >
+  return <ApolloProvider client={client} >
+    <PikState>
       <Component {...pageProps} key={router.name} />
-    </ApolloProvider>
-  </PikState>
+    </PikState>
+  </ApolloProvider>
 }

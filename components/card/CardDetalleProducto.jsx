@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react"
 import styles from "./cardDetalleProducto.module.scss"
 import React from "react"
 
-const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, description = "", image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, handleComprar, quantity } = {}) => {
+const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, description = "", image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, quantity } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
@@ -74,7 +74,7 @@ const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, descripti
               )}
             </div>
 
-            {quantity > 0 && (<Button color="blue" onClick={handleComprar}>Hablar con el vendedor</Button>)}
+            {quantity > 0 && (<Button color="blue" onClick={setIsModalHablarVendedor}>Hablar con el vendedor</Button>)}
 
             <p>
               <a className="underline" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pikajuegos.com">Denunciar</a>

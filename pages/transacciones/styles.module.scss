@@ -1,0 +1,9 @@
+ul.Transactions {
+    display: flex;
+    >*>* {
+        margin: 10px;
+    }
+    .id {
+        font-weight: bold;
+    }
+}

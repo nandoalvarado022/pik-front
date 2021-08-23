@@ -1,4 +1,3 @@
-import { gql, useLazyQuery } from '@apollo/client'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBell, faTimesCircle } from "@fortawesome/free-regular-svg-icons"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
@@ -8,31 +7,7 @@ import styles from "./styles.module.scss"
 
 const UserNotifications = () => {
   const context = useContext(PikContext)
-  const [notifications, setNotifications] = useState([])
-  const GET_NOTIFICATIONS = gql`
-	query getNotifications($user: Int){
-		getNotifications(user: $user){
-      id
-      user
-      detail
-      coins
-      created
-    }
-	}`
-
-  const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
-    fetchPolicy: "no-cache",
-    variables: {
-      user: typeof localStorage != "undefined" ? JSON.parse(localStorage.getItem("user")).id : 0
-    },
-    onCompleted: ({ getNotifications }) => {
-      setNotifications(getNotifications)
-    }
-  })
-
-  useEffect(() => {
-    getNotifications()
-  }, [])
+  const notifications = context.notifications
 
   const reclamarCoins = (coins, idNotification) => {
     context.customDispatch({ type: "RECLAMAR_COINS", payload: { coins } })
@@ -41,7 +16,7 @@ const UserNotifications = () => {
 
   const deleteNotification = (idNotification) => {
     const _notifications = notifications.filter(item => item.id != idNotification)
-    setNotifications(_notifications)
+    context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: _notifications } })
   }
 
   return <li className={styles.UserNotifications}>

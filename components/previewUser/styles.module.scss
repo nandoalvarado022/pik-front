@@ -10,7 +10,7 @@
     transition: .5s ease;
     z-index: -2;
     &.actived {
-        height: 180px;
+        height: 306px;
     }
     ol {
         border-bottom: 1px solid #424950;
@@ -21,7 +21,7 @@
             margin-top: 30px;
         }
         a {
-            color: white;
+            color: white !important;
             justify-content: center;
         }
         .flex {
