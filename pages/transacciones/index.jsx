@@ -3,6 +3,9 @@ import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useContext, useEffect, useState } from "react"
 import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
+import moment from "moment"
+
+moment.locale('es')
 
 const TransaccionesContainer = () => {
   const url = "https://pikajuegos.com/transacciones"
@@ -41,13 +44,14 @@ const Transacciones = () => {
   const GET_TRANSACTIONS = gql`
   query getTransactions($user: Int){
     getTransactions(user: $user){
-      id
-      user
-      type
-      detail
-      status
       created
+      detail
+      id
+      status
+      type
+      type
       u_name
+      user
     }
   }`
   const [getTransactions] = useLazyQuery(GET_TRANSACTIONS, { // Obteniendo notificaciones
@@ -70,8 +74,8 @@ const Transacciones = () => {
   }
 
   return <div>
-    <ul className={styles.Transactions}>
-      {transactions.map(({ id, user, type, detail, status, created, u_name }) => <ol style={{ display: "flex" }}>
+    <ul className={`${styles.Transactions} Card`}>
+      {transactions.map(({ created, detail, id, status, type, u_name, user }) => <ol style={{ display: "flex" }}>
         <div>
           <div className={styles.id}>ID</div>
           {id}
@@ -89,16 +93,22 @@ const Transacciones = () => {
           {detail}
         </div>
         <div>
+          <div className={styles.type}></div>
+          {type}
+        </div>
+        <div>
           <div className={styles.status}>Estado</div>
-          {status == 0 && "En conversacion"}
-          {status == 1 && "Transacción realizada"}
+          {status == 0 && "En conversación"}
+          {status == 1 && "Transacción realizada y confirmada"}
           {status == 2 && "Transacción cancelada"}
         </div>
         <div>
           <div className={styles.created}>
             Fecha
           </div>
-          {created}
+          <div>
+            {moment(parseInt(created)).format("MMMM DD YYYY, h:mm:ss a")}
+          </div>
         </div>
         <div className={styles.actions}>
           {status == 0 && <button onClick={() => handleConfirmarTransaccion(id)}>Confirmar transacción</button>}

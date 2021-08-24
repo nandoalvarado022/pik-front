@@ -74,7 +74,7 @@ const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, descripti
               )}
             </div>
 
-            {quantity > 0 && (<Button color="blue" onClick={setIsModalHablarVendedor}>Hablar con el vendedor</Button>)}
+            {quantity > 0 && (<Button color="blue" onClick={setIsModalHablarVendedor}>Me interesa este artículo</Button>)}
 
             <p>
               <a className="underline" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pikajuegos.com">Denunciar</a>

@@ -41,17 +41,7 @@ export const PreviewUser = ({ showPreview }) => {
     </ol>
     <ol>
       <Link href="/transacciones" as="/transacciones">
-        Mis compras
-      </Link>
-    </ol>
-    <ol>
-      <Link href="/transacciones" as="/transacciones">
-        Mis ventas
-      </Link>
-    </ol>
-    <ol>
-      <Link href="/transacciones" as="/transacciones">
-        Mis cambios
+        Transacciones
       </Link>
     </ol>
     <ol>

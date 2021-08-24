@@ -1,11 +1,13 @@
 import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import Router from "next/router"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import LoginInterface from "./LoginInterface"
 import VARS from "../../lib/variables"
 import { loadAudio } from '../../lib/utils'
+import { PikContext } from '../../states/PikState'
 
 export default function Login() {
+	const context = useContext(PikContext)
 	const [isOpen, setIsOpen] = useState(false)
 	const [isCodeSended, setIsCodeSended] = useState(false)
 	const [buttonText, setButtonText] = useState("Enviar")
@@ -19,6 +21,7 @@ export default function Login() {
 			const { validateLogin } = dataValidate
 			if (validateLogin) {
 				localStorage.setItem("user", validateLogin)
+				context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: validateLogin } })
 				localStorage.setItem("token", JSON.parse(validateLogin).token)
 				setIsOpen(false)
 				loadAudio("/audios/noti.mp3")

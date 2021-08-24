@@ -5,11 +5,10 @@ import { gql, useMutation } from '@apollo/client'
 import { useContext, useEffect, useState } from 'react';
 import styles from "../../public/css/modalIngresoInfo.module.scss"
 import { PikContext } from "../../states/PikState";
+import CiudadControl from "../../components/ciudadControl/CiudadControl";
 
 const ModalHablarVendedor = ({ datosPublicacion, onChange, setIsModalHablarVendedor }) => {
   const context = useContext(PikContext)
-  const listadoCiudades = ["Bogota", "Medellín", "Barranquilla", "Cali", "Bucaramanga", "Pasto", "Barrancabermeja", "Monteria", "Cartagena", "Santa Marta", "Manizales", "Cucuta", "Pereira", "Ibague", "Maicao", "Rioacha"]
-  const [ciudad, setCiudad] = useState()
   const LOGIN_MUTATION = gql`
     mutation createTransaction($user: Int, $publication: Int){
         createTransaction(user: $user, publication: $publication)
@@ -39,14 +38,13 @@ const ModalHablarVendedor = ({ datosPublicacion, onChange, setIsModalHablarVende
 
   const enviarWhatsapp = () => {
     const url = window.location
-    const texto = `Hola mi *nombre* es xxx, estoy interesado en este producto ${url} para envío a ${ciudad}`
+    const texto = `Hola mi *nombre* es ${context.user.name}, estoy interesado en este producto ${url} para envío a ${context.user.city}`
     window.open("https://api.whatsapp.com/send?phone=" + datosPublicacion.user_phone + "&text=" + texto)
   }
 
   const handlePagar = async () => {
-    // if (!this.state.nombre_completo || !this.state.str_ciudad) return
     createTransaction()
-    // enviarWhatsapp()
+    enviarWhatsapp()
     return
     /*
     const validaciones = this.validarAntesPagar();
@@ -139,18 +137,11 @@ const ModalHablarVendedor = ({ datosPublicacion, onChange, setIsModalHablarVende
     <div className={styles.background}></div>
     <div className={`Card ${styles.Card}`}>
       <h2>Tus datos para la entrega y pago</h2>
-      <TextField autoComplete="nombre" name="nombre_completo" fullWidth={true} onChange={onChange} label="Nombre" margin="normal" size={25} />
-
-      <div className="contentCiudad">
-        <Autocomplete name="str_ciudad" options={listadoCiudades} onInputChange={(event, str_ciudad) => { setCiudad({ str_ciudad }) }}
-          getOptionLabel={(option) => option}
-          style={{ width: "100%" }}
-          renderInput={(params) => <TextField {...params} label="Ciudad en la que te encuentras" />} />
-      </div>
-
+      <TextField value={context.user.name} autoComplete="nombre" name="nombre_completo" fullWidth={true} onChange={onChange} label="Nombre" margin="normal" size={25} />
+      <CiudadControl />
       <div className={styles.actions}>
         <Button onClick={() => { setIsModalHablarVendedor() }} color="normal">Cancelar</Button>
-        <Button onClick={handlePagar} color="blue">Pagar</Button>
+        <Button onClick={handlePagar} color="blue">Hablar con el vendedor</Button>
       </div>
     </div>
   </div>
