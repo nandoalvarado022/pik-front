@@ -32,7 +32,7 @@ const PikState = (props) => {
   const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
     fetchPolicy: "no-cache",
     variables: {
-      user: typeof localStorage != "undefined" ? JSON.parse(localStorage.getItem("user")).id : 0
+      user: typeof localStorage != "undefined" && localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).id : 0
     },
     onCompleted: ({ getNotifications }) => {
       getNotifications && dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: getNotifications } })

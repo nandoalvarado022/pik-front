@@ -4,10 +4,18 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { useContext, useEffect, useState } from 'react'
 import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
+import { gql, useMutation } from '@apollo/client'
 
 const UserNotifications = () => {
   const context = useContext(PikContext)
   const notifications = context.notifications
+
+  const DELETE_NOTIFICATION = gql`
+	mutation deleteNotification($id: Int){
+		deleteNotification(id: $id)
+	}`
+
+  const [deleteNotificationGraph] = useMutation(DELETE_NOTIFICATION);
 
   const reclamarCoins = (coins, idNotification) => {
     context.customDispatch({ type: "RECLAMAR_COINS", payload: { coins } })
@@ -16,6 +24,7 @@ const UserNotifications = () => {
 
   const deleteNotification = (idNotification) => {
     const _notifications = notifications.filter(item => item.id != idNotification)
+    deleteNotificationGraph({ variables: { id: idNotification } })
     context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: _notifications } })
   }
 

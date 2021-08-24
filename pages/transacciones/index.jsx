@@ -75,7 +75,7 @@ const Transacciones = () => {
 
   return <div>
     <ul className={`${styles.Transactions} Card`}>
-      {transactions.map(({ created, detail, id, status, type, u_name, user }) => <ol style={{ display: "flex" }}>
+      {transactions && transactions.map(({ created, detail, id, status, type, u_name, user }) => <ol style={{ display: "flex" }}>
         <div>
           <div className={styles.id}>ID</div>
           {id}

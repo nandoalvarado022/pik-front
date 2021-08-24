@@ -9,20 +9,17 @@ import CiudadControl from "../../components/ciudadControl/CiudadControl";
 
 const ModalHablarVendedor = ({ datosPublicacion, onChange, setIsModalHablarVendedor }) => {
   const context = useContext(PikContext)
-  const LOGIN_MUTATION = gql`
+  const CREATE_TRANSACTION = gql`
     mutation createTransaction($user: Int, $publication: Int){
         createTransaction(user: $user, publication: $publication)
     }`
 
-  const [dispatchLogin, { }] = useMutation(LOGIN_MUTATION);
-
-  useEffect(() => {
-  }, [])
+  const [createTransactionGraph, { }] = useMutation(CREATE_TRANSACTION);
 
   const createTransaction = () => {
-    // Mutation para registrar la pre orden    
-    debugger
-    dispatchLogin({ variables: { user: context.user.id, publication: datosPublicacion.id } });
+    // Mutation para registrar la pre orden
+    createTransactionGraph({ variables: { user: datosPublicacion.user, publication: datosPublicacion.id, operation: "Venta" } });
+    createTransactionGraph({ variables: { user: context.user.id, publication: datosPublicacion.id, operation: "Compra" } });
 
     const user = localStorage.getItem("user")
     if (!user) {

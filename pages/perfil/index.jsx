@@ -52,6 +52,7 @@ const Perfil = () => {
     delete input.banner_top
     delete input.certificate
     delete input.certificate
+    delete input.created
     const variables = { input }
 
     context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: input } })

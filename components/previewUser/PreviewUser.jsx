@@ -24,7 +24,7 @@ export const PreviewUser = ({ showPreview }) => {
       user: JSON.parse(localStorage.getItem("user")).id
     },
     onCompleted: ({ getCoins }) => {
-      const coins = getCoins.reduce((total, coin) => coin.value + total, 0)
+      const coins = getCoins ? getCoins.reduce((total, coin) => coin.value + total, 0) : 0
       setCoins(coins)
     }
   })

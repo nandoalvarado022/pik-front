@@ -700,6 +700,7 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
         slug
         tags
         title        
+        user
         user_name
         user_phone
         user_picture
