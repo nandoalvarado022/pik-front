@@ -1,6 +1,7 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import Link from "next/link"
 import { useContext, useEffect, useState } from 'react'
+import { handleLogout } from '../../lib/utils'
 import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
 
@@ -58,6 +59,9 @@ export const PreviewUser = ({ showPreview }) => {
         <picture className={styles.coin} />
       </div>
       <div className={styles.text} title="Aún estan en proceso las transacciones por las cuales ganastes estas monedas. Una vez se validen estas tus monedas se confirmaran">¡tienes 14 monedas <br />en espera!</div>
+    </ol>
+    <ol onClick={() => handleLogout()}>
+      Salir
     </ol>
   </div>
 }

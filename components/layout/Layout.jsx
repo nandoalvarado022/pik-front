@@ -138,7 +138,7 @@ class Layout extends React.Component {
         {/* <link rel="stylesheet" href="/css/swiper.min.css"></link> */}
         {/* <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css"></link> */}
         {/* <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /> */}
-        {/* <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script> */}
+        <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
         {/* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> */}
         {() => {
           window.dataLayer = window.dataLayer || [];

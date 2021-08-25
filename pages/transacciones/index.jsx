@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
 import moment from "moment"
+import pagar from "./scriptPagarTransaccion.jsx";
 
 moment.locale('es')
 
@@ -61,7 +62,6 @@ const Transacciones = () => {
     },
     onCompleted: ({ getTransactions }) => {
       const _transactions = getTransactions.map(t => {
-        debugger
         if (t.type == "Compra" && t.user_to == context.user.id) {
           t.type = "Venta"
         }
@@ -75,6 +75,10 @@ const Transacciones = () => {
   useEffect(() => {
     getTransactions()
   }, [])
+
+  const handlePagarTransaccion = (id) => {
+    pagar({ idTransaccion: id })
+  }
 
   const handleConfirmarTransaccion = (id) => {
     transactionConfirmed({ variables: { id } });
@@ -112,6 +116,7 @@ const Transacciones = () => {
         </div>
         <div className={styles.actions}>
           {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)}>Confirmar transacción</button>}
+          {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>}
         </div>
       </ol>
       )}
