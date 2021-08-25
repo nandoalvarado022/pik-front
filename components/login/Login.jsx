@@ -19,10 +19,11 @@ export default function Login() {
 	const [validateLogin, { data: dataValidate, error: errorValidate }] = useLazyQuery(VALIDATE_QUERY, {
 		onCompleted: (data) => {
 			const { validateLogin } = dataValidate
+			const token = JSON.parse(validateLogin).token
 			if (validateLogin) {
 				localStorage.setItem("user", validateLogin)
-				context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: validateLogin } })
-				localStorage.setItem("token", JSON.parse(validateLogin).token)
+				context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
+				localStorage.setItem("token", token)
 				setIsOpen(false)
 				loadAudio("/audios/noti.mp3")
 				Router.push("?login=on")

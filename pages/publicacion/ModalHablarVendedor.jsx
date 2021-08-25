@@ -10,17 +10,16 @@ import CiudadControl from "../../components/ciudadControl/CiudadControl";
 const ModalHablarVendedor = ({ datosPublicacion, onChange, setIsModalHablarVendedor }) => {
   const context = useContext(PikContext)
   const CREATE_TRANSACTION = gql`
-    mutation createTransaction($user: Int, $publication: Int, $type: String){
-        createTransaction(user: $user, publication: $publication, type: $type)
+    mutation createTransaction($user: Int, $user_to: Int, $publication: Int, $type: String){
+        createTransaction(user: $user, user_to: $user_to, publication: $publication, type: $type)
     }`
 
-  const [createTransactionGraph, { }] = useMutation(CREATE_TRANSACTION);
+  const [createTransaction, { }] = useMutation(CREATE_TRANSACTION);
 
-  const createTransaction = () => {
+  const handleCreateTransaction = () => {
     // Mutation para registrar la pre orden
-    createTransactionGraph({ variables: { user: datosPublicacion.user, publication: datosPublicacion.id, type: "Venta" } });
     debugger
-    createTransactionGraph({ variables: { user: context.user.id, publication: datosPublicacion.id, type: "Compra" } });
+    createTransaction({ variables: { user: context.user.id, user_to: datosPublicacion.user, publication: datosPublicacion.id, type: "Compra" } });
 
     const user = localStorage.getItem("user")
     if (!user) {
@@ -41,7 +40,7 @@ const ModalHablarVendedor = ({ datosPublicacion, onChange, setIsModalHablarVende
   }
 
   const handlePagar = async () => {
-    createTransaction()
+    handleCreateTransaction()
     enviarWhatsapp()
     return
     /*

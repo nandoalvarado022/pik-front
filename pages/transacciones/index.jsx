@@ -20,14 +20,13 @@ const Transacciones = () => {
   const [transactions, setTransactions] = useState([])
   const context = useContext(PikContext)
   // Mutation confirmar transacción
-  const MUTATION_TRANSACTION = gql`
+  const TRANSACTION_CONFIRMED = gql`
   mutation transactionConfirmed($id: Int){
-      transactionConfirmed(id: $id)
+    transactionConfirmed(id: $id)
   }`
-  const [dispatchConfirmarTransaccion, { }] = useMutation(MUTATION_TRANSACTION, {
+  const [transactionConfirmed, { }] = useMutation(TRANSACTION_CONFIRMED, {
     onCompleted() {
       getTransactions()
-      dispatchCreateNotification({ variables: { user: context.user.id, detail: "Han confirmado una transaccion", coins: 2 } })
     }
   });
   // Mutation crear notificación
@@ -35,7 +34,7 @@ const Transacciones = () => {
   mutation createNotification($user: Int, $detail: String, $coins: Int){
       createNotification(user: $user, detail: $detail, coins: $coins)
   }`
-  const [dispatchCreateNotification, { }] = useMutation(MUTATION_NOTIFICATION, {
+  const [createNotification, { }] = useMutation(MUTATION_NOTIFICATION, {
     onCompleted() {
       context.gettingNotifications()
     }
@@ -52,6 +51,7 @@ const Transacciones = () => {
       type
       u_name
       user
+      user_to
     }
   }`
   const [getTransactions] = useLazyQuery(GET_TRANSACTIONS, { // Obteniendo notificaciones
@@ -60,7 +60,14 @@ const Transacciones = () => {
       user: context.user.id
     },
     onCompleted: ({ getTransactions }) => {
-      setTransactions(getTransactions)
+      const _transactions = getTransactions.map(t => {
+        debugger
+        if (t.type == "Compra" && t.user_to == context.user.id) {
+          t.type = "Venta"
+        }
+        return t
+      })
+      setTransactions(_transactions)
     }
   })
   //
@@ -70,7 +77,7 @@ const Transacciones = () => {
   }, [])
 
   const handleConfirmarTransaccion = (id) => {
-    dispatchConfirmarTransaccion({ variables: { id } });
+    transactionConfirmed({ variables: { id } });
   }
 
   return <div>
@@ -78,40 +85,33 @@ const Transacciones = () => {
       {transactions && transactions.map(({ created, detail, id, status, type, u_name, user }) => <ol style={{ display: "flex" }}>
         <div>
           <div className={styles.id}>ID</div>
-          {id}
+          #{id}
         </div>
         <div>
-          <div className={styles.user}>Usuario</div>
+          <div className={styles.user}><b>Usuario</b></div>
           {u_name}
         </div>
         <div>
-          <div className={styles.type}>Tipo</div>
           {type}
         </div>
         <div>
-          <div className={styles.detail}>Detalles</div>
+          <div className={styles.detail}><b>Detalles</b></div>
           {detail}
         </div>
         <div>
-          <div className={styles.type}></div>
-          {type}
-        </div>
-        <div>
-          <div className={styles.status}>Estado</div>
+          <div className={styles.status}>
+            <b>Estado</b></div>
           {status == 0 && "En conversación"}
           {status == 1 && "Transacción realizada y confirmada"}
           {status == 2 && "Transacción cancelada"}
         </div>
         <div>
-          <div className={styles.created}>
-            Fecha
-          </div>
           <div>
             {moment(parseInt(created)).format("MMMM DD YYYY, h:mm:ss a")}
           </div>
         </div>
         <div className={styles.actions}>
-          {status == 0 && <button onClick={() => handleConfirmarTransaccion(id)}>Confirmar transacción</button>}
+          {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)}>Confirmar transacción</button>}
         </div>
       </ol>
       )}
