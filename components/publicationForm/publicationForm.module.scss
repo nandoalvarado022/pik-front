@@ -1,11 +1,24 @@
-.tipo_publicacion {
+.steps {
+    display: flex;
+    font-size: 12px;
+    margin-left: 40px;
+    width: 540px;
+    >* {
+        margin: 0 10px;
+        &.active {
+            font-weight: bold;
+        }
+    }
+}
+
+.tipoPublicacion {
     li {
         text-transform: capitalize;
     }
 }
 
 .fields {
-    > div:not(.actions) {
+    >div:not(.actions) {
         margin-bottom: 10px;
     }
 }
@@ -38,7 +51,6 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
-
     .fileWrapper {
         align-items: center;
         border: #04a4c4 1px dashed;
@@ -62,10 +74,14 @@
 
 .content {
     margin: 20px auto;
+    width: 1200px;
+}
+
+.formAndPreviewPublicacion {
+    margin: 20px auto;
     @media screen and (min-width: 768px) {
         display: flex;
-        width: 1200px;
-        > * {
+        >* {
             width: 45%;
         }
     }

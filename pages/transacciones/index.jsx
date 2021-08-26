@@ -61,7 +61,7 @@ const Transacciones = () => {
       user: context.user.id
     },
     onCompleted: ({ getTransactions }) => {
-      const _transactions = getTransactions.map(t => {
+      const _transactions = getTransactions && getTransactions.map(t => {
         if (t.type == "Compra" && t.user_to == context.user.id) {
           t.type = "Venta"
         }
@@ -77,7 +77,8 @@ const Transacciones = () => {
   }, [])
 
   const handlePagarTransaccion = (id) => {
-    pagar({ idTransaccion: id })
+    window.open("https://checkout.wompi.co/l/ZCdlVO")
+    // pagar({ idTransaccion: id })
   }
 
   const handleConfirmarTransaccion = (id) => {
@@ -116,6 +117,7 @@ const Transacciones = () => {
         </div>
         <div className={styles.actions}>
           {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)}>Confirmar transacción</button>}
+          {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)} title="El cliente podrá pagar en linea">Habilitar pago en linea</button>}
           {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>}
         </div>
       </ol>

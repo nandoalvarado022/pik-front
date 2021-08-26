@@ -73,7 +73,7 @@ const Perfil = () => {
 
   return <Layout>
     {message && <Notification isOpen={true} message={message} />}
-    <Interface {...{ userData, isSaving, handleSave, handleLogout, setUserData }} />
+    <Interface {...{ userData: { ...userData, coins: context?.coins }, isSaving, handleSave, handleLogout, setUserData }} />
   </Layout>
 }
 

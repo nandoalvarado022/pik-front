@@ -749,20 +749,37 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
           reject(err);
         },
         async function (snapshot) {
-          setTimeout(async () => {
-            const ref_thumbnail = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_320x320.jpg");
-            const ref_full = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_1080x1080.jpg");
-            const url_thumbnail = await ref_thumbnail.getDownloadURL()
-            const url_full = await ref_full.getDownloadURL()
-            arrayURLS.push(url_thumbnail)
-            arrayURLS.push(url_full)
-            // if (arrayURLS.length == $imagenes.files.length) 
-            resolve(arrayURLS);
-          }, 3000)
+          const getIURL = async () => {
+            console.log("entro en getIURL")
+            try {
+              return [await ref_thumbnail.getDownloadURL(), await ref_full.getDownloadURL()]
+            }
+            catch (err) {
+              return null
+            }
+          }
+
+          let url_thumbnail, url_full = null
+          const ref_thumbnail = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_320x320.jpg");
+          const ref_full = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_1080x1080.jpg");
+          const myInterval = setInterval(async () => {
+            const images = await getIURL(ref_thumbnail, ref_full)
+            if (images) {
+              console.log("entro e imagenes");
+              clearInterval(myInterval)
+              url_thumbnail = images[0]
+              url_full = images[1]
+              arrayURLS.push(url_thumbnail)
+              arrayURLS.push(url_full)
+              // if (arrayURLS.length == $imagenes.files.length)
+              resolve(arrayURLS)
+              return arrayURLS
+            } else {
+              console.log("entro y no imagenes");
+            }
+          }, 2000)
           /*const file_name = uploadTask.snapshot.ref.name
-          debugger*/
-          // uploadTask.snapshot.ref
-          // debugger
+          // uploadTask.snapshot.ref*/
         }
       );
     });

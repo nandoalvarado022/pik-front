@@ -14,4 +14,7 @@ ul.Transactions {
     .id {
         font-weight: bold;
     }
+    .actions {
+        display: flex;
+    }
 }

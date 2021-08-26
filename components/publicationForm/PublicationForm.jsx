@@ -52,7 +52,6 @@ const PublicationForm = (props) => {
 	</>
 	if (currentStep == 3) textButton = <>
 		Guardar
-		<FontAwesomeIcon icon={faCheck} />
 	</>
 
 	useEffect(() => {

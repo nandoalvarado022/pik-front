@@ -16,7 +16,7 @@ export default class PublicacionPage extends React.Component {
   }
 
   state = {
-    modalHablarVendedor: true,
+    modalHablarVendedor: false,
     labelPagar: "Hablar con el vendedor",
     cuponDigitado: "",
     loadingProductPage: false

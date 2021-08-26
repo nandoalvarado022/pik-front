@@ -24,12 +24,21 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
             <Insignias />
         </div> */}
 
-        <div className="Card">
+        <div className={`Card ${styles.imageAndLevel}`}>
+            <label>{userData?.category}</label>
+            <div className={`${styles.content_image} ${styles[userData?.category]}`}>
+                <span className={styles.picture} style={{ "background-image": `url(${userData?.picture})` }} />
+            </div>
+            <div className={styles.level}>
+                <div>Categoria: {userData?.category}</div>
+                <div>Monedas: {userData.coins}</div>
+            </div>
+
             <div>
                 <Button color={!isSaving ? "blue" : "disabled"} onClick={handleSave}>
                     {isSaving ? "Gaurdando..." : "Guardar"}
                 </Button>
-                <Button color="red" onClick={handleLogout}>Salir</Button>
+                {/* <Button color="red" onClick={handleLogout}>Salir</Button> */}
             </div>
         </div>
     </section>
