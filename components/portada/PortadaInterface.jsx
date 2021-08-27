@@ -36,6 +36,8 @@ const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
 
 const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popularyItem, starItem }) => {
   const [showVideo, setShowVideo] = useState(false)
+  const isOpen = typeof sessionStorage != "undefined" && JSON.parse(sessionStorage.getItem("notifications"))?.home
+  const [showNotification, setShowNotification] = useState(!!!isOpen)
 
   useEffect(() => {
     if (localStorage.getItem("user") == null) setShowVideo(true)
@@ -57,10 +59,8 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
     <p>Puedes hacer login haciendo click ➡ <span onClick={handlePlay}>aquí.</span></p>
   </div>
 
-  let isOpen = typeof window != "undefined" && !sessionStorage.getItem("hasFirstHome") ? true : false
-
   return <React.Fragment>
-    {isOpen && <Notification isOpen={isOpen} message={message} />}
+    <Notification isOpen={showNotification} setIsOpen={() => setShowNotification(!showNotification)} message={message} />
     <HolaJuanito />
     {
       showVideo && <div className={styles.videoContent}>

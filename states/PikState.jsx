@@ -49,6 +49,7 @@ const PikState = (props) => {
   }
 
   useEffect(() => { // Al iniciar
+    sessionStorage.setItem("notifications", "{}")
     if (!!localStorage.getItem("user")) {
       dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(localStorage.getItem("user")) } })
       getNotifications()
