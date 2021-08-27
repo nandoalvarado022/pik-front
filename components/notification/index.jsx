@@ -4,18 +4,13 @@ import React from "react"
 import { useState } from "react"
 import styles from "./notificacion.module.scss"
 
-const Notification = ({ message, isOpen }) => {
-    const [showNotification, setShowNotification] = useState(true)
-    const handleClose = () => {
-        setShowNotification(false)
-    }
-
+const Notification = ({ message, isOpen, setIsOpen }) => {
     return <React.Fragment>
         {
-            showNotification && <div className={`${styles.Notificacion} ${isOpen && showNotification && styles.active}`}>
+            <div className={`${styles.Notificacion} ${isOpen && styles.active}`}>
                 {/* <div dangerouslySetInnerHTML={{ __html: message }} /> */}
                 {message}
-                <div className={styles.close} onClick={handleClose}>Cerrar</div>
+                <div className={styles.close} onClick={() => setIsOpen(!isOpen)}>Cerrar</div>
             </div>
         }
     </React.Fragment>

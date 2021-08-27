@@ -60,8 +60,8 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
   let isOpen = typeof window != "undefined" && !sessionStorage.getItem("hasFirstHome") ? true : false
 
   return <React.Fragment>
-    <HolaJuanito />
     {isOpen && <Notification isOpen={isOpen} message={message} />}
+    <HolaJuanito />
     {
       showVideo && <div className={styles.videoContent}>
         <video onClick={handlePlay} className="block-center" src="/videos/video1.mp4" />

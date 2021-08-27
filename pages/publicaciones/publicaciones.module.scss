@@ -1,9 +1,17 @@
 .content {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     margin: 20px auto;
     width: 1200px;
+    h2 {
+        font-size: 20px;
+        margin: 50px auto 20px;
+        text-align: center;
+        svg {
+            cursor: pointer;
+            margin-left: 5px;
+            position: relative;
+            top: 2px;
+        }
+    }
     ul {
         .wrapper-card {
             // cada item

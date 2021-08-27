@@ -9,10 +9,11 @@ import { useEffect, useRef } from "react"
 import styles from "./cardDetalleProducto.module.scss"
 import React from "react"
 
-const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, description = "", image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, quantity } = {}) => {
+const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, description = "", image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, quantity } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
+  if (image_link) images.push({ original: image_link, thumbnail: image_link, })
   if (image_1) images.push({ original: image_1, thumbnail: image_1, })
   if (image_2) images.push({ original: image_2, thumbnail: image_2, })
   if (image_3) images.push({ original: image_3, thumbnail: image_3, })

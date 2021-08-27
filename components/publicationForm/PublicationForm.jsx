@@ -65,7 +65,7 @@ const PublicationForm = (props) => {
 		setImageLoading(true)
 		let image = await subirImagen({ tipoArchivo: "publications", idImageElement, isEdit })
 		let obj = { ...publicationFormData, [idImageElement]: image[1] }
-		if (idImageElement == "image_1") obj.image_link = image[0] // Estableciendo miniatura
+		// if (idImageElement == "image_1") obj.image_link = image[0] // Estableciendo miniatura
 		setPublicationFormData(obj)
 		setImageLoading(false)
 	}
