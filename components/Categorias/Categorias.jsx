@@ -11,7 +11,7 @@ import { PikContext } from '../../states/PikState'
 import UserNotifications from '../userNotifications/UserNotifications'
 
 const Categorias = ({ scroll }) => {
-  const [showPreview, setShowPreview] = useState(false)
+  const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
   const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture
   const context = useContext(PikContext)
@@ -83,11 +83,11 @@ const Categorias = ({ scroll }) => {
       {
         typeof localStorage != "undefined" && localStorage.getItem("user") ? <React.Fragment>
           <li className={styles.logout}>
-            <a className={styles.perfil} onClick={() => context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "isOpenPreviewProfile", value: !context.isOpenPreviewProfile } })}>
+            <a className={styles.perfil} onClick={() => setIsOpenPreviewProfile(!isOpenPreviewProfile)}>
               <span className={styles.picture} style={{ "background-image": `url(${picture})` }} />
-              Perfil <FontAwesomeIcon className={`${styles.arrow} ${context.isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} />
+              Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} />
             </a>
-            <PreviewUser />
+            <PreviewUser {...{ isOpenPreviewProfile }} />
           </li>
         </React.Fragment>
           :

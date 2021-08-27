@@ -5,7 +5,7 @@ import { handleLogout } from '../../lib/utils'
 import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
 
-export const PreviewUser = ({ showPreview }) => {
+export const PreviewUser = ({ isOpenPreviewProfile }) => {
   const context = useContext(PikContext)
   const [coins, setCoins] = useState([])
   const GET_COINS = gql`
@@ -34,7 +34,7 @@ export const PreviewUser = ({ showPreview }) => {
     getCoins()
   }, [])
 
-  return <div className={`${styles.PreviewUser} PreviewUser ${context.isOpenPreviewProfile ? styles.actived : null}`}>
+  return <div className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
     <ol>
       <Link href="/perfil" as="/perfil">
         Mi cuenta

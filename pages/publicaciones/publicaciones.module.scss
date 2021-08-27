@@ -2,25 +2,38 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 20px;
-    .wrapper-card {
-        position: relative;
-        a>div {}
-        .actions {
-            background: #00000075;
-            border-radius: 10px;
-            margin: 20px auto;
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            display: block;
-            left: 0;
-            right: 0;
-            width: max-content;
-        }
-        &.disabled {
-            >a>div {
-                opacity: .3;
+    margin: 20px auto;
+    width: 1200px;
+    ul {
+        .wrapper-card {
+            // cada item
+            box-shadow: 0px 2px 2px #152c4412;
+            display: flex;
+            font-size: 14px;
+            height: 50px;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            position: relative;
+            a>div {}
+            >* {
+                padding: 0 10px;
+                text-align: center;
+                width: 100px;
+            }
+            .actions {
+                display: flex;
+                float: right;
+                width: auto;
+                border-right: none;
+                >* {
+                    height: 40px;
+                }
+            }
+            &.disabled {
+                >a>div {
+                    opacity: .3;
+                }
             }
         }
     }

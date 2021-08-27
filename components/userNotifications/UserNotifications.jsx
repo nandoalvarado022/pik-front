@@ -9,7 +9,7 @@ import { gql, useMutation } from '@apollo/client'
 const UserNotifications = () => {
   const context = useContext(PikContext)
   const notifications = context.notifications
-
+  const [isOpenNotifications, setIsOpenNotifications] = useState(false)
   const DELETE_NOTIFICATION = gql`
 	mutation deleteNotification($id: Int){
 		deleteNotification(id: $id)
@@ -29,17 +29,13 @@ const UserNotifications = () => {
   }
 
   return <li className={styles.UserNotifications}>
-    <button onClick={() => context.customDispatch({
-      type: "CHANGE_PROPERTY", payload: {
-        property: "isOpenNotifications", value: !context.isOpenNotifications
-      }
-    })}>
+    <button onClick={() => setIsOpenNotifications(!isOpenNotifications)}>
       <FontAwesomeIcon className={styles.bell} icon={faBell} />
       <span className={styles.notyQuantity}>
         {notifications.length}
       </span>
     </button>
-    <ul className={`${context.isOpenNotifications ? styles.actived : null}`}>
+    <ul className={`${isOpenNotifications ? styles.actived : null}`}>
       {notifications && notifications.map(({ coins, detail, id }) => <ol>
         {!!coins && <span>{coins} &nbsp; X &nbsp; <img className={styles.coin} src="/images/gifs/coin.png" /></span>}
         <span>&nbsp; {detail}</span>
