@@ -1,15 +1,17 @@
 .content {
     margin: 20px auto;
     width: 1200px;
+     :global(.Card) {
+        margin: 0;
+    }
     h2 {
         font-size: 20px;
         margin: 50px auto 20px;
         text-align: center;
         svg {
             cursor: pointer;
-            margin-left: 5px;
             position: relative;
-            top: 2px;
+            top: 5px;
         }
     }
     ul {
@@ -36,6 +38,9 @@
                 border-right: none;
                 >* {
                     height: 40px;
+                }
+                .verPublicacion {
+                    margin: 15px 20px 0 0;
                 }
             }
             &.disabled {

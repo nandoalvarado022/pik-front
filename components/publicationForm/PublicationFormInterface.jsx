@@ -1,3 +1,4 @@
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -13,8 +14,11 @@ import Fade from '@material-ui/core/Fade'
 import styles from "./publicationForm.module.scss"
 import Button from '../button/Button'
 import { getCategories } from "../../lib/utils"
+import Notification from '../notification'
 
 const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton }) => {
+  const [showDescription, setShowDescription] = useState(false)
+  const [message, setMessage] = useState(null)
   const [menuPosition, setMenuPosition] = useState(null)
   const handleRightClick = (event) => {
     if (menuPosition) return
@@ -26,6 +30,20 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
 
   if (!!publicationFormData?.title || !isEdit) {
     return <div className={styles.content}>
+      <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
+      <h2 style={{ textAlign: "center" }}>
+        Crear publicación
+        <FontAwesomeIcon style={{ float: "right" }} icon={faQuestionCircle} onClick={() => {
+          setMessage(<div>
+            <p>Bienvenido al modulo de creación de publicaciones</p>
+            - Al vender articulos por Pikajuegos recibiras el 1% devuelta del valor del producto que vendiste
+            <p><b>Recuerda</b> que la publicación una vez creada debe ser revisada</p>
+            <p>Juntos somos mejor 🤝</p>
+          </div>)
+          setShowDescription(true)
+        }} />
+      </h2>
+
       <div className={styles.steps}>
         <div className={currentStep == 1 && styles.active}>
           1. Informacion general
@@ -126,6 +144,9 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
         {
           screenWidth > 420 && <div>
             <div className={styles.preview_card}>
+              <div className="f-s-12 t-a-c" style={{ margin: "-35px 0 20px 0" }}>
+                Vista previa de tu publicación:
+              </div>
               <Card {...publicationFormData} slug={null} />
             </div>
             {errors && <div className={styles.errors}>{errors}</div>}

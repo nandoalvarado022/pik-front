@@ -20,9 +20,10 @@ const QUERY_PUBLICATION = gql`
 			image_4
 			image_link
 			is_new
+			quantity
 			sale_price
 			title
-			quantity
+			warranty
 		}
 	}
 `

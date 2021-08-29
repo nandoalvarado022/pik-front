@@ -16,6 +16,7 @@ moment.locale('es')
 
 export default function MyPublications(props) {
 	const [showDescription, setShowDescription] = useState(false)
+	const [message, setMessage] = useState(null)
 	const phone = typeof window != "undefined" ? JSON.parse(localStorage.getItem("user")).phone : null
 	const UPDATE_MUTATION = gql`
 	mutation ChangeStatePublication($id: Int!, $status: Boolean!){
@@ -31,6 +32,7 @@ export default function MyPublications(props) {
 			accept_changues
 			created
 			id
+			is_verified
 			image_link
 			sale_price
 			slug
@@ -61,17 +63,18 @@ export default function MyPublications(props) {
 		getPublications()
 	}, [])
 
-	const message = <div>
-		<p>🔵 Bienvenido al panel de tus publicaciones</p>
-		<p>💙 En Pikajuegos te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
-		<p>🤝 Juntos somos mejor</p>
-	</div>
-
 	return <Layout title="Crear publicación" meta_title="Crear publicación en club2ruedas.com" meta_url="https://club2ruedas.com/publicacion/crear">
 		<div className={styles.content}>
-			<h2>
+			<h2 style={{ textAlign: "center" }}>
 				Publicaciones
-				<FontAwesomeIcon icon={faQuestionCircle} onClick={() => { setShowDescription(true) }} />
+				<FontAwesomeIcon style={{ float: "right" }} icon={faQuestionCircle} onClick={() => {
+					setMessage(<div>
+						<p>🔵 Bienvenido al panel de tus publicaciones</p>
+						<p>💙 En Pikajuegos te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
+						<p>🤝 Juntos somos mejor</p>
+					</div>)
+					setShowDescription(true)
+				}} />
 			</h2>
 			<Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
 			<ul className="Card">
@@ -81,16 +84,28 @@ export default function MyPublications(props) {
 							<div><img src={item.image_link} /></div>
 							<div>{item.title}</div>
 							<div>${format_number(item.sale_price)}</div>
-
 							<div>{moment(parseInt(item.created)).format("MMMM DD YYYY, h:mm:ss a")}</div>
 							<div>Vistas: 15</div>
-							<div>{item.status ? "Activa" : "Pausada"}</div>
+							<div>{item.is_verified ? item.status ? "Activa" : "Pausada" : "En revisión"}</div>
 							<div className={styles.actions}>
-								<Link href="/publicacion/[id]" as={`/publicacion/${item.slug}`}>
-									<a>Ver</a>
-								</Link>
+								{
+									item.status && <Link href="/publicacion/[id]" as={`/publicacion/${item.slug}`}>
+										<a className={styles.verPublicacion}>Ver</a>
+									</Link>
+								}
+								{
+									!item.status && <span style={{ margin: "6px 12px 0 0", width: "120px" }}>
+										<FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
+											setShowDescription(true)
+											setMessage(<div>
+												<p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikajuegos ó porque esta pausada</p>
+											</div>)
+										}} />
+										No es posible ver la publicación
+									</span>
+								}
 								<Button onClick={() => handleEdit(item.slug)} color="blue">Editar</Button>
-								<Button onClick={() => handleChangeState(item.id, !item.status)} color={item.status ? "red" : "green"}>
+								<Button onClick={() => item.is_verified ? handleChangeState(item.id, !item.status) : null} color={item.is_verified ? item.status ? "red" : "green" : "disabled"}>
 									{
 										item.status == true ? <>Desactivar</> : <>Activar</>
 									}
@@ -101,5 +116,5 @@ export default function MyPublications(props) {
 				}
 			</ul>
 		</div>
-	</Layout>
+	</Layout >
 }
