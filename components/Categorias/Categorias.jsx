@@ -23,14 +23,18 @@ const Categorias = ({ scroll }) => {
         </Link>
       </li>
       {
-        getCategories().map((category) => <li filter="game">
-          <Link scroll={scroll} href="/category/[id]" as={"/category/" + slugify(category.name)}>
-            <a>
-              <img src={"/images/icons/" + category.id + ".png"} alt={category.name} />
-              {category.name}
-            </a>
-          </Link>
-        </li>)
+        getCategories().map((category) => {
+          console.log(category)
+          const image = category.image ? category.image : "/images/icons/" + category.id + ".png"
+          return <li filter="game">
+            <Link scroll={scroll} href="/category/[id]" as={"/category/" + slugify(category.name)}>
+              <a>
+                <img src={image} alt={category.name} />
+                {category.name}
+              </a>
+            </Link>
+          </li>
+        })
       }
 
       {/* <li filter="game">
@@ -73,10 +77,11 @@ const Categorias = ({ scroll }) => {
         </Link>
       </li>
       */}
-      <li className={styles["crear-publicacion"]}>
+      <li className={styles["crear-publicacion"]} >
         <Link href="/publicacion/crear" as="/publicacion/crear">
           <a>
-            <b>¡Crear Publicación!</b>
+            <img src="/images/icons/mas.svg" alt="Crear publicacion" />
+            Vender
           </a>
         </Link>
       </li>

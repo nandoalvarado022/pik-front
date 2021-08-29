@@ -38,6 +38,7 @@ export default function MyPublications(props) {
 			slug
 			status
 			title
+			views
 		}
 	}`
 
@@ -80,28 +81,28 @@ export default function MyPublications(props) {
 			<ul className="Card">
 				{
 					reqPublications && reqPublications.publications.map((item, ind) => {
-						return <li className={`${styles["wrapper-card"]} ${item.status ? '' : styles.disabled}`}>
+						return <li className={`${styles["flex-table"]} ${item.status ? '' : styles.disabled}`}>
 							<div><img src={item.image_link} /></div>
-							<div>{item.title}</div>
-							<div>${format_number(item.sale_price)}</div>
-							<div>{moment(parseInt(item.created)).format("MMMM DD YYYY, h:mm:ss a")}</div>
-							<div>Vistas: 15</div>
-							<div>{item.is_verified ? item.status ? "Activa" : "Pausada" : "En revisión"}</div>
-							<div className={styles.actions}>
+							<div className={styles["flex-row"]}>{item.title}</div>
+							<div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
+							<div className={styles["flex-row"]}>{moment(parseInt(item.created)).format("MMMM DD YYYY, h:mm:ss a")}</div>
+							<div className={styles["flex-row"]}>{item.views} visitas</div>
+							<div className={styles["flex-row"]}>{item.is_verified ? item.status ? "Activa" : "Pausada" : "En revisión"}</div>
+							<div className={`${styles["flex-row"]} ${styles.actions}`}>
 								{
 									item.status && <Link href="/publicacion/[id]" as={`/publicacion/${item.slug}`}>
 										<a className={styles.verPublicacion}>Ver</a>
 									</Link>
 								}
 								{
-									!item.status && <span style={{ margin: "6px 12px 0 0", width: "120px" }}>
-										<FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
-											setShowDescription(true)
-											setMessage(<div>
-												<p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikajuegos ó porque esta pausada</p>
-											</div>)
-										}} />
-										No es posible ver la publicación
+									!item.status && <span className={styles.verPublicacion} onClick={() => {
+										setShowDescription(true)
+										setMessage(<div>
+											<p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikajuegos ó porque esta pausada</p>
+										</div>)
+									}}>
+										<FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} />
+										{/* No es posible ver la publicación */}
 									</span>
 								}
 								<Button onClick={() => handleEdit(item.slug)} color="blue">Editar</Button>
