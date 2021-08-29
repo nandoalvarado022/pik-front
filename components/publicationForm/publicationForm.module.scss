@@ -61,6 +61,7 @@
         justify-content: center;
         margin: 10px 5px;
         padding: 10px;
+        position: relative;
         width: 100px;
         input {
             display: none;
@@ -68,6 +69,17 @@
         }
         p {
             margin: 5px 5px 0 0;
+        }
+        .remove {
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0px 0px 2px #5f5f5fa6;
+            color: #ff4c3f;
+            cursor: pointer;
+            padding: 5px 6px;
+            position: absolute;
+            right: -14px;
+            top: -15px;
         }
     }
 }

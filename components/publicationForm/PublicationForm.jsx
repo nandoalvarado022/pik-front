@@ -119,7 +119,15 @@ const PublicationForm = (props) => {
 		router.push("/publicaciones")
 	}
 
-	return <PublicationForminterface {...{ currentStep, errors, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton }} />
+	const handleRemoveImage = (item) => {
+		const _publicationFormData = {
+			...publicationFormData,
+			[item]: null
+		}
+		setPublicationFormData(_publicationFormData)
+	}
+
+	return <PublicationForminterface {...{ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton }} />
 }
 
 export default withRouter(PublicationForm)

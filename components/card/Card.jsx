@@ -56,7 +56,7 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
             </div>
             {
               <div className={styles.descripcion}>
-                <h2>{title ? title : "Sin título disponible :/"}</h2>
+                <h2>{title ? title : "Espacio para el título de la publicación"}</h2>
                 {quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>}
                 <div className={styles["likes-precio"]}>
                   {/* <div className="likes">
