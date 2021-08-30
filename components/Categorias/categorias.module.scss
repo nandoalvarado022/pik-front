@@ -16,14 +16,14 @@
         }
     }
     .perfil {
-        // box-shadow: 1px 1px 2px #0a0a0a9e;
-        display: inline-flex;
-        background: #152c44;
+        // background: #152c44;
         border-radius: 20px;
-        padding: 0 15px 0 10px;
         color: #efefef;
         cursor: pointer;
+        display: inline-flex;
         font-weight: bold;
+        float: left;
+        padding: 0 15px 0 10px;
         &:hover {
             .PreviewUser {
                 height: 180px;
@@ -38,8 +38,8 @@
         }
         .picture {
             border-radius: 50%;
-            height: 30px;
-            width: 30px;
+            height: 35px;
+            width: 35px;
             background-size: 40px;
             margin-right: 10px;
             background-repeat: no-repeat;
@@ -57,29 +57,37 @@
         }
     }
     li {
-        padding: 8px 20px;
         cursor: pointer;
         flex: 1;
         height: 40px;
         list-style: none;
+        padding: 8px 20px;
+        position: relative;
         text-align: center;
         &:hover {
-            a {
-                // color: #585858;
-            }
+            a {}
         }
         a {
-            display: flex;
             align-items: center;
             cursor: pointer;
+            display: flex;
+            font-size: 13px;
+            font-weight: bold;
             height: 100%;
-            color: initial;
-            font-size: 14px;
         }
         img {
             max-width: 50px;
             max-height: 28px;
             margin: 0 10px 0 0;
+        }
+        &.crear-publicacion {
+            padding-right: 0;
+            a {
+                background-image: linear-gradient( 133deg, #ff9e98, #ff4c3f);
+                border-radius: 20px;
+                color: white;
+                justify-content: center;
+            }
         }
     }
 }

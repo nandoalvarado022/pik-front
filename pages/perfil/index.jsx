@@ -18,7 +18,10 @@ const Perfil = () => {
   const router = useRouter()
   const showSavedMessage = !!Object.keys(router.query).find(x => x == "updated")
   const [updateUser, { data, error, loading }] = useMutation(CHANGE_PROFILE)
-  const [userData, setUserData] = useState(context.user)
+  const [userData, setUserData] = useState({
+    ...context.user,
+    coins: context?.coins
+  })
   const [isSaving, setIsSaving] = useState(false)
   const [isProfileComplete, setIsProfileComplete] = useState(true)
   const loadUserInformation = () => {
@@ -73,7 +76,7 @@ const Perfil = () => {
 
   return <Layout>
     {message && <Notification isOpen={true} message={message} />}
-    <Interface {...{ userData: { ...userData, coins: context?.coins }, isSaving, handleSave, handleLogout, setUserData }} />
+    <Interface {...{ userData, isSaving, handleSave, handleLogout, setUserData }} />
   </Layout>
 }
 

@@ -1,0 +1,53 @@
+.content_image {
+    position: relative;
+    &::after {
+        animation: rotate 5s infinite linear;
+        background: white;
+        border-radius: 50%;
+        content: "";
+        display: block;
+        height: 132px;
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+        right: 0;
+        top: -4px;
+        width: 132px;
+        z-index: 0;
+    }
+    &.bronce {
+        &::after {
+            background: #945a41;
+            background: linear-gradient( 90deg, #945a41 0%, #f1cca7 50%);
+            box-shadow: 0 0 10px #945a41;
+        }
+    }
+    &.plata {
+        &::after {
+            background: #d5d5d6;
+            background: linear-gradient( 90deg, #d5d5d6 0%, #777779 50%);
+            box-shadow: 0 0 10px #d5d5d6;
+        }
+    }
+    &.oro {
+        &::after {
+            background: #e7d841;
+            background: linear-gradient( 90deg, #e7d841 0%, #c27a0f 50%);
+            box-shadow: 0 0 10px #e7d841;
+        }
+    }
+    .picture {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 120px;
+        border-radius: 50%;
+        border: 2px solid white;
+        display: block;
+        height: 120px;
+        margin-right: 10px;
+        margin: 20px auto;
+        position: relative;
+        width: 120px;
+        z-index: 1;
+    }
+}

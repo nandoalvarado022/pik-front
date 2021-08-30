@@ -79,7 +79,7 @@ const Categorias = ({ scroll }) => {
       <li className={styles["crear-publicacion"]} >
         <Link href="/publicacion/crear" as="/publicacion/crear">
           <a>
-            <img src="/images/icons/mas.svg" alt="Crear publicacion" />
+            {/* <img src="/images/icons/mas.svg" alt="Crear publicacion" /> */}
             Vender
           </a>
         </Link>
@@ -89,7 +89,7 @@ const Categorias = ({ scroll }) => {
           <li className={styles.logout}>
             <a className={styles.perfil} onClick={() => setIsOpenPreviewProfile(!isOpenPreviewProfile)}>
               <span className={styles.picture} style={{ "background-image": `url(${picture})` }} />
-              Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} />
+              {/* Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} /> */}
             </a>
             <PreviewUser {...{ isOpenPreviewProfile }} />
           </li>

@@ -2,6 +2,7 @@ import { Input, TextField } from "@material-ui/core"
 import Button from "../../components/button/Button"
 import CiudadControl from "../../components/ciudadControl/CiudadControl"
 import Insignias from "../../components/insignias"
+import ImageProfile from "./ImageProfile"
 import styles from "./perfil.module.scss"
 
 const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }) => {
@@ -26,9 +27,7 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
 
         <div className={`Card ${styles.imageAndLevel}`}>
             <label>{userData?.category}</label>
-            <div className={`${styles.content_image} ${styles[userData?.category]}`}>
-                <span className={styles.picture} style={{ "background-image": `url(${userData?.picture})` }} />
-            </div>
+            <ImageProfile {...{ userData }} />
             <div className={styles.level}>
                 <div>Categoria: {userData?.category}</div>
                 <div>Monedas: {userData.coins}</div>

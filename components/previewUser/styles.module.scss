@@ -5,9 +5,13 @@
     color: white;
     font-size: 14px;
     height: 0;
+    left: -28px;
     margin: -20px 0 0 0;
     overflow: hidden;
+    position: absolute;
+    top: 50px;
     transition: .5s ease;
+    width: 150px;
     z-index: -2;
     &.actived {
         height: 306px;
