@@ -3,6 +3,10 @@
     font-size: 12px;
     margin-left: 40px;
     width: 540px;
+    @media screen and (max-width: 420px) {
+        margin-left: 10px;
+        width: auto;
+    }
     >* {
         margin: 0 10px;
         &.active {
@@ -87,6 +91,9 @@
 .content {
     margin: 20px auto;
     width: 1200px;
+    @media screen and (max-width: 420px) {
+        width: auto;
+    }
 }
 
 .formAndPreviewPublicacion {

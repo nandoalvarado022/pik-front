@@ -74,6 +74,9 @@
         position: relative;
         top: -20px;
         z-index: -1;
+        @media screen and (max-width: 420px) {
+            display: none;
+        }
     }
     img {
         width: 45px;

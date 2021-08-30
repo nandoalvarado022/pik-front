@@ -1,6 +1,9 @@
 .content {
     margin: 20px auto;
     width: 1200px;
+    @media screen and (max-width: 420px) {
+        width: auto;
+    }
      :global(.Card) {
         margin: 0;
     }

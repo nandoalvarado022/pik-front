@@ -24,7 +24,6 @@ const Categorias = ({ scroll }) => {
       </li>
       {
         getCategories().map((category) => {
-          console.log(category)
           const image = category.image ? category.image : "/images/icons/" + category.id + ".png"
           return <li filter="game">
             <Link scroll={scroll} href="/category/[id]" as={"/category/" + slugify(category.name)}>

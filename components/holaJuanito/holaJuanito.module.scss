@@ -2,6 +2,9 @@
     position: relative;
     margin: 50px auto 50px;
     width: 1300px;
+    @media screen and (max-width: 420px) {
+        display: none;
+    }
     .texts {
         display: inline-block;
         margin: 0px 0 0 50px;
