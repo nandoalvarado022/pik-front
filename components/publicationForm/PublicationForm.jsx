@@ -104,19 +104,19 @@ const PublicationForm = (props) => {
 		const slug = slug_prepared + "-" + random_num
 		const phone = JSON.parse(localStorage.getItem("user")).phone
 		delete publicationFormData.__typename
-		dispatchCreate({
-			variables:
-			{
-				input: {
-					...publicationFormData,
-					isEdit,
-					phone,
-					quantity: Number(publicationFormData.quantity),
-					sale_price: Number(publicationFormData.sale_price),
-					slug
-				}
+		const variables = {
+			input: {
+				...publicationFormData,
+				isEdit,
+				phone,
+				quantity: Number(publicationFormData.quantity),
+				sale_price: Number(publicationFormData.sale_price),
 			}
-		});
+		}
+		if (!isEdit) variables.slug = slug
+		dispatchCreate({
+			variables
+		})
 		router.push("/publicaciones")
 	}
 

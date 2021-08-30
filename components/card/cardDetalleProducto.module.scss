@@ -7,6 +7,13 @@
     @media screen and (min-width: 1024px) {
         box-sizing: border-box;
     }
+    .verified {
+        float: left;
+        left: -10px;
+        position: relative;
+        top: 10px;
+        width: 20px;
+    }
     h1 {
         margin: 5px 0;
         line-height: 30px;
@@ -104,12 +111,10 @@
                 margin: 0 20px;
                 width: 450px;
             }
-            >p:nth-of-type(1) {
-                font-weight: bold;
-            }
+            .vendidoPor {}
             .description {
                 overflow: hidden;
-                font-size: 16px;
+                font-size: 14px;
                 .title {
                     font-weight: bold;
                     margin: 50px 0 0;

@@ -705,6 +705,7 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
         user_phone
         user_picture
         views
+        warranty
       }
     }`
 

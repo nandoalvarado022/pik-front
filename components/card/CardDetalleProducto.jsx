@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react"
 import styles from "./cardDetalleProducto.module.scss"
 import React from "react"
 
-const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, description = "", image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, quantity } = {}) => {
+const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, description = "", image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, quantity, warranty } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
@@ -55,6 +55,7 @@ const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, descripti
 
         {description && (
           <div className={`Card ${styles.Card} ${styles.descripcion}`}>
+            {warranty && <img title="El producto tiene garantía" className={styles.verified} src="/images/icons/verified.jpg" />}
             <h1>{title}</h1>
             <div className={styles.content_precio}>
               {/* Precio */}
@@ -77,14 +78,18 @@ const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, descripti
 
             {quantity > 0 && (<Button color="blue" onClick={setIsModalHablarVendedor}>Me interesa este artículo</Button>)}
 
-            <p>
-              <a className="underline" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pikajuegos.com">Denunciar</a>
+            <p className={styles.vendidoPor}>
+              <b>Vendido por</b> {user_name}
             </p>
 
             <div className={styles.description}>
               <p className={styles.title}>Descripción</p>
-              <ReactMarkdown source={description} escapeHtml={false}></ReactMarkdown>
+              <ReactMarkdown source={description}></ReactMarkdown>
             </div>
+
+            <p>
+              <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pikajuegos.com">Denunciar</a>
+            </p>
 
             <div>
               <DiscussionEmbed shortname="pikajuegos" config={{ url: meta_url, identifier: meta_url, title: title, language: "es_ES" }} />
