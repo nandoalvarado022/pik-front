@@ -1,0 +1,30 @@
+.Coins {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    height: 30px;
+    .coin {
+        // animation: like 1s steps(6) infinite;
+        background-image: url("/images/gifs/moneda2.svg");
+        background-position-x: -8px;
+        background-position-y: 0px;
+        display: inline-block;
+        height: 50px;
+        margin: 0;
+        width: 50px;
+        // transform: scale(0.6);
+    }
+    .number {
+        border-radius: 5px;
+        color: #e5961d;
+        display: inline-block;
+        font-weight: bold;
+        height: 20px;
+        // left: -32px;
+        // padding: 2px 5px 2px 20px;
+        position: relative;
+        // top: 2px;
+        z-index: -1;
+    }
+}

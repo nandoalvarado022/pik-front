@@ -5,11 +5,11 @@
     color: white;
     font-size: 14px;
     height: 0;
-    left: -28px;
+    left: -55px;
     margin: -20px 0 0 0;
     overflow: hidden;
     position: absolute;
-    top: 50px;
+    top: 60px;
     transition: .5s ease;
     width: 150px;
     z-index: -2;
@@ -22,7 +22,7 @@
         padding: 0 20px 10px;
         text-align: center;
         &:nth-of-type(1) {
-            margin-top: 30px;
+            margin-top: 20px;
         }
         a {
             color: white !important;
@@ -35,19 +35,6 @@
             justify-content: space-around;
             margin: 0 auto;
             width: 80px;
-        }
-        .coin {
-            animation: like 1s steps(6) infinite;
-            background-image: url("/images/gifs/coins.png");
-            background-position-x: -8px;
-            background-position-y: 0px;
-            display: inline-block;
-            height: 40px;
-            width: 40px;
-            transform: scale(0.6);
-        }
-        .number {
-            font-size: 18px;
         }
         .text {
             font-size: 12px;

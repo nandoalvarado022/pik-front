@@ -9,6 +9,7 @@ import { getCategories, slugify } from "../../lib/utils"
 import { PreviewUser } from "../previewUser/PreviewUser"
 import { PikContext } from '../../states/PikState'
 import UserNotifications from '../userNotifications/UserNotifications'
+import ImageProfile from '../../pages/perfil/ImageProfile'
 
 const Categorias = ({ scroll }) => {
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
@@ -17,9 +18,17 @@ const Categorias = ({ scroll }) => {
   const context = useContext(PikContext)
   return <div className={styles.Categorias}>
     <ul>
-      <li filter="game">
+      {/* <li filter="game">
         <Link scroll={scroll} href="/">
           Ver todo
+        </Link>
+      </li> */}
+      <li className={styles["crear-publicacion"]} >
+        <Link href="/publicacion/crear" as="/publicacion/crear">
+          <a>
+            {/* <img src="/images/icons/mas.svg" alt="Crear publicacion" /> */}
+            Vender
+          </a>
         </Link>
       </li>
       {
@@ -76,21 +85,11 @@ const Categorias = ({ scroll }) => {
         </Link>
       </li>
       */}
-      <li className={styles["crear-publicacion"]} >
-        <Link href="/publicacion/crear" as="/publicacion/crear">
-          <a>
-            {/* <img src="/images/icons/mas.svg" alt="Crear publicacion" /> */}
-            Vender
-          </a>
-        </Link>
-      </li>
       {
         typeof localStorage != "undefined" && localStorage.getItem("user") ? <React.Fragment>
-          <li className={styles.logout}>
-            <a className={styles.perfil} onClick={() => setIsOpenPreviewProfile(!isOpenPreviewProfile)}>
-              <span className={styles.picture} style={{ "background-image": `url(${picture})` }} />
-              {/* Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} /> */}
-            </a>
+          <li className={styles.perfil} onClick={() => setIsOpenPreviewProfile(!isOpenPreviewProfile)} title={`Nivel actual ${context.user.category}`}>
+            <ImageProfile />
+            {/* Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} /> */}
             <PreviewUser {...{ isOpenPreviewProfile }} />
           </li>
         </React.Fragment>

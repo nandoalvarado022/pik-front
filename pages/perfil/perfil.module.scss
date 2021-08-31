@@ -37,13 +37,8 @@ section.perfil {
             }
         }
     }
-}
-
-@keyframes rotate {
-    100% {
-        transform: rotate(365deg)
-    }
-    0% {
-        transform: rotate(0deg)
+    .coin {
+        height: 15px;
+        width: 15px;
     }
 }

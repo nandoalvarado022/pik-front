@@ -2,6 +2,8 @@ import { Input, TextField } from "@material-ui/core"
 import Button from "../../components/button/Button"
 import CiudadControl from "../../components/ciudadControl/CiudadControl"
 import Insignias from "../../components/insignias"
+import Coins from "../../components/previewUser/Coins"
+import { format_number } from "../../lib/utils"
 import ImageProfile from "./ImageProfile"
 import styles from "./perfil.module.scss"
 
@@ -18,28 +20,26 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                     <input type='file' id="profileElement" />
                 </div>
             </p>
-        </div>
-
-        {/* <div className="Card">
-            <b className="title">Insignias</b>
-            <Insignias />
-        </div> */}
-
-        <div className={`Card ${styles.imageAndLevel}`}>
-            <label>{userData?.category}</label>
-            <ImageProfile {...{ userData }} />
-            <div className={styles.level}>
-                <div>Categoria: {userData?.category}</div>
-                <div>Monedas: {userData.coins}</div>
-            </div>
-
-            <div>
+            <div className="f-r">
                 <Button color={!isSaving ? "blue" : "disabled"} onClick={handleSave}>
                     {isSaving ? "Gaurdando..." : "Guardar"}
                 </Button>
                 {/* <Button color="red" onClick={handleLogout}>Salir</Button> */}
             </div>
         </div>
+
+        <div className={`Card ${styles.imageAndLevel}`}>
+            <label>{userData?.category}</label>
+            <ImageProfile {...{ userData }} />
+            <div className={styles.level}>
+                <Coins />
+            </div>
+        </div>
+
+        {/* <div className="Card">
+            <b className="title">Insignias</b>
+            <Insignias />
+        </div> */}
     </section>
 }
 
