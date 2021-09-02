@@ -26,7 +26,7 @@ const Coins = () => {
   const [getCoins] = useLazyQuery(GET_COINS, {
     fetchPolicy: "no-cache",
     variables: {
-      user: JSON.parse(localStorage.getItem("user")).id
+      user: typeof localStorage != "undefined" && JSON.parse(localStorage.getItem("user")).id
     },
     onCompleted: ({ getCoins }) => {
       const coins = getCoins ? getCoins.reduce((total, coin) => coin.value + total, 0) : 0

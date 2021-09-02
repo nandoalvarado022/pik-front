@@ -60,7 +60,7 @@
     background: none;
     cursor: pointer;
     @media screen and (max-width: 420px) {
-        right: 10px;
+        display: none;
     }
     span {
         background: white;

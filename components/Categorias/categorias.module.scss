@@ -24,10 +24,11 @@
             }
         }
          :global(.content_image) {
-            left: -45px;
-            position: relative;
-            top: -60px;
-            transform: scale(0.35);
+            height: 40px;
+            width: 40px;
+            &::after {
+                display: none;
+            }
         }
         .arrow {
             color: #b3b3b3;

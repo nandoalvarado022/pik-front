@@ -31,7 +31,7 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
         <div className={`Card ${styles.imageAndLevel}`}>
             <label>{userData?.category}</label>
             <ImageProfile {...{ userData }} />
-            <div className={styles.level}>
+            <div className={styles.coins}>
                 <Coins />
             </div>
         </div>

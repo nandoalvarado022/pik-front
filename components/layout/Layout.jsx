@@ -10,6 +10,7 @@ import Header from "../header/Header"
 import LogoBuscador from "../logoBuscador/LogoBuscador"
 import styles from "./layout.module.scss"
 import Categorias from "../categorias/Categorias"
+import MenuMovil from "../menuMovil/MenuMovil"
 
 toastr.options.progressBar = true;
 toastr.options.timeOut = 5000;
@@ -38,12 +39,12 @@ class Layout extends React.Component {
     swAdd: false,
     imagen_club_usuario: false,
     tenemosCookies: true,
-  };
+  }
 
   tenemosCookies = () => {
     this.setState({ tenemosCookies: true });
     localStorage.setItem("tenemosCookies", true);
-  };
+  }
 
   handleAdd = () => {
     this.setState((state) => ({
@@ -106,7 +107,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const isMobile = typeof window != "undefined" ? !localStorage.getItem("isMobile") : null
+    const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
     const props = this.props
     const { meta_descripcion, meta_title, meta_image } = this.props
     let { meta_url, is_partner, partner } = this.props
@@ -154,8 +155,9 @@ class Layout extends React.Component {
         <audio />
         <main className={styles.principal}>
           <Categorias scroll={false} />
+          {isMobile && <MenuMovil />}
           {props.children}
-          <a target="_BLANK" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">
+          <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">
             <button className={styles["btn-whatsapp"]}>
               <span>En cualquier momento puedes escribirnos para solucionar tus dudas</span>
               <img src="/images/icons/whatsapp.png" alt="Hablar con un asesor vía Whatsapp" />

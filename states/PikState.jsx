@@ -10,6 +10,7 @@ const PikState = (props) => {
     isOpenPreviewProfile: false,
     notifications: [],
     selectedUser: null,
+    isMobile: false,
     user: {
       id: 0
     }

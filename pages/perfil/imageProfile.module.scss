@@ -1,18 +1,21 @@
 .content_image {
+    height: 124px;
+    margin: 0 auto;
     position: relative;
+    width: 124px;
     &::after {
         animation: rotate 5s infinite linear;
         background: white;
         border-radius: 50%;
         content: "";
         display: block;
-        height: 132px;
-        left: 0;
+        height: calc(100% + 8px);
+        left: -2px;
         margin: 0 auto;
         position: absolute;
         right: 0;
-        top: -4px;
-        width: 132px;
+        top: -2px;
+        width: calc(100% + 8px);
         z-index: 0;
     }
     &.bronce {
@@ -39,15 +42,16 @@
     .picture {
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 120px;
+        // background-size: 120px;
+        background-size: contain;
         border-radius: 50%;
         border: 2px solid white;
         display: block;
-        height: 120px;
+        height: 100%;
         margin-right: 10px;
-        margin: 20px auto;
+        margin: 0px auto;
         position: relative;
-        width: 120px;
+        width: 100%;
         z-index: 1;
     }
 }

@@ -1,0 +1,57 @@
+.MenuMovil {
+    align-items: center;
+    background-color: white;
+    border-radius: 30px;
+    bottom: 10px;
+    box-shadow: 2px 2px 4px #0000002b;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    left: 0;
+    margin: 0 auto;
+    position: fixed;
+    right: 0;
+    width: 90%;
+    z-index: 2;
+    ol {
+        align-items: center;
+        display: flex;
+        flex: 1 1;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0px;
+        padding: 0;
+        >* {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        .vender {
+            background-image: linear-gradient( 133deg, #ff9e98, #ff4c3f);
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            justify-content: center;
+            padding: 5px 10px;
+        }
+         :global(.content_image) {
+            height: 40px;
+            width: 40px;
+        }
+        button {
+            background: none;
+            border: none;
+            span {
+                display: none;
+            }
+        }
+        img {
+            height: 30px;
+        }
+        label {
+            font-size: 12px;
+        }
+    }
+}

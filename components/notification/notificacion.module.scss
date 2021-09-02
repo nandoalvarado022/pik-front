@@ -1,14 +1,12 @@
 .Notificacion {
-    // border: 2px #363b3d solid;
     // background: linear-gradient(90deg, rgb(66 71 72) 0%, rgba(36, 41, 46, 1) 100%);
     background: linear-gradient(90deg, #365677 0%, #244669 100%);
     border-radius: 20px 10px 20px 10px;
     color: white;
     font-size: 14px;
-    box-shadow: 2px 6px 2px #cccccc61;
+    box-shadow: 6px 6px 2px #08080826;
     margin: 20px auto 0;
     opacity: 0;
-    // padding: 10px 15px;
     position: fixed;
     left: 0;
     right: 0;
@@ -16,6 +14,13 @@
     transition: 0.5s ease;
     width: 0px;
     z-index: 10;
+    // nuevo borde
+    border: 4px solid transparent;
+    border-image: linear-gradient(to bottom right, #4d6f92 0%, #426d98 100%) 1;
+    border-left: 0;
+    border-radius: 0;
+    border-right: 0;
+    overflow: hidden;
     &.active {
         // display: block;
         opacity: 1;
