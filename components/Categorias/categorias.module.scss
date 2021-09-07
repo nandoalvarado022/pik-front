@@ -23,18 +23,29 @@
                 height: 180px;
             }
         }
-         :global(.content_image) {
+        :global(.content_image) {
             height: 40px;
             width: 40px;
             &::after {
                 display: none;
             }
         }
+        .notyQuantity {
+            background: #ea4d42;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+            margin: -42px 0px 50px -32px;
+            padding: 2px 5px;
+            position: absolute;
+            z-index: 1;
+        }
         .arrow {
             color: #b3b3b3;
             margin-left: 10px;
             &.actived {
-                transform: rotate( 180deg);
+                transform: rotate(180deg);
             }
         }
         .picture {
@@ -47,10 +58,10 @@
             background-position: center;
         }
     }
-    ul {
+    > ul {
         align-items: center;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         margin: 0 auto;
         padding: 0;
         width: 1366px;
@@ -59,16 +70,17 @@
         }
         li {
             cursor: pointer;
-            flex: 1;
+            // flex: 1;
             height: 40px;
             list-style: none;
             padding: 0px 20px;
             position: relative;
             text-align: center;
             &:hover {
-                a {}
+                a {
+                }
             }
-            >a {
+            > a {
                 align-items: center;
                 cursor: pointer;
                 display: flex;
@@ -85,10 +97,12 @@
             &.crear-publicacion {
                 padding-right: 0;
                 a {
-                    background-image: linear-gradient( 133deg, #ff9e98, #ff4c3f);
+                    // background-image: linear-gradient(133deg, #ff9e98, #ff4c3f);
+                    background: linear-gradient(to bottom right, #4d6f92 0%, #426d98 100%);
                     border-radius: 20px;
                     color: white;
                     justify-content: center;
+                    width: 120px;
                 }
             }
         }

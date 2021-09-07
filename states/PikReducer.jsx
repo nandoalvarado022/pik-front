@@ -7,6 +7,18 @@ const PikReducer = (state, action) => {
         ...state,
         [property]: value
       }
+    case "CLOSE_NOTIFICATION":
+      const { id } = payload
+      debugger
+      if (!state.checkedNotifications.find(item => item == id)) {
+        const _state = {
+          ...state,
+          checkedNotifications: [...state.checkedNotifications, id]
+        }
+        localStorage.setItem("checkedNotifications", JSON.stringify(_state.checkedNotifications))
+        return _state
+      }
+      return state
     case "RECLAMAR_COINS":
       return {
         ...state,

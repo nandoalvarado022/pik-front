@@ -43,10 +43,10 @@ function LogoBuscador({ partner }) {
     <ul>
       {!partner && (
         <Link href="/">
-          <span>
+          <span style={{ textAlign: "left" }}>
             <img className={styles.logo} src="/images/logos/logo.png" alt="" />
             <div className={styles.slogan}>
-              <span>Videogames Marketplace</span>
+              <span>Compra y vende como <b><i>Gamer</i></b></span>
             </div>
           </span>
         </Link>

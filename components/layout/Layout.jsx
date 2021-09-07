@@ -1,3 +1,7 @@
+import Link from 'next/link'
+import Notification from "../notification";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
 import { register } from "next-offline/runtime"
 import toastr from "toastr"
 import Button from "../button/Button"
@@ -5,12 +9,13 @@ import { initGA, logPageView } from "../../public/analytics"
 import Router from "next/router"
 import NProgress from "nprogress"
 import Head from "next/head"
-import React from "react"
+import React, { useContext } from "react"
 import Header from "../header/Header"
 import LogoBuscador from "../logoBuscador/LogoBuscador"
 import styles from "./layout.module.scss"
 import Categorias from "../categorias/Categorias"
 import MenuMovil from "../menuMovil/MenuMovil"
+import { PikContext } from '../../states/PikState';
 
 toastr.options.progressBar = true;
 toastr.options.timeOut = 5000;
@@ -30,10 +35,11 @@ const options = {
 const events = {
   onDragged: function (event) { },
   onChanged: function (event) { }
-};
+}
 
 class Layout extends React.Component {
-  club_short_name = null;
+  static contextType = PikContext
+  club_short_name = null
   state = {
     growMenu: false,
     swAdd: false,
@@ -51,9 +57,14 @@ class Layout extends React.Component {
       swAdd: !state.swAdd,
       growMenu: !state.growMenu,
     }));
-  };
+  }
+
+  handlePlay() {
+    document.getElementById("btnStart").click()
+  }
 
   componentDidMount() {
+    // const context = this.context;
     /* AOS.init({
        delay: 500,
      });*/
@@ -111,6 +122,17 @@ class Layout extends React.Component {
     const props = this.props
     const { meta_descripcion, meta_title, meta_image } = this.props
     let { meta_url, is_partner, partner } = this.props
+    const message = {
+      id: 1, message: <div>
+        <p>
+          <b>Bienvenido,</b> {this.context.user.name}
+        </p>
+        <img style={{ display: "block", margin: "0 auto", width: "200px" }} src="/images/banners/completar-perfil.jpg" alt="Completar perfil" />
+        <p>🤝 Recuerda que puedes confiar plenamente en los aliados que tengan el icono <span style={{ color: "#04a4c4;" }}><FontAwesomeIcon icon={faCheckCircle} /></span> al lado de su nombre, a estos los respaldamos completamente.</p>
+        <p>Puedes completar tu perfil haciendo click <Link href="/perfil">aquí.</Link></p>
+      </div>
+    }
+
     return <React.Fragment>
       <Head>
         <title>{meta_title}</title>
@@ -156,6 +178,7 @@ class Layout extends React.Component {
         <main className={styles.principal}>
           <Categorias scroll={false} />
           {isMobile && <MenuMovil />}
+          <Notification isOpen={this.context.showNotification} message={message} />
           {props.children}
           <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">
             <button className={styles["btn-whatsapp"]}>

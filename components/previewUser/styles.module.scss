@@ -14,8 +14,12 @@
     transition: 0.5s ease;
     width: 130px;
     z-index: -2;
+    @media screen and (min-width: 1024px) {
+        left: -120px;
+    }
     &.actived {
         height: 306px;
+        overflow: initial;
     }
     ol {
         border-bottom: 1px solid #424950;

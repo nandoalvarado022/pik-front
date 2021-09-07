@@ -1,81 +1,51 @@
-li.UserNotifications {
+.UserNotifications {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: -2px 2px 2px #52525233;
+    color: #24292e;
+    flex-direction: column;
+    font-size: 14px;
+    height: 250px;
+    justify-content: flex-start;
+    left: -250px;
+    overflow-y: scroll;
     padding: 10px 0;
-    position: relative;
-    button {
-        border: none;
-        background: none;
-        cursor: none;
-        position: relative;
-        z-index: 1;
-    }
-    svg.bell {
-        color: #152c44;
-        cursor: pointer;
-        height: 20px;
-        padding: 8px;
-        width: 20px;
-    }
-    .notyQuantity {
-        background: #ea4d42;
-        border-radius: 50%;
-        color: white;
-        cursor: pointer;
-        font-size: 12px;
-        margin: 0 0 0 -6px;
-        padding: 2px 5px;
-    }
-    ul {
-        background: #24292e;
-        border-radius: 10px;
-        box-shadow: 0px 2px 2px #5252522e;
-        color: white;
-        height: 0px;
-        flex-direction: column;
-        justify-content: flex-start;
-        font-size: 14px;
-        left: 0;
-        margin: -23px auto;
-        overflow-y: hidden;
-        position: absolute;
-        right: 0;
-        transition: 0.5s ease;
-        width: 250px;
-        z-index: 0;
-        &.actived {
-            height: 250px;
-            overflow-y: scroll;
+    position: absolute;
+    right: 0;
+    top: 24px;
+    transition: 0.5s ease;
+    width: 250px;
+    z-index: 0;
+    ol {
+        align-items: center;
+        border-bottom: 1px solid #42495029;
+        display: flex;
+        margin: 5px 0;
+        padding: 0 10px 10px;
+        text-align: center;
+        &:nth-of-type(1) {
+            margin-top: 30px;
         }
-        ol {
-            align-items: center;
-            border-bottom: 1px solid #424950;
-            display: flex;
-            margin: 5px 0;
-            padding: 0 10px 10px;
-            text-align: center;
-            &:nth-of-type(1) {
-                margin-top: 30px;
+        .content_close {
+            svg {
+                margin-left: 8px;
             }
-            .content_close {
-                svg {
-                    margin-left: 8px;
-                }
-            }
-            span {
-                font-size: 12px;
-                // width: 200px;
-            }
-            .coin {
-                margin: 0;
-                position: relative;
-                top: 5px;
-                width: 20px;
-            }
-            button {
-                color: #fd9700;
-                cursor: pointer;
-                font-size: 14px;
-                margin-left: 10px;
-            }
+        }
+        span {
+            font-size: 12px;
+            // width: 200px;
+        }
+        .coin {
+            margin: 0;
+            position: relative;
+            top: 5px;
+            width: 20px;
+        }
+        button {
+            color: #fd9700;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
         }
     }
 }

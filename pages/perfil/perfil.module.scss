@@ -1,50 +1,55 @@
 section.perfil {
-    display: flex;
-    margin: 20px auto 0;
-    width: 1080px;
-    @media screen and (max-width: 420px) {
+    margin: 20px auto;
+    width: 1200px;
+    .content {
+        display: flex;
         margin: 20px auto 0;
-        flex-direction: column-reverse;
-        width: auto;
-    }
-    .imageAndLevel {
+        width: 1080px;
+
         @media screen and (max-width: 420px) {
-            margin: 20px auto 20px;
+            margin: 20px auto 0;
+            flex-direction: column-reverse;
+            width: auto;
         }
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: bold;
-            margin: 20px auto 30px;
-            position: relative;
-            text-align: center;
-            width: 110px;
-            text-transform: uppercase;
-            &::before {
-                content: "";
-                height: 1px;
-                width: 10px;
-                background: #152c4469;
-                position: absolute;
-                top: 8px;
-                left: 0;
+        .imageAndLevel {
+            @media screen and (max-width: 420px) {
+                margin: 20px auto 20px;
             }
-            &::after {
-                content: "";
-                height: 1px;
-                width: 10px;
-                background: #152c4469;
-                position: absolute;
-                top: 8px;
-                right: 0;
+            label {
+                display: block;
+                font-size: 14px;
+                font-weight: bold;
+                margin: 20px auto 30px;
+                position: relative;
+                text-align: center;
+                width: 110px;
+                text-transform: uppercase;
+                &::before {
+                    content: "";
+                    height: 1px;
+                    width: 10px;
+                    background: #152c4469;
+                    position: absolute;
+                    top: 8px;
+                    left: 0;
+                }
+                &::after {
+                    content: "";
+                    height: 1px;
+                    width: 10px;
+                    background: #152c4469;
+                    position: absolute;
+                    top: 8px;
+                    right: 0;
+                }
+            }
+            .coins {
+                margin-top: 30px;
             }
         }
-        .coins {
-            margin-top: 30px;
+        .coin {
+            height: 15px;
+            width: 15px;
         }
-    }
-    .coin {
-        height: 15px;
-        width: 15px;
     }
 }

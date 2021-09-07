@@ -56,6 +56,8 @@ const Perfil = () => {
     delete input.certificate
     delete input.certificate
     delete input.created
+    delete input.coins
+    delete input.category
     const variables = { input }
 
     context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: input } })
@@ -71,8 +73,8 @@ const Perfil = () => {
     }, 1000)
   }
 
-  let message = !isProfileComplete ? "Completa tu perfil" : null
-  if (showSavedMessage) message = "Perfil actualizado!"
+  let message = null
+  if (showSavedMessage) message = { id: null, message: "Perfil actualizado!" }
 
   return <Layout>
     {message && <Notification isOpen={true} message={message} />}

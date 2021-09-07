@@ -8,7 +8,6 @@ import styles from "./categorias.module.scss"
 import { getCategories, slugify } from "../../lib/utils"
 import { PreviewUser } from "../previewUser/PreviewUser"
 import { PikContext } from '../../states/PikState'
-import UserNotifications from '../userNotifications/UserNotifications'
 import ImageProfile from '../../pages/perfil/ImageProfile'
 
 const Categorias = ({ scroll }) => {
@@ -16,6 +15,8 @@ const Categorias = ({ scroll }) => {
   const [showNotifications, setShowNotifications] = useState(false)
   const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture
   const context = useContext(PikContext)
+  const notifications = context.notifications
+
   return <div className={styles.Categorias}>
     <ul>
       {/* <li filter="game">
@@ -87,8 +88,11 @@ const Categorias = ({ scroll }) => {
       */}
       {
         typeof localStorage != "undefined" && localStorage.getItem("user") ? <React.Fragment>
-          <li className={styles.perfil} onClick={() => setIsOpenPreviewProfile(!isOpenPreviewProfile)} title={`Nivel actual ${context.user.category}`}>
-            <ImageProfile />
+          <li className={styles.perfil} title={`Nivel actual ${context.user.category}`}>
+            <ImageProfile {...{isOpenPreviewProfile, setIsOpenPreviewProfile}} />
+            <span className={styles.notyQuantity}>
+              {notifications.length}
+            </span>
             {/* Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} /> */}
             <PreviewUser {...{ isOpenPreviewProfile }} />
           </li>
@@ -96,7 +100,6 @@ const Categorias = ({ scroll }) => {
           :
           <Login />
       }
-      <UserNotifications />
     </ul>
   </div >
 }

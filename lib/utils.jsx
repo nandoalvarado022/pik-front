@@ -1,4 +1,6 @@
 // require('isomorphic-fetch');
+import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import fetch from "node-fetch"
 import rn from "random-number";
 import toastr from "toastr";

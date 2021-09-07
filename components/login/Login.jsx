@@ -52,7 +52,8 @@ export default function Login() {
 		const phone = document.getElementById("phoneLogin").value
 		if (!phone) {
 			alert("Debes escribir un número celular, recuerda que a este número llegará el código de acceso")
-			return
+			setButtonText("Enviar")
+			return false
 		}
 		dispatchLogin({ variables: { phone: "57" + phone } });
 		setButtonText("Validar")

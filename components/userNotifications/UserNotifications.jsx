@@ -28,14 +28,7 @@ const UserNotifications = () => {
     context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: _notifications } })
   }
 
-  return <li className={styles.UserNotifications}>
-    <button onClick={() => setIsOpenNotifications(!isOpenNotifications)}>
-      <FontAwesomeIcon className={styles.bell} icon={faBell} />
-      <span className={styles.notyQuantity}>
-        {notifications.length}
-      </span>
-    </button>
-    <ul className={`${isOpenNotifications ? styles.actived : null}`}>
+  return <ul className={`${styles.UserNotifications}`}>
       {notifications && notifications.map(({ coins, detail, id }) => <ol>
         {!!coins && <span>{coins} &nbsp; X &nbsp; <img className={styles.coin} src="/images/gifs/coin.png" /></span>}
         <span>&nbsp; {detail}</span>
@@ -49,7 +42,6 @@ const UserNotifications = () => {
         <span>No tienes notificaciones 😯</span>
       </ol>}
     </ul>
-  </li>
 }
 
 export default UserNotifications

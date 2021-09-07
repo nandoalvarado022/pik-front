@@ -9,11 +9,13 @@ const PikState = (props) => {
     isOpenNotifications: false,
     isOpenPreviewProfile: false,
     notifications: [],
+    checkedNotifications: typeof window != "undefined" && localStorage.getItem("checkedNotifications") ? JSON.parse(localStorage.getItem("checkedNotifications")) : [],
     selectedUser: null,
     isMobile: false,
     user: {
       id: 0
-    }
+    },
+    showNotification: true
   }
 
   const [state, dispatch] = useReducer(PikReducer, initialState);
@@ -51,6 +53,9 @@ const PikState = (props) => {
 
   useEffect(() => { // Al iniciar
     sessionStorage.setItem("notifications", "{}")
+    if (!localStorage.getItem("checkedNotifications")) {
+      localStorage.setItem("checkedNotifications", "[]")
+    }
     if (!!localStorage.getItem("user")) {
       dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(localStorage.getItem("user")) } })
       getNotifications()

@@ -9,7 +9,7 @@ import styles from "./login.module.scss"
 
 export default function LoginInterface({ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog }) {
   return <div>
-    <Button alt="Ingersar con número de teléfono" color="blue" id="btnStart" onClick={handleClickOpen}>¡Play!</Button>
+    <Button alt="Ingersar con número de teléfono" color="blue" id="btnStart" onClick={handleClickOpen}>Play</Button>
     <Dialog fullWidth maxWidth="sm" open={isOpen} onClose={handleCloseDialog} aria-labelledby="form-dialog-title">
       <DialogContent>
         <DialogContentText>

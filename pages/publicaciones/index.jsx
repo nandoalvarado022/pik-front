@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import Layout from '../../components/layout/Layout'
 import { gql, useMutation, useLazyQuery } from '@apollo/client'
 import Router from 'next/router'
@@ -16,13 +16,12 @@ moment.locale('es')
 
 export default function MyPublications(props) {
 	const [showDescription, setShowDescription] = useState(false)
-	const [message, setMessage] = useState(null)
+	const [message, setMessage] = useState({})
 	const phone = typeof window != "undefined" ? JSON.parse(localStorage.getItem("user")).phone : null
 	const UPDATE_MUTATION = gql`
 	mutation ChangeStatePublication($id: Int!, $status: Boolean!){
 		changeStatePublication(id: $id, status: $status)
 	}`
-
 
 	const [changeStatePublication, { loading: loadingUpdate }] = useMutation(UPDATE_MUTATION);
 
@@ -66,18 +65,20 @@ export default function MyPublications(props) {
 
 	return <Layout title="Crear publicación" meta_title="Crear publicación en club2ruedas.com" meta_url="https://club2ruedas.com/publicacion/crear">
 		<div className={styles.content}>
+			<Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
 			<h2 style={{ textAlign: "center" }}>
 				Publicaciones
 				<FontAwesomeIcon style={{ float: "right" }} icon={faQuestionCircle} onClick={() => {
-					setMessage(<div>
-						<p>🔵 Bienvenido al panel de tus publicaciones</p>
-						<p>💙 En Pikajuegos te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
-						<p>🤝 Juntos somos mejor</p>
-					</div>)
+					setMessage({
+						id: 0, message: <div>
+							<p>🔵 Bienvenido al panel de tus publicaciones</p>
+							<p>💙 En Pikajuegos te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
+							<p>🤝 Juntos somos mejor</p>
+						</div>
+					})
 					setShowDescription(true)
 				}} />
 			</h2>
-			<Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
 			<ul className="Card">
 				{
 					reqPublications && reqPublications.publications.map((item, ind) => {
@@ -97,9 +98,11 @@ export default function MyPublications(props) {
 								{
 									!item.status && <span className={styles.verPublicacion} onClick={() => {
 										setShowDescription(true)
-										setMessage(<div>
-											<p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikajuegos ó porque esta pausada</p>
-										</div>)
+										setMessage({
+											id: 0, message: <div>
+												<p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikajuegos ó porque esta pausada</p>
+											</div>
+										})
 									}}>
 										<FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} />
 										{/* No es posible ver la publicación */}

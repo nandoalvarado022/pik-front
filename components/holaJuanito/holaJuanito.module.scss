@@ -5,23 +5,12 @@
     @media screen and (max-width: 420px) {
         display: none;
     }
-    .texts {
-        display: inline-block;
-        margin: 0px 0 0 50px;
-        width: 500px;
-        .text1 {
-            color: #575656;
-            font-size: 36px;
-        }
-        .text2 {
-            color: #575656;
-            display: inline-block;
-        }
-    }
-    .categories {
+    .banners {
         display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
         vertical-align: top;
-        >* {
+        > * {
             background: white;
             border-radius: 10px;
             box-shadow: 2px 2px 5px 0 #ababab52;
@@ -32,11 +21,20 @@
             position: relative;
             z-index: 1;
         }
+        .texts {
+            width: 500px;
+            .text1 {
+                color: #575656;
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
+            .text2 {
+                color: #575656;
+                display: inline-block;
+            }
+        }
     }
     img {
-        position: absolute;
-        right: 0;
-        top: 0px;
-        width: 300px;
+        max-width: 500px;
     }
 }

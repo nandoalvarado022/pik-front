@@ -2,11 +2,7 @@ import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import styles from "./portada.module.scss"
 import { useEffect, useState } from 'react';
-import Link from 'next/link'
 import Subcategories from '../subcategories';
-import Notification from "../notification";
-import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import HolaJuanito from "../holaJuanito/HolaJuanito"
 
 const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
@@ -48,24 +44,12 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
     }, 2000)
   }, [])
 
-  const handlePlay = () => {
-    document.getElementById("btnStart").click()
-  }
-
-  const message = <div>
-    <p>🔵 Bienvenido a pikajuegos</p>
-    <p>💙 Nuestra misión es reducir y desaparecer las estafas en línea, si conoces algún estafador que este en nuestra plataforma no dudes en dar click en el botón denunciar.</p>
-    <p>🤝 Recuerda que puedes confiar plenamente en los aliados que tengan el icono <span style={{ color: "#04a4c4;" }}><FontAwesomeIcon icon={faCheckCircle} /></span> al lado de su nombre, a estos los respaldamos completamente.</p>
-    <p>Puedes hacer login haciendo click ➡ <span onClick={handlePlay}>aquí.</span></p>
-  </div>
-
   return <React.Fragment>
-    <Notification isOpen={showNotification} setIsOpen={() => setShowNotification(!showNotification)} message={message} />
     <HolaJuanito />
     {
-      showVideo && <div className={styles.videoContent}>
-        <video onClick={handlePlay} className="block-center" src="/videos/video1.mp4" />
-      </div>
+      // showVideo && <div className={styles.videoContent}>
+      //   <video onClick={handlePlay} className="block-center" src="/videos/video1.mp4" />
+      // </div>
     }
     <SpecialBanner {...{ category, handleLike, popularyItem, starItem }} />
     {
