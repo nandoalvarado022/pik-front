@@ -1,40 +1,38 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
-import { Input, TextField } from "@material-ui/core"
-import { useState } from "react"
+import { TextField } from "@material-ui/core"
+import { useContext } from "react"
 import Button from "../../components/button/Button"
 import CiudadControl from "../../components/ciudadControl/CiudadControl"
-import Insignias from "../../components/insignias"
 import Coins from "../../components/previewUser/Coins"
-import { format_number } from "../../lib/utils"
 import ImageProfile from "./ImageProfile"
-import Notification from "../../components/notification"
 import styles from "./perfil.module.scss"
+import { PikContext } from "../../states/PikState"
+import UserNotifications from "../../components/userNotifications/UserNotifications"
 
 const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }) => {
-    const [message, setMessage] = useState({})
+    const context = useContext(PikContext)
     return <section className={styles.perfil}>
-        <Notification isOpen={!!message?.message} message={message} />
         <h2 style={{ textAlign: "center" }}>
             Perfil
             <FontAwesomeIcon style={{ float: "right" }} icon={faQuestionCircle} onClick={() => {
-                setMessage({
-                    id: 0, message: <div>
-                        <h2>Perfil</h2>
-                        <p>
-                            <h3>Coins</h3>
-                            <p>En Pikajuegos te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
-                        </p>
-                        <p>
-                            Puedes comprar el pase ORO el cual es una suscripcion mensual que te otorga los siguientes beneficios:
-                            <ul>
-                                <ol>No tienes límite de publicaciones diarias</ol>
-                                <ol>Con el pase ORO puedes participar en <b>todos</b> sorteos que hacemos vía instagram</ol>
-                            </ul>
-                        </p>
-                        <p>🤝 Juntos somos mejor</p>
-                    </div>
-                })
+                const htmlMessage = <div>
+                    <h2>Perfil</h2>
+                    <p>
+                        <h3>Coins</h3>
+                        <p>En Pikajuegos te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
+                    </p>
+                    <p>
+                        Puedes comprar el pase ORO el cual es una suscripcion mensual que te otorga los siguientes beneficios:
+                        <ul>
+                            <ol>No tienes límite de publicaciones diarias</ol>
+                            <ol>Con el pase ORO puedes participar en <b>todos</b> sorteos que hacemos vía instagram</ol>
+                        </ul>
+                    </p>
+                    <p>🤝 Juntos somos mejor</p>
+                </div>
+                const message = { id: "perfil", message: htmlMessage }
+                context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
             }} />
         </h2>
 
@@ -65,12 +63,12 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                     {/* <Button color="red" onClick={handleLogout}>Salir</Button> */}
                 </div>
             </div>
+            <div className="Card">
+                <h3>Notificaciones</h3>
+                <UserNotifications />
+            </div>
         </div>
 
-        {/* <div className="Card">
-            <b className="title">Insignias</b>
-            <Insignias />
-        </div> */}
     </section>
 }
 

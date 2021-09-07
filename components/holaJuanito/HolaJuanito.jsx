@@ -20,6 +20,10 @@ const HolaJuanito = () => {
                     <div className={`${styles.text2} font-c`}>
                         Recuerda que puedes confiar <span style={{ color: "green" }}>100%</span> en los aliados de <b>PikaPlay</b>.
                         Entregamos garantia por las compras que hagas a nuestros aliados certificados así que no te preocupes por estafas en tus compras.
+
+                        {context.user.id && <p>
+                            <Link href="/perfil"><i>Puedes completar tu perfil aquí</i></Link>
+                        </p>}
                     </div>
                 </div>
                 <ol>

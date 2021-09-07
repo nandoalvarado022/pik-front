@@ -7,18 +7,22 @@ const PikReducer = (state, action) => {
         ...state,
         [property]: value
       }
-    case "CLOSE_NOTIFICATION":
-      const { id } = payload
-      debugger
-      if (!state.checkedNotifications.find(item => item == id)) {
-        const _state = {
-          ...state,
-          checkedNotifications: [...state.checkedNotifications, id]
-        }
-        localStorage.setItem("checkedNotifications", JSON.stringify(_state.checkedNotifications))
-        return _state
+    case "SET_MESSAGE":
+      const notifications1Time = ["postRegistro"]
+      let messageModal = !payload?.message ? { id: "empty", message: "" } : payload.message
+      // si el tipo de notificacion es 1time debe quedar almacenada en local storage
+      const notifications = localStorage.getItem("checkedNotifications") ? JSON.parse(localStorage.getItem("checkedNotifications")) : []
+      if (notifications1Time.indexOf(messageModal.id) != 1 && notifications.find(item => item == messageModal.id)) { // si es notificacion 1time y ya lo tenemos en el local storage no se debe mostrar
+        messageModal.id = "empty"
       }
-      return state
+      if (notifications1Time.indexOf(messageModal.id) != -1 && !notifications.find(item => item == messageModal.id)) {
+        notifications.push(messageModal.id)
+        localStorage.setItem("checkedNotifications", JSON.stringify(notifications))
+      }
+      return {
+        ...state,
+        messageModal
+      }
     case "RECLAMAR_COINS":
       return {
         ...state,

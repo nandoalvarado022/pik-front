@@ -76,6 +76,19 @@ class Layout extends React.Component {
         : null;
     }
 
+    const message = {
+      id: "postRegistro", message: <div>
+        <p>
+          <b>Bienvenido,</b> {this.context.user.name}
+        </p>
+        <img style={{ display: "block", margin: "0 auto", width: "200px" }} src="/images/banners/completar-perfil.jpg" alt="Completar perfil" />
+        <p>🤝 Recuerda que puedes confiar plenamente en los aliados que tengan el icono <span style={{ color: "#04a4c4;" }}><FontAwesomeIcon icon={faCheckCircle} /></span> al lado de su nombre, a estos los respaldamos completamente.</p>
+        <p>Puedes completar tu perfil haciendo click <Link href="/perfil">aquí.</Link></p>
+      </div>
+    }
+
+    this.context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+
     /*const script = document.createElement("script");
     script.src = "../../indigital/sdk.min.js";
     script.async = true;
@@ -122,16 +135,6 @@ class Layout extends React.Component {
     const props = this.props
     const { meta_descripcion, meta_title, meta_image } = this.props
     let { meta_url, is_partner, partner } = this.props
-    const message = {
-      id: 1, message: <div>
-        <p>
-          <b>Bienvenido,</b> {this.context.user.name}
-        </p>
-        <img style={{ display: "block", margin: "0 auto", width: "200px" }} src="/images/banners/completar-perfil.jpg" alt="Completar perfil" />
-        <p>🤝 Recuerda que puedes confiar plenamente en los aliados que tengan el icono <span style={{ color: "#04a4c4;" }}><FontAwesomeIcon icon={faCheckCircle} /></span> al lado de su nombre, a estos los respaldamos completamente.</p>
-        <p>Puedes completar tu perfil haciendo click <Link href="/perfil">aquí.</Link></p>
-      </div>
-    }
 
     return <React.Fragment>
       <Head>
@@ -178,7 +181,7 @@ class Layout extends React.Component {
         <main className={styles.principal}>
           <Categorias scroll={false} />
           {isMobile && <MenuMovil />}
-          <Notification isOpen={this.context.showNotification} message={message} />
+          <Notification isOpen={this.context.showNotification} />
           {props.children}
           <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">
             <button className={styles["btn-whatsapp"]}>

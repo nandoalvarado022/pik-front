@@ -1,11 +1,9 @@
 import { gql, useMutation } from "@apollo/client"
-import Router from "next/router"
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from "react"
 import Layout from "../../components/layout/Layout"
 import { handleLogout, subirImagen } from "../../lib/utils"
 import Interface from "./Interface"
-import Notification from "../../components/notification/"
 import { PikContext } from "../../states/PikState"
 
 const CHANGE_PROFILE = gql`
@@ -17,7 +15,7 @@ const Perfil = () => {
   const context = useContext(PikContext)
   const router = useRouter()
   const showSavedMessage = !!Object.keys(router.query).find(x => x == "updated")
-  const [updateUser, { data, error, loading }] = useMutation(CHANGE_PROFILE)
+  const [changeProfileData, { data, error, loading }] = useMutation(CHANGE_PROFILE)
   const [userData, setUserData] = useState({
     ...context.user,
     coins: context?.coins
@@ -41,43 +39,30 @@ const Perfil = () => {
       picture = picture[0]
     } else picture = null
 
-    let input = {
-      ...userData,
-      city: context.user.city
+    let variables = {
+      city: context.user.city,
+      id: userData.id,
+      name: userData.name
     }
 
-    // Setting picture
-    if (picture) input.picture = picture
+    if (picture) variables.picture = picture // Setting picture
 
-    // saving in the server
-    delete input.login_code
-    delete input.banner_bottom
-    delete input.banner_top
-    delete input.certificate
-    delete input.certificate
-    delete input.created
-    delete input.coins
-    delete input.category
-    const variables = { input }
-
-    context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: input } })
-    updateUser({ variables }) // Guardando en BD
+    context.customDispatch({
+      type: "CHANGE_PROPERTY", payload: {
+        property: "user", value:
+          { ...userData, ...variables }
+      }
+    })
+    changeProfileData({ variables: { input: variables } }) // Guardando en BD
 
     // saving in localstorage
-    const user = context.user
-    localStorage.setItem("user", JSON.stringify({ ...user, ...input }))
+    localStorage.setItem("user", JSON.stringify({ ...userData, ...variables }))
     setTimeout(() => {
       setIsSaving(false)
-      loadUserInformation()
-      Router.push("/perfil?updated")
     }, 1000)
   }
 
-  let message = null
-  if (showSavedMessage) message = { id: null, message: "Perfil actualizado!" }
-
   return <Layout>
-    {message && <Notification isOpen={true} message={message} />}
     <Interface {...{ userData, isSaving, handleSave, handleLogout, setUserData }} />
   </Layout>
 }

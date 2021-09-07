@@ -5,14 +5,15 @@ import { useState } from "react"
 import { PikContext } from "../../states/PikState"
 import styles from "./notificacion.module.scss"
 
-const Notification = ({ isOpen, message = {}, setIsOpen }) => {
-    const { id, message: htmlMessage } = message
+const Notification = ({ }) => {
     const context = useContext(PikContext)
+    const isOpen = context.messageModal.id == "empty" ? false  : true
+    const { id = null, message: htmlMessage = null } = context?.messageModal
     const handleClose = () => {
-        setIsOpen ? setIsOpen(false) : null
-        context.customDispatch({ type: "CLOSE_NOTIFICATION", payload: { id } })
+        context.customDispatch({ type: "SET_MESSAGE", payload: null })
     }
     const isNotificationChecked = context.checkedNotifications && !context.checkedNotifications.find(item => item == id)
+
     return <div className={`${styles.Notificacion} ${(isOpen && isNotificationChecked) && styles.active} ID-${id}`}>
         <div className={styles.bg}></div>
         <div className={styles.content}>

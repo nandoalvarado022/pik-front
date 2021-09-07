@@ -7,11 +7,12 @@ const PikState = (props) => {
   const initialState = {
     coins: 15,
     isOpenNotifications: false,
+    isMobile: false,
     isOpenPreviewProfile: false,
     notifications: [],
+    messageModal: { id: "empty" },
     checkedNotifications: typeof window != "undefined" && localStorage.getItem("checkedNotifications") ? JSON.parse(localStorage.getItem("checkedNotifications")) : [],
     selectedUser: null,
-    isMobile: false,
     user: {
       id: 0
     },

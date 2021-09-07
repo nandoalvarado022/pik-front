@@ -17,14 +17,29 @@
     width: 250px;
     z-index: 0;
     ol {
-        align-items: center;
+        align-items: start;
         border-bottom: 1px solid #42495029;
         display: flex;
+        height: min-content;
         margin: 5px 0;
+        max-height: 50px;
+        overflow: hidden;
         padding: 0 10px 10px;
         text-align: center;
+        transition: 0.5s ease;
+        &.open {
+            max-height: initial;
+        }
+        > * {
+            flex: 1;
+        }
         &:nth-of-type(1) {
             margin-top: 30px;
+        }
+        i {
+            display: block;
+            font-weight: 600;
+            margin-top: 10px;
         }
         .content_close {
             svg {
@@ -33,19 +48,16 @@
         }
         span {
             font-size: 12px;
-            // width: 200px;
+            flex: 5;
         }
         .coin {
-            margin: 0;
+            margin-right: 10px;
             position: relative;
             top: 5px;
             width: 20px;
         }
         button {
-            color: #fd9700;
-            cursor: pointer;
-            font-size: 14px;
-            margin-left: 10px;
+            height: 35px;
         }
     }
 }

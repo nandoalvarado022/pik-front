@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react'
 import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
 import { gql, useMutation } from '@apollo/client'
+import Button from "../button/Button"
 
 const UserNotifications = () => {
   const context = useContext(PikContext)
@@ -28,20 +29,37 @@ const UserNotifications = () => {
     context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: _notifications } })
   }
 
-  return <ul className={`${styles.UserNotifications}`}>
-      {notifications && notifications.map(({ coins, detail, id }) => <ol>
-        {!!coins && <span>{coins} &nbsp; X &nbsp; <img className={styles.coin} src="/images/gifs/coin.png" /></span>}
-        <span>&nbsp; {detail}</span>
-        {!!coins && <button onClick={() => { reclamarCoins(coins, id) }}>Reclamar</button>}
-        <div className={styles.content_close}>
-          <FontAwesomeIcon onClick={() => deleteNotification(id)} icon={faTimes} />
-        </div>
-      </ol>
-      )}
-      {notifications.length < 1 && <ol>
+  const handleNotification = (id) => {
+    const _notifications = notifications.map((item) => {
+      const isOpen = item.id == id ? true : false
+      return {
+        ...item,
+        isOpen
+      }
+    })
+    context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: _notifications } })
+  }
+
+  return <ul className={`${styles.UserNotifications} UserNotifications`}>
+    {notifications && notifications.map(({ coins, detail, id, isOpen }) => <ol className={isOpen ? styles.open : null}>
+      {!!coins && <img className={styles.coin} src="/images/icons/moneda2.svg" />}
+      <span onClick={() => handleNotification(id)}>
+        {detail}
+        {isOpen && <i>Hace 5 minutos</i>}
+      </span>
+      {!!coins && <Button color="blue" onClick={() => { reclamarCoins(coins, id) }}>Reclamar</Button>}
+      {!coins && <div className={styles.content_close}>
+        <FontAwesomeIcon onClick={() => deleteNotification(id)} icon={faTimes} />
+      </div>
+      }
+    </ol>
+    )}
+    {
+      notifications.length < 1 && <ol>
         <span>No tienes notificaciones 😯</span>
-      </ol>}
-    </ul>
+      </ol>
+    }
+  </ul >
 }
 
 export default UserNotifications

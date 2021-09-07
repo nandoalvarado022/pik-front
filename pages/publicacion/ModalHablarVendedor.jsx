@@ -18,7 +18,6 @@ const ModalHablarVendedor = ({ datosPublicacion, onChange, setIsModalHablarVende
 
   const handleCreateTransaction = () => {
     // Mutation para registrar la pre orden
-    debugger
     createTransaction({ variables: { user: context.user.id, user_to: datosPublicacion.user, publication: datosPublicacion.id, type: "Compra" } });
 
     const user = localStorage.getItem("user")

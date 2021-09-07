@@ -13,7 +13,6 @@ const pagar = ({ idTransaccion }) => {
   //     id_publicacion,
   //     cuponDigitado,
   //   });
-  //   debugger;
   //   if (!res.encontroCupon) {
   //     toastr.warning("Lo siento, el cupón ya se utilizo");
   //     this.setState({

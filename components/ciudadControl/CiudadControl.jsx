@@ -6,7 +6,6 @@ import { PikContext } from "../../states/PikState"
 const CiudadControl = () => {
   const context = useContext(PikContext)
   const listadoCiudades = ["Bogotá", "Medellín", "Barranquilla", "Cali", "Bucaramanga", "Pasto", "Barrancabermeja", "Monteria", "Cartagena", "Santa Marta", "Manizales", "Cucuta", "Pereira", "Ibague", "Maicao", "Rioacha"]
-  const [ciudad, setCiudad] = useState()
 
   return <div className="contentCiudad">
     <Autocomplete value={context.user.city} name="str_ciudad" options={listadoCiudades} onInputChange={(event, str_ciudad) => { context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: { ...context.user, city: str_ciudad } } }) }} getOptionLabel={(option) => option} style={{ width: "100%" }}

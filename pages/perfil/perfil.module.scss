@@ -52,4 +52,21 @@ section.perfil {
             width: 15px;
         }
     }
+    h3{
+        margin: 18px 0 0;
+    }
+    :global(.UserNotifications) {
+        border-radius: initial;
+        box-shadow: none;
+        height: calc(100% - 80px);
+        left: 0;
+        margin: 0;
+        overflow: initial;
+        padding: 0;
+        position: relative;
+        ol{
+            margin: 0;
+            padding: 10px 0;
+        }
+    }
 }
