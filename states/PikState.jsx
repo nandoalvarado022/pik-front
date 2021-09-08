@@ -5,7 +5,7 @@ import { createContext } from "react"
 
 const PikState = (props) => {
   const initialState = {
-    coins: 15,
+    coins: 0,
     isOpenNotifications: false,
     isMobile: false,
     isOpenPreviewProfile: false,

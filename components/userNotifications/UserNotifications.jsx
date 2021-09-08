@@ -11,14 +11,26 @@ const UserNotifications = () => {
   const context = useContext(PikContext)
   const notifications = context.notifications
   const [isOpenNotifications, setIsOpenNotifications] = useState(false)
+
+  const CREATE_COIN = gql`
+	mutation createCoin($id: Int){
+		createCoin(id: $id)
+	}`
+
   const DELETE_NOTIFICATION = gql`
 	mutation deleteNotification($id: Int){
 		deleteNotification(id: $id)
 	}`
 
   const [deleteNotificationGraph] = useMutation(DELETE_NOTIFICATION);
+  const [createCoin] = useMutation(CREATE_COIN);
 
   const reclamarCoins = (coins, idNotification) => {
+    createCoin({
+      variables: {
+        id: idNotification
+      }
+    })
     context.customDispatch({ type: "RECLAMAR_COINS", payload: { coins } })
     deleteNotification(idNotification)
   }
@@ -56,7 +68,7 @@ const UserNotifications = () => {
     )}
     {
       notifications.length < 1 && <ol>
-        <span>No tienes notificaciones 😯</span>
+        <span>✅ Estas al día con tus notificaciones</span>
       </ol>
     }
   </ul >

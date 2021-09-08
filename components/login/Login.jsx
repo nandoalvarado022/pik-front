@@ -25,7 +25,7 @@ export default function Login() {
 				context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
 				localStorage.setItem("token", token)
 				setIsOpen(false)
-				loadAudio("/audios/noti.mp3")
+				loadAudio("/audios/login.mp3")
 				Router.push("?login=on")
 			} else {
 				document.getElementById("verificationCode").value = ""

@@ -9,6 +9,7 @@
     justify-content: center;
     left: 0;
     margin: 0 auto;
+    padding: 0 10px;
     position: fixed;
     right: 0;
     width: 90%;
@@ -29,7 +30,7 @@
             text-align: center;
         }
         .vender {
-            background-image: linear-gradient( 133deg, #ff9e98, #ff4c3f);
+            background-image: linear-gradient(to bottom right, #4d6f92 0%, #426d98 100%);
             border-radius: 20px;
             color: white;
             font-size: 12px;

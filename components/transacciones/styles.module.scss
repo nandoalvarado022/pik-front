@@ -2,12 +2,20 @@ ul.Transactions {
     display: flex;
     flex-direction: column;
     margin: 20px auto 0;
+    padding: 0;
     width: 800px;
-    >* {
+    @media screen and (max-width: 420px) {
+        padding: 0;
+        width: initial;
+    }
+    > ol {
         display: flex;
         box-shadow: 0px 2px 4px 0px #152c4442;
         margin-bottom: 10px;
-        >* {
+        @media screen and (max-width: 420px) {
+            flex-direction: column;
+        }
+        > * {
             margin: 10px;
         }
     }

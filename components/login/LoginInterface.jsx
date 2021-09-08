@@ -19,7 +19,7 @@ export default function LoginInterface({ buttonText, isCodeSended, isOpen, handl
         <div className={styles.flex} style={{ display: isCodeSended ? "none" : "flex" }}>
           <img height="42" width="40" className={styles.icon_colombia} src="/images/icons/colombia.png" alt="" />
           <span>(+57)</span>
-          <TextField autoFocus margin="dense" id="phoneLogin" label="Número de celular" type="email" fullWidth />
+          <TextField autoFocus margin="dense" id="phoneLogin" label="Número de celular" type="number" fullWidth />
         </div>
         {isCodeSended && <TextField type="number" disabled={buttonText == "Validando..." ? true : false} onKeyUp={handleKeyUp} autoFocus margin="dense" id="verificationCode" label="Escribe aquí el código de 4 dígitos que te envíamos" fullWidth />}
       </DialogContent>

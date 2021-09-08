@@ -4,16 +4,23 @@
     justify-content: center;
     margin-top: 5px;
     height: 30px;
+    &.animated {
+        .coin {
+            animation: rotate .5s steps(6) infinite, appear 1s steps(1);
+        }
+    }
     .coin {
-        // animation: like 1s steps(6) infinite;
-        background-image: url("/images/gifs/moneda2.svg");
-        background-position-x: -8px;
+        background-image: url("/images/gifs/sprite-monedas-pequenas.png");
+        // background-image: url("/images/gifs/monedas.png");
+        background-position-x: 0px;
         background-position-y: 0px;
+        background-size: 210px;
         display: inline-block;
-        height: 50px;
+        height: 31px;
         margin: 0;
-        width: 50px;
-        // transform: scale(0.6);
+        position: relative;
+        transition: 0.5s linear;
+        width: 31px;
     }
     .number {
         border-radius: 5px;
@@ -21,10 +28,32 @@
         display: inline-block;
         font-weight: bold;
         height: 20px;
-        // left: -32px;
-        // padding: 2px 5px 2px 20px;
+        margin-left: 10px;
         position: relative;
-        // top: 2px;
         z-index: -1;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        background-position-x: 0px;
+    }
+    100% {
+        background-position-x: -179px;
+    }
+}
+
+@keyframes appear {
+    0% {
+        top: 0px;
+    }
+    20% {
+        top: -10px;
+    }
+    40% {
+        top: 0px;
+    }
+    100% {
+        top: -20px;
     }
 }

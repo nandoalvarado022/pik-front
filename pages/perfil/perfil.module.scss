@@ -1,14 +1,43 @@
 section.perfil {
     margin: 20px auto;
     width: 1200px;
+    @media screen and (max-width: 420px) {
+        width: auto;
+    }
+    .tabs {
+        display: none;
+        position: sticky;
+        top: 80px;
+        z-index: 2;
+        @media screen and (max-width: 420px) {
+            display: flex;
+        }
+        > * {
+            background: white;
+            flex: 1;
+            margin: 0;
+            padding: 0;
+            padding: 20px 0;
+            &.active {
+                background: #f1f1f1;
+                border-bottom: 2px solid #476f96;
+            }
+            svg {
+                color: #585858;
+                display: block;
+                height: 20px;
+                margin: 0 auto;
+                width: 20px;
+            }
+        }
+    }
     .content {
         display: flex;
         margin: 20px auto 0;
         width: 1080px;
-
         @media screen and (max-width: 420px) {
             margin: 20px auto 0;
-            flex-direction: column-reverse;
+            flex-direction: column;
             width: auto;
         }
         .imageAndLevel {
@@ -52,7 +81,7 @@ section.perfil {
             width: 15px;
         }
     }
-    h3{
+    h3 {
         margin: 18px 0 0;
     }
     :global(.UserNotifications) {
@@ -64,7 +93,7 @@ section.perfil {
         overflow: initial;
         padding: 0;
         position: relative;
-        ol{
+        ol {
             margin: 0;
             padding: 10px 0;
         }

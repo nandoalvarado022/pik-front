@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
+
+.svg-question {
+    margin-left: 10px;
+}
+
 .MuiButton-label {
     text-transform: initial;
 }
@@ -163,7 +168,7 @@ span.MuiBadge-badge {
 
 #toast-container {
     font-family: "Staatliches", cursive;
-    >div {
+    > div {
         top: 65px;
     }
 }
@@ -339,7 +344,6 @@ span.MuiBadge-badge {
     bottom: 0px;
 }
 
-
 /* Fancy blur effect */
 
 #nprogress .peg {
@@ -355,7 +359,6 @@ span.MuiBadge-badge {
     // -ms-transform: rotate(3deg) translate(0px, -4px);
     transform: rotate(0deg) translate(0px, 0px);
 }
-
 
 /* Remove these to get rid of the spinner */
 
@@ -423,7 +426,7 @@ span.MuiBadge-badge {
     font-size: 14px;
 }
 
-.notySuccess>div {
+.notySuccess > div {
     background: #43a047;
 }
 
@@ -445,7 +448,7 @@ span.MuiBadge-badge {
 
 main {
     @media screen and (max-width: 420px) {
-        margin-top: 66px;
+        margin-top: 100px;
     }
     &::-webkit-scrollbar {
         width: 0px;
@@ -456,12 +459,20 @@ main {
     margin: 0;
 }
 
+section > h2 {
+    text-align: center;
+    @media screen and (max-width: 420px) {
+        padding-left: 20px;
+        text-align: initial;
+    }
+}
+
 .cardTitle {
     padding: 20px 10px;
     overflow: initial !important;
     position: relative;
     margin-top: 30px !important;
-    >h2 {
+    > h2 {
         font-family: "Staatliches", cursive;
         letter-spacing: 1px;
         z-index: 2;

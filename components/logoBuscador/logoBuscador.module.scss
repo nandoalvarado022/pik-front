@@ -41,7 +41,7 @@
                 }
             }
             @media screen and (max-width: 420px) {
-                width: 140px;
+                width: 160px;
                 &.mobile {
                     display: block;
                 }
@@ -74,7 +74,7 @@
             position: relative;
             @media screen and (max-width: 420px) {
                 width: calc(100% - 20px);
-                top: 66px;
+                top: 80px;
                 position: fixed;
                 padding: 10px 10px 10px;
                 margin: 0;

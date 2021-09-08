@@ -52,6 +52,7 @@
     "react-router-dom": "^5.2.0",
     "react-typist": "2.0.5",
     "sass": "^1.32.8",
+    "scroll-js": "^3.4.2",
     "swiper": "5.3.1",
     "toastr": "2.1.4"
   },
